@@ -87,13 +87,13 @@ export default function AboutSection() {
       </section>
 
       {/* Our Impact */}
-      <section className="py-16 bg-blue-800 text-white w-full">
+      <section className="py-16 bg-white text-gray-800 w-full">
         <div className="max-w-7xl mx-auto px-6 lg:px-24">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
-            className="text-3xl md:text-4xl font-extrabold text-center text-white mb-12"
+            className="text-3xl md:text-4xl font-extrabold text-center text-blue-800 mb-12"
           >
             Our Impact
           </motion.h2>
@@ -110,13 +110,13 @@ export default function AboutSection() {
                 animate={{ opacity: 1, y: 0 }}
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.8, delay: i * 0.15, type: "spring", stiffness: 100 }}
-                className="bg-white/15 backdrop-blur-lg border border-white/30 rounded-lg p-6 text-center transition-all duration-300 shadow-[inset_0_0_15px_rgba(255,255,255,0.3)] hover:shadow-[0_0_15px_rgba(13,148,136,0.5)] bg-gradient-to-br from-white/10 to-teal-500/10"
+                className="bg-gradient-to-br from-blue-600 to-blue-800 bg-white/10 backdrop-blur-lg border border-blue-900 rounded-lg p-4 aspect-square text-center transition-all duration-300 shadow-[inset_0_0_15px_rgba(255,255,255,0.3)] hover:shadow-[0_0_15px_rgba(29,78,216,0.5)]"
               >
                 <div className="p-3 bg-teal-500/20 rounded-full shadow-inner border border-teal-200 mx-auto mb-4">
                   <stat.icon className="w-8 h-8 text-teal-500" />
                 </div>
                 <p className="text-2xl font-bold text-white">{stat.value}</p>
-                <p className="text-gray-200">{stat.label}</p>
+                <p className="text-white">{stat.label}</p>
               </motion.div>
             ))}
           </div>
@@ -159,13 +159,13 @@ export default function AboutSection() {
       </section>
 
       {/* Core Values */}
-      <section className="py-16 bg-blue-800 text-white w-full">
+      <section className="py-16 bg-white text-gray-800 w-full">
         <div className="max-w-7xl mx-auto px-6 lg:px-24">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
-            className="text-3xl md:text-4xl font-extrabold text-center text-white mb-12"
+            className="text-3xl md:text-4xl font-extrabold text-center text-blue-800 mb-12"
           >
             Our Core Values
           </motion.h2>
@@ -181,7 +181,7 @@ export default function AboutSection() {
                   animate={{ opacity: 1, y: 0 }}
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.8, delay: i * 0.15, type: "spring", stiffness: 100 }}
-                  className="bg-white/15 backdrop-blur-lg border border-white/30 rounded-lg p-6 text-center transition-all duration-300 shadow-[inset_0_0_15px_rgba(255,255,255,0.3)] hover:shadow-[0_0_15px_rgba(13,148,136,0.5)] bg-gradient-to-br from-white/10 to-teal-500/10"
+                  className="bg-gradient-to-br from-blue-600 to-blue-800 bg-white/10 backdrop-blur-lg border border-blue-900 rounded-lg p-4 aspect-square text-center transition-all duration-300 shadow-[inset_0_0_15px_rgba(255,255,255,0.3)] hover:shadow-[0_0_15px_rgba(29,78,216,0.5)]"
                 >
                   {IconComponent && (
                     <div className="p-3 bg-teal-500/20 rounded-full shadow-inner border border-teal-200 mx-auto mb-4">
@@ -189,7 +189,7 @@ export default function AboutSection() {
                     </div>
                   )}
                   <h3 className="text-xl font-extrabold text-white mb-2 hover:border-b-2 hover:border-teal-500 transition-all duration-200">{value.title}</h3>
-                  <p className="text-gray-200">{value.desc}</p>
+                  <p className="text-white">{value.desc}</p>
                 </motion.div>
               );
             })}
@@ -242,7 +242,7 @@ export default function AboutSection() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-16 bg-blue-800 text-white w-full">
+      <section className="py-16 bg-white text-gray-800 w-full">
         <div className="max-w-7xl mx-auto px-6 lg:px-24">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -252,13 +252,13 @@ export default function AboutSection() {
           >
             {/* Text Content */}
             <div className="flex-1 space-y-6">
-              <h2 className="text-3xl md:text-4xl font-extrabold text-white border-b-2 border-teal-200 pb-2">
+              <h2 className="text-3xl md:text-4xl font-extrabold text-blue-800 border-b-2 border-teal-200 pb-2">
                 Why Choose Us?
               </h2>
-              <p className="text-lg text-gray-200 leading-relaxed">
+              <p className="text-lg text-gray-800 leading-relaxed">
                 With 13+ years of experience, we deliver future-proof software and cloud solutions built to last. Our agile processes, transparent communication, and senior expertise ensure project success.
               </p>
-              <ul className="space-y-2 text-gray-200 text-base">
+              <ul className="space-y-2 text-gray-800 text-base">
                 <li>
                   <CheckCircle className="inline w-5 h-5 mr-2 text-teal-500" />
                   Accurate cost estimation and budget control
@@ -280,7 +280,7 @@ export default function AboutSection() {
                 <Link href="/contact">
                   <Button
                     aria-label="Get in Touch"
-                    className="bg-teal-500 backdrop-blur-sm border border-teal-200 text-white px-6 py-3 rounded-lg hover:bg-teal-600 hover:shadow-[0_0_10px_rgba(13,148,136,0.5)] transition-all duration-300"
+                    className="bg-teal-500 border border-teal-200 text-white px-6 py-3 rounded-lg hover:bg-teal-600 hover:shadow-[0_0_10px_rgba(13,148,136,0.5)] transition-all duration-300"
                   >
                     Get in Touch
                   </Button>
@@ -288,7 +288,7 @@ export default function AboutSection() {
                 <Link href="/services">
                   <Button
                     aria-label="Learn More"
-                    className="bg-white/15 backdrop-blur-sm border border-teal-200 text-white px-6 py-3 rounded-lg hover:bg-white/20 hover:shadow-[0_0_10px_rgba(13,148,136,0.5)] transition-all duration-300"
+                    className="bg-blue-800 border border-teal-200 text-white px-6 py-3 rounded-lg hover:bg-blue-900 hover:shadow-[0_0_10px_rgba(29,78,216,0.5)] transition-all duration-300"
                   >
                     Learn More
                   </Button>
@@ -302,13 +302,13 @@ export default function AboutSection() {
               animate={{ opacity: 1, scale: 1 }}
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
-              className="flex-1 relative h-80 w-full overflow-hidden rounded-lg border border-teal-200 group bg-white/15 backdrop-blur-lg shadow-[inset_0_0_15px_rgba(255,255,255,0.3)] bg-gradient-to-br from-white/10 to-teal-500/10"
+              className="flex-1 relative h-64 w-full overflow-hidden rounded-lg border border-blue-900 bg-gradient-to-br from-blue-600 to-blue-800 bg-white/10 backdrop-blur-lg shadow-[inset_0_0_15px_rgba(255,255,255,0.3)] hover:shadow-[0_0_15px_rgba(29,78,216,0.5)] aspect-square"
             >
               <Image
                 src="/about-image.jpg"
                 alt="BabbageTechnologies Team in Action"
                 width={600}
-                height={400}
+                height={600}
                 quality={80}
                 loading="eager"
                 className="rounded-lg transition-transform duration-500 group-hover:scale-105 object-cover"

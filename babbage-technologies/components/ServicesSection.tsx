@@ -81,7 +81,7 @@ export default function ServicesSection() {
             viewport={{ once: true }}
             className="text-center mb-12 md:mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-extrabold text-black mb-4">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-blue-800 mb-4">
               Our Services
             </h2>
             <p className="text-lg text-gray-800 max-w-3xl mx-auto">
@@ -160,14 +160,14 @@ export default function ServicesSection() {
       </section>
 
       {/* Development Process */}
-      <section className="py-16 bg-blue-800 text-white w-full">
+      <section className="py-16 bg-white text-gray-800 w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-extrabold text-center text-black mb-12"
+            className="text-3xl md:text-4xl font-extrabold text-center text-blue-800 mb-12"
           >
             Our Development Process
           </motion.h2>
@@ -208,8 +208,8 @@ export default function ServicesSection() {
               <motion.div
                 key={index}
                 variants={cardVariants}
-                whileHover={{ scale: 1.05 }}
-                className="bg-gradient-to-b from-blue-100 to-blue-200 border border-blue-300 rounded-lg shadow-lg hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] transition-all duration-300"
+                whileHover={{ scale: 1.03 }}
+                className="bg-gradient-to-b from-blue-100 to-blue-200 border border-cyan-300 rounded-lg shadow-lg hover:shadow-[0_0_15px_rgba(6,182,212,0.5)] transition-all duration-300"
               >
                 <Card className="bg-transparent border-0">
                   <CardHeader className="flex items-center gap-4">
@@ -240,7 +240,7 @@ export default function ServicesSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-extrabold text-center text-black mb-12"
+            className="text-3xl md:text-4xl font-extrabold text-center text-blue-800 mb-12"
           >
             Industries We Serve
           </motion.h2>
@@ -319,7 +319,7 @@ export default function ServicesSection() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-extrabold text-black mb-4">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-blue-800 mb-4">
               Tailored Technology for Your Industry
             </h2>
             <p className="text-lg text-gray-800 max-w-3xl mx-auto mb-8">
@@ -345,7 +345,7 @@ export default function ServicesSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-extrabold text-center text-black mb-12"
+            className="text-3xl md:text-4xl font-extrabold text-center text-blue-800 mb-12"
           >
             Technologies We Master
           </motion.h2>
@@ -431,14 +431,14 @@ export default function ServicesSection() {
       </section>
 
       {/* Quality Control Practices */}
-      <section className="py-16 bg-blue-800 text-white w-full">
+      <section className="py-16 bg-white text-gray-800 w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-extrabold text-center text-black mb-12"
+            className="text-3xl md:text-4xl font-extrabold text-center text-blue-800 mb-12"
           >
             Our Quality Control Practices
           </motion.h2>
@@ -489,8 +489,8 @@ export default function ServicesSection() {
               <motion.div
                 key={index}
                 variants={cardVariants}
-                whileHover={{ scale: 1.05 }}
-                className="bg-gradient-to-b from-blue-100 to-blue-200 border border-blue-300 rounded-lg shadow-lg hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] transition-all duration-300"
+                whileHover={{ scale: 1.03 }}
+                className="bg-gradient-to-b from-blue-100 to-blue-200 border border-cyan-300 rounded-lg shadow-lg hover:shadow-[0_0_15px_rgba(6,182,212,0.5)] transition-all duration-300"
               >
                 <Card className="bg-transparent border-0">
                   <CardHeader className="flex items-center gap-4">
@@ -514,14 +514,14 @@ export default function ServicesSection() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-16 bg-blue-800 text-white w-full">
+      <section className="py-16 bg-white text-gray-800 w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-extrabold text-center text-black mb-12"
+            className="text-3xl md:text-4xl font-extrabold text-center text-blue-800 mb-12"
           >
             What Our Clients Say
           </motion.h2>
@@ -547,8 +547,8 @@ export default function ServicesSection() {
               <motion.div
                 key={index}
                 variants={cardVariants}
-                whileHover={{ scale: 1.05 }}
-                className="bg-gradient-to-b from-blue-100 to-blue-200 border border-blue-300 rounded-lg shadow-lg hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] transition-all duration-300"
+                whileHover={{ scale: 1.03 }}
+                className="bg-gradient-to-b from-blue-100 to-blue-200 border border-cyan-300 rounded-lg shadow-lg hover:shadow-[0_0_15px_rgba(6,182,212,0.5)] transition-all duration-300"
               >
                 <Card className="bg-transparent border-0">
                   <CardContent className="pt-6">
@@ -557,7 +557,7 @@ export default function ServicesSection() {
                       dangerouslySetInnerHTML={{ __html: testimonial.quote }}
                     />
                     <p className="text-gray-800 font-semibold">{testimonial.author}</p>
-                    <p className="text-teal-200">{testimonial.role}</p>
+                    <p className="text-teal-500">{testimonial.role}</p>
                   </CardContent>
                 </Card>
               </motion.div>
