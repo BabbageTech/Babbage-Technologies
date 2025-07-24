@@ -6,40 +6,39 @@ import { Service } from "@/types"; // Ensure Service type is correctly defined i
 import { motion, Variants } from "framer-motion";
 import {
   Banknote,
-  BarChart2, Box, // For Budget Control (added to imports)
+  BarChart2, Box, // For Budget Control
   CalendarCheck,
-  CheckCircle, Clipboard, Cloud, // For FastAPI
+  CheckCircle, Clipboard, Cloud,
   CloudCog,
-  Code, // For Node.js
+  Code,
   Component,
-  Database, // For UI/UX Design (added to imports)
-  DollarSign, // For Django
-  FastForward, // For React.js
-  FileJson, // For Responsible Deadlines (added to imports)
-  FileText // For Regular Reporting & Demos (added to imports)
-  , // Logistics
-  Film, // For .NET
+  Database,
+  DollarSign,
+  FastForward,
+  FileJson, // For Responsible Deadlines
+  FileText // For Regular Reporting & Demos
+  ,
+  Film,
   GitBranch,
-  Globe, // Finance
-  GraduationCap, // For Google Cloud
-  HeartPulse, // Media & Entertainment
+  Globe,
+  GraduationCap,
+  HeartPulse,
   Home,
   Laptop,
-  Layers, // Real Estate
+  Layers, // For UI/UX Design
   Megaphone,
-  Server, Settings, // For Python
-  Shield, // Education
+  Server, Settings,
+  Shield,
   ShoppingCart,
-  Smartphone, // For Java
-  Terminal, // eCommerce
+  Smartphone,
+  Terminal,
   Truck,
-  Users2, // For Ruby on Rails
+  Users2,
   Zap
 } from "lucide-react";
 import Link from "next/link";
 
 // Define a mapping for Lucide icons to be used dynamically
-// Moved outside the component to prevent re-creation on every render, improving efficiency.
 const IconMap = {
   Server: Server,
   Database: Database,
@@ -70,14 +69,13 @@ const IconMap = {
   Film: Film,
   Home: Home,
   Megaphone: Megaphone,
-  Layers: Layers, // Added Layers
-  DollarSign: DollarSign, // Added DollarSign
-  CalendarCheck: CalendarCheck, // Added CalendarCheck
-  FileText: FileText, // Added FileText
+  Layers: Layers,
+  DollarSign: DollarSign,
+  CalendarCheck: CalendarCheck,
+  FileText: FileText,
 };
 
 // Framer Motion Variants for staggered animations
-// Moved outside the component to prevent re-creation on every render, improving efficiency.
 const containerVariants: Variants = {
   hidden: {},
   show: {
@@ -101,7 +99,7 @@ const itemVariants: Variants = {
   },
 };
 
-export default function ServicesPage() { // Renamed to ServicesPage to fit app router structure
+export default function ServicesPage() {
   const services: Service[] = [
     {
       title: "Custom Software Development",
@@ -165,7 +163,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
     {
       title: "Deployment & Launch",
       desc: "Strategic deployment and smooth launch, ensuring your solution goes live efficiently and effectively.",
-      icon: "Server", // Reusing Server, could be a Rocket or Upload
+      icon: "Server",
     },
     {
       title: "Support & Maintenance",
@@ -196,7 +194,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
       icon: "ShoppingCart",
     },
     {
-    title: "Logistics",
+      title: "Logistics",
       desc: "Real-time tracking, route optimization, and inventory management.",
       icon: "Truck",
     },
@@ -265,7 +263,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
     },
   ];
 
-  const qualityControlPractices = [ // Defined outside for optimization
+  const qualityControlPractices = [
     {
       title: "Accurate Cost Estimation",
       desc: "Thorough analysis ensures precise budget and timeline commitments, preventing surprises.",
@@ -289,7 +287,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
     {
       title: "Budget Control",
       desc: "Continuous monitoring and transparent reporting to prevent unexpected cost overruns.",
-      icon: "Banknote", // Using Banknote as DollarSign is not in Lucide by default
+      icon: "Banknote",
     },
     {
       title: "Responsible Deadlines",
@@ -307,7 +305,6 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
       icon: "Lightbulb",
     },
   ];
-
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
@@ -328,7 +325,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }} // Ensures animation runs only once when in view
+              viewport={{ once: true }}
               className="text-center mb-12 md:mb-16"
             >
               <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 drop-shadow-lg">
@@ -345,7 +342,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.3 }} // Optimizes animations for elements entering viewport
+              viewport={{ once: true, amount: 0.1 }} 
               className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
             >
               {services.map((service: Service, index: number) => {
@@ -355,7 +352,6 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
                     key={index}
                     variants={itemVariants}
                     whileHover={{ scale: 1.03 }}
-                    // Apply backdrop-blur only on screens larger than 'sm' for performance
                     className="bg-white/10 rounded-xl shadow-2xl hover:shadow-teal-500/50 transition-all duration-500 flex flex-col will-change-transform will-change-opacity border border-blue-700/30 sm:backdrop-blur-sm"
                   >
                     <Card className="bg-transparent border-0 flex flex-col flex-1">
@@ -391,7 +387,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100, delay: 0.3 }}
-              viewport={{ once: true }} // Ensures animation runs only once when in view
+              viewport={{ once: true }}
               className="text-center"
             >
               <Link href="/contact">
@@ -421,7 +417,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }} // Ensures animation runs only once when in view
+              viewport={{ once: true }}
               className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg"
             >
               Our Streamlined Development Process
@@ -430,7 +426,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.3 }} // Optimizes animations for elements entering viewport
+              viewport={{ once: true, amount: 0.1 }} 
               className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
             >
               {developmentProcess.map((stage, index) => {
@@ -440,7 +436,6 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
                     key={index}
                     variants={itemVariants}
                     whileHover={{ scale: 1.03 }}
-                    // Apply backdrop-blur only on screens larger than 'sm' for performance
                     className="bg-white/10 rounded-xl shadow-2xl hover:shadow-blue-500/50 transition-all duration-500 flex flex-col will-change-transform will-change-opacity border border-blue-700/30 sm:backdrop-blur-sm"
                   >
                     <Card className="bg-transparent border-0 flex flex-col flex-1">
@@ -466,7 +461,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
         </section>
 
         {/* Industries We Empower */}
-        <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-white relative overflow-hidden">
+        <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-white relative overflow-hidden"> {/* Changed background */}
           {/* Background elements (CSS animations are performant) */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-teal-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-1000"></div>
@@ -478,7 +473,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }} // Ensures animation runs only once when in view
+              viewport={{ once: true }}
               className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg"
             >
               Industries We Empower
@@ -487,7 +482,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.3 }} // Optimizes animations for elements entering viewport
+              viewport={{ once: true, amount: 0.1 }}
               className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
             >
               {industries.map((industry, index) => {
@@ -497,7 +492,6 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
                     key={index}
                     variants={itemVariants}
                     whileHover={{ scale: 1.03 }}
-                    // Apply backdrop-blur only on screens larger than 'sm' for performance
                     className="bg-white/10 rounded-xl shadow-2xl hover:shadow-teal-500/50 transition-all duration-500 flex flex-col will-change-transform will-change-opacity border border-blue-700/30 sm:backdrop-blur-sm"
                   >
                     <Card className="bg-transparent border-0 flex flex-col flex-1">
@@ -523,13 +517,13 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
         </section>
 
         {/* Technologies We Master */}
-        <section className="py-20 md:py-28 bg-gradient-to-br from-gray-900 to-blue-950 text-gray-100 relative">
+        <section className="py-20 md:py-28 bg-gradient-to-br from-gray-900 to-blue-950 text-gray-100 relative"> {/* Changed background */}
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }} // Ensures animation runs only once when in view
+              viewport={{ once: true }}
               className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg"
             >
               Technologies We Master
@@ -538,8 +532,8 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.3 }} // Optimizes animations for elements entering viewport
-              className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" /* Adjusted grid for more balanced look */
+              viewport={{ once: true, amount: 0.1 }} 
+              className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
             >
               {technologies.map((tech, index) => {
                 const IconComponent = IconMap[tech.icon as keyof typeof IconMap];
@@ -548,7 +542,6 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
                     key={index}
                     variants={itemVariants}
                     whileHover={{ scale: 1.03 }}
-                    // Apply backdrop-blur only on screens larger than 'sm' for performance
                     className="bg-white/10 rounded-xl shadow-2xl hover:shadow-blue-500/50 transition-all duration-500 flex flex-col will-change-transform will-change-opacity border border-blue-700/30 sm:backdrop-blur-sm"
                   >
                     <Card className="bg-transparent border-0 flex flex-col flex-1">
@@ -574,7 +567,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
         </section>
 
         {/* Quality Control Practices (Renamed and Richer) */}
-        <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-white relative overflow-hidden">
+        <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-white relative overflow-hidden"> {/* Changed background */}
           {/* Background elements (CSS animations are performant) */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-teal-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-1000"></div>
@@ -586,7 +579,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }} // Ensures animation runs only once when in view
+              viewport={{ once: true }}
               className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg"
             >
               Our Rigorous Quality Control Practices
@@ -595,17 +588,16 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.3 }} // Optimizes animations for elements entering viewport
+              viewport={{ once: true, amount: 0.1 }} 
               className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
             >
-              {qualityControlPractices.map((practice, index) => { // Using the defined qualityControlPractices
+              {qualityControlPractices.map((practice, index) => {
                 const IconComponent = IconMap[practice.icon as keyof typeof IconMap];
                 return (
                   <motion.div
                     key={index}
                     variants={itemVariants}
                     whileHover={{ scale: 1.03 }}
-                    // Apply backdrop-blur only on screens larger than 'sm' for performance
                     className="bg-white/10 rounded-xl shadow-2xl hover:shadow-blue-500/50 transition-all duration-500 flex flex-col will-change-transform will-change-opacity border border-blue-700/30 sm:backdrop-blur-sm"
                   >
                     <Card className="bg-transparent border-0 flex flex-col flex-1">
@@ -631,13 +623,13 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
         </section>
 
         {/* Testimonials */}
-        <section className="py-20 md:py-28 bg-gradient-to-br from-gray-900 to-blue-950 text-gray-100 relative">
+        <section className="py-20 md:py-28 bg-gradient-to-br from-gray-900 to-blue-950 text-gray-100 relative"> {/* Changed background */}
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }} // Ensures animation runs only once when in view
+              viewport={{ once: true }}
               className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg"
             >
               What Our Clients Say
@@ -646,7 +638,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.3 }} // Optimizes animations for elements entering viewport
+              viewport={{ once: true, amount: 0.1 }} 
               className="grid md:grid-cols-2 gap-8"
             >
               {[
@@ -680,7 +672,6 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
                   key={index}
                   variants={itemVariants}
                   whileHover={{ scale: 1.03 }}
-                  // Apply backdrop-blur only on screens larger than 'sm' for performance
                   className="bg-white/10 rounded-xl shadow-2xl hover:shadow-blue-500/50 transition-all duration-500 flex flex-col will-change-transform will-change-opacity border border-blue-700/30 sm:backdrop-blur-sm"
                 >
                   <Card className="bg-transparent border-0 flex flex-col flex-1">

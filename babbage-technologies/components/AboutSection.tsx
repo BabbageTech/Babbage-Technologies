@@ -227,7 +227,7 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.1 }} 
             >
               <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-4 tracking-tight drop-shadow-lg">
                 About Babbage<span className="text-teal-400">Technologies</span>
@@ -241,7 +241,7 @@ export default function AboutPage() {
         </section>
 
         {/* Why Choose Us (Moved to an earlier position) */}
-        <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-white relative overflow-hidden">
+        <section className="py-20 md:py-28 bg-gradient-to-br from-gray-900 to-blue-950 text-white relative overflow-hidden"> {/* Alternating background */}
           {/* Background elements */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-teal-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-1000"></div>
@@ -252,7 +252,7 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.1 }} 
               className="flex flex-col-reverse lg:flex-row items-center gap-12"
             >
               {/* Text Content */}
@@ -307,7 +307,7 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.1 }} 
                 className="flex-1 relative h-80 md:h-96 w-full overflow-hidden rounded-xl border border-blue-700/30 group bg-white/10 backdrop-blur-sm shadow-2xl shadow-blue-500/20"
               >
                 <Image
@@ -325,13 +325,13 @@ export default function AboutPage() {
         </section>
 
         {/* Our Impact (Stats) Section */}
-        <section className="py-20 md:py-28 bg-gradient-to-br from-gray-900 to-blue-950 text-gray-100 relative">
+        <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-gray-100 relative"> {/* Alternating background */}
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.1 }} 
               className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg"
             >
               Our Impact in Numbers
@@ -340,7 +340,7 @@ export default function AboutPage() {
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.1 }} 
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
             >
               {[
@@ -357,7 +357,7 @@ export default function AboutPage() {
                     key={i}
                     variants={itemVariants}
                     whileHover={{ scale: 1.05 }}
-                    className="bg-white/10 backdrop-blur-sm border border-blue-700/30 rounded-xl shadow-2xl shadow-blue-500/20 hover:shadow-blue-500/40 transition-all duration-500 p-6 flex flex-col items-center text-center"
+                    className="bg-white/10 backdrop-blur-sm border border-blue-700/30 rounded-xl shadow-2xl shadow-blue-500/20 hover:shadow-blue-500/40 transition-all duration-500 p-6 flex flex-col items-center text-center will-change-transform will-change-opacity"
                   >
                     <div className="p-4 bg-blue-700/20 rounded-full shadow-inner border border-blue-400/50 mb-4">
                       {IconComponent && <IconComponent className="w-8 h-8 text-teal-400" />}
@@ -372,7 +372,7 @@ export default function AboutPage() {
         </section>
 
         {/* Who We Are & Our Commitment */}
-        <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-white relative overflow-hidden">
+        <section className="py-20 md:py-28 bg-gradient-to-br from-gray-900 to-blue-950 text-white relative overflow-hidden"> {/* Alternating background */}
           {/* Background elements */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-1000"></div>
@@ -383,7 +383,7 @@ export default function AboutPage() {
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.1 }} 
               className="grid md:grid-cols-2 gap-12"
             >
               <motion.div
@@ -424,13 +424,13 @@ export default function AboutPage() {
         </section>
 
         {/* Mission & Vision */}
-        <section className="py-20 md:py-28 bg-gradient-to-br from-gray-900 to-blue-950 text-gray-100 relative">
+        <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-gray-100 relative"> {/* Alternating background */}
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.1 }} 
               className="text-center mb-12 md:mb-16"
             >
               <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 drop-shadow-lg">
@@ -444,7 +444,7 @@ export default function AboutPage() {
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.1 }} 
               className="grid md:grid-cols-2 gap-10"
             >
               <motion.div
@@ -478,7 +478,7 @@ export default function AboutPage() {
         </section>
 
         {/* Our Core Values */}
-        <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-white relative overflow-hidden">
+        <section className="py-20 md:py-28 bg-gradient-to-br from-gray-900 to-blue-950 text-white relative overflow-hidden"> {/* Alternating background */}
           {/* Background elements */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-teal-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-1000"></div>
@@ -489,7 +489,7 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.1 }} 
               className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg"
             >
               Our Core Values
@@ -498,7 +498,7 @@ export default function AboutPage() {
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.1 }} 
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
             >
               {coreValues.map((value: CoreValue, i: number) => {
@@ -523,47 +523,47 @@ export default function AboutPage() {
         </section>
 
         {/* Our Guarantees for Success */}
-        <section className="py-20 md:py-28 bg-gradient-to-br from-gray-900 to-blue-950 text-gray-100 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-          viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg"
-        >
-          What We Do to Guarantee Project Success
-        </motion.h2>
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.3 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {guarantees.map((item, i) => {
-            const IconComponent = IconMap[item.icon as keyof typeof IconMap];
-            return (
-              <motion.div
-                key={i}
-                variants={itemVariants}
-                whileHover={{ scale: 1.03 }}
-                // Added will-change property for potential micro-optimization during animations
-                className="bg-white/10 backdrop-blur-sm border border-blue-700/30 rounded-xl shadow-2xl hover:shadow-blue-500/50 transition-all duration-500 p-6 flex flex-col items-center text-center will-change-transform will-change-opacity"
-              >
-                <div className="p-4 bg-blue-700/20 rounded-full shadow-inner border border-blue-400/50 mb-4">
-                  {IconComponent && <IconComponent className="w-8 h-8 text-teal-400" />}
-                </div>
-                <h4 className="font-bold text-xl md:text-2xl text-white mb-2">{item.title}</h4>
-                <p className="text-base text-blue-200 leading-relaxed">{item.desc}</p>
-              </motion.div>
-            );
-          })}
-        </motion.div>
-      </div>
-    </section>
+        <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-gray-100 relative"> {/* Alternating background */}
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
+              viewport={{ once: true, amount: 0.1 }} 
+              className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg"
+            >
+              What We Do to Guarantee Project Success
+            </motion.h2>
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.1 }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+            >
+              {guarantees.map((item, i) => {
+                const IconComponent = IconMap[item.icon as keyof typeof IconMap];
+                return (
+                  <motion.div
+                    key={i}
+                    variants={itemVariants}
+                    whileHover={{ scale: 1.03 }}
+                    className="bg-white/10 backdrop-blur-sm border border-blue-700/30 rounded-xl shadow-2xl hover:shadow-blue-500/50 transition-all duration-500 p-6 flex flex-col items-center text-center will-change-transform will-change-opacity"
+                  >
+                    <div className="p-4 bg-blue-700/20 rounded-full shadow-inner border border-blue-400/50 mb-4">
+                      {IconComponent && <IconComponent className="w-8 h-8 text-teal-400" />}
+                    </div>
+                    <h4 className="font-bold text-xl md:text-2xl text-white mb-2">{item.title}</h4>
+                    <p className="text-base text-blue-200 leading-relaxed">{item.desc}</p>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+          </div>
+        </section>
+
         {/* Our Services (from previous About) */}
-        <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-white relative overflow-hidden">
+        <section className="py-20 md:py-28 bg-gradient-to-br from-gray-900 to-blue-950 text-white relative overflow-hidden"> {/* Alternating background */}
           {/* Background elements */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-teal-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-1000"></div>
@@ -574,7 +574,7 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.1 }} 
               className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg"
             >
               Our Core Services
@@ -583,7 +583,7 @@ export default function AboutPage() {
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.1 }} 
               className="grid sm:grid-cols-2 md:grid-cols-3 gap-8"
             >
               {servicesOffered.map((service, i) => (
@@ -606,13 +606,13 @@ export default function AboutPage() {
         </section>
 
         {/* Our Leadership Team */}
-        <section className="py-20 md:py-28 bg-gradient-to-br from-gray-900 to-blue-950 text-gray-100 relative">
+        <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-gray-100 relative"> {/* Alternating background */}
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.1 }} 
               className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg"
             >
               Meet Our Leadership Team
@@ -621,7 +621,7 @@ export default function AboutPage() {
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.1 }} 
               className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8"
             >
               {managementTeam.map((member, i) => (
@@ -647,7 +647,7 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100, delay: 0.5 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.1 }} 
               className="text-center mt-12"
             >
               <Link href="/contact">
@@ -663,18 +663,13 @@ export default function AboutPage() {
         </section>
 
         {/* What Our Clients Say (Testimonials) Section */}
-        <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-white relative overflow-hidden">
-          {/* Background elements */}
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-teal-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-1000"></div>
-            <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-3000"></div>
-          </div>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <section className="py-20 md:py-28 bg-gradient-to-br from-gray-900 to-blue-950 text-white relative overflow-hidden"> {/* Alternating background */}
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.1 }} 
               className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg"
             >
               What Our Clients Say
@@ -683,23 +678,25 @@ export default function AboutPage() {
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.1 }} 
               className="grid md:grid-cols-2 gap-8"
             >
-              {clientTestimonials.map((testimonial, i) => (
+              {clientTestimonials.map((testimonial, index) => (
                 <motion.div
-                  key={i}
+                  key={index}
                   variants={itemVariants}
                   whileHover={{ scale: 1.03 }}
-                  className="bg-white/10 backdrop-blur-sm border border-blue-700/30 rounded-xl shadow-2xl hover:shadow-blue-500/50 transition-all duration-500 p-6 flex flex-col"
+                  className="bg-white/10 rounded-xl shadow-2xl hover:shadow-blue-500/50 transition-all duration-500 flex flex-col will-change-transform will-change-opacity border border-blue-700/30 sm:backdrop-blur-sm"
                 >
-                  <p
-                    className="text-blue-200 italic mb-4 flex-1 text-base leading-relaxed"
-                    dangerouslySetInnerHTML={{ __html: testimonial.quote }}
-                  />
-                  <div className="mt-auto">
-                    <p className="text-white font-semibold">{testimonial.author}</p>
-                    <p className="text-teal-400 text-sm">{testimonial.role}</p>
+                  <div className="p-6 flex flex-col flex-1">
+                    <p
+                      className="text-blue-200 italic mb-4 flex-1"
+                      dangerouslySetInnerHTML={{ __html: testimonial.quote }}
+                    />
+                    <div className="mt-auto">
+                      <p className="text-white font-semibold">{testimonial.author}</p>
+                      <p className="text-teal-400 text-sm">{testimonial.role}</p>
+                    </div>
                   </div>
                 </motion.div>
               ))}
