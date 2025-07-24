@@ -6,24 +6,26 @@ import { Service } from "@/types"; // Ensure Service type is correctly defined i
 import { motion, Variants } from "framer-motion";
 import {
   Banknote,
-  BarChart2, Box, CheckCircle, Clipboard, Cloud, // For FastAPI
+  BarChart2, Box, // For Budget Control (added to imports)
+  CalendarCheck,
+  CheckCircle, Clipboard, Cloud, // For FastAPI
   CloudCog,
   Code, // For Node.js
   Component,
-  Database, // For Django
+  Database, // For UI/UX Design (added to imports)
+  DollarSign, // For Django
   FastForward, // For React.js
-  FileJson, // Logistics
+  FileJson, // For Responsible Deadlines (added to imports)
+  FileText // For Regular Reporting & Demos (added to imports)
+  , // Logistics
   Film, // For .NET
   GitBranch,
   Globe, // Finance
   GraduationCap, // For Google Cloud
-
-
-  // Icons for Industries section
   HeartPulse, // Media & Entertainment
   Home,
-  // New icons for Technologies section for better variety
-  Laptop, // Real Estate
+  Laptop,
+  Layers, // Real Estate
   Megaphone,
   Server, Settings, // For Python
   Shield, // Education
@@ -51,7 +53,6 @@ const IconMap = {
   Settings: Settings,
   Box: Box,
   Cloud: Cloud,
-  // New icons mapped
   Laptop: Laptop,
   Terminal: Terminal,
   GitBranch: GitBranch,
@@ -69,6 +70,10 @@ const IconMap = {
   Film: Film,
   Home: Home,
   Megaphone: Megaphone,
+  Layers: Layers, // Added Layers
+  DollarSign: DollarSign, // Added DollarSign
+  CalendarCheck: CalendarCheck, // Added CalendarCheck
+  FileText: FileText, // Added FileText
 };
 
 // Framer Motion Variants for staggered animations
@@ -191,7 +196,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
       icon: "ShoppingCart",
     },
     {
-      title: "Logistics",
+    title: "Logistics",
       desc: "Real-time tracking, route optimization, and inventory management.",
       icon: "Truck",
     },
@@ -260,6 +265,49 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
     },
   ];
 
+  const qualityControlPractices = [ // Defined outside for optimization
+    {
+      title: "Accurate Cost Estimation",
+      desc: "Thorough analysis ensures precise budget and timeline commitments, preventing surprises.",
+      icon: "Clipboard",
+    },
+    {
+      title: "Competence-Based Team",
+      desc: "We assign specialists with skills tailored to your project needs, ensuring optimal expertise.",
+      icon: "Users2",
+    },
+    {
+      title: "Comprehensive Risk Management",
+      desc: "Proactive risk identification and mitigation for smooth delivery and project stability.",
+      icon: "CheckCircle",
+    },
+    {
+      title: "Agile Delivery",
+      desc: "Iterative sprints for rapid, flexible, and high-quality releases, adapting to evolving needs.",
+      icon: "Zap",
+    },
+    {
+      title: "Budget Control",
+      desc: "Continuous monitoring and transparent reporting to prevent unexpected cost overruns.",
+      icon: "Banknote", // Using Banknote as DollarSign is not in Lucide by default
+    },
+    {
+      title: "Responsible Deadlines",
+      desc: "Structured processes and proactive management to meet deadlines without compromising quality.",
+      icon: "CalendarCheck",
+    },
+    {
+      title: "Regular Reporting & Demos",
+      desc: "Weekly calls, biweekly demos, and detailed progress updates keep you fully informed.",
+      icon: "FileText",
+    },
+    {
+      title: "Knowledge Management",
+      desc: "Seamless knowledge sharing and documentation for project continuity and long-term success.",
+      icon: "Lightbulb",
+    },
+  ];
+
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
@@ -307,7 +355,8 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
                     key={index}
                     variants={itemVariants}
                     whileHover={{ scale: 1.03 }}
-                    className="bg-white/10 backdrop-blur-sm border border-blue-700/30 rounded-xl shadow-2xl hover:shadow-teal-500/50 transition-all duration-500 flex flex-col"
+                    // Apply backdrop-blur only on screens larger than 'sm' for performance
+                    className="bg-white/10 rounded-xl shadow-2xl hover:shadow-teal-500/50 transition-all duration-500 flex flex-col will-change-transform will-change-opacity border border-blue-700/30 sm:backdrop-blur-sm"
                   >
                     <Card className="bg-transparent border-0 flex flex-col flex-1">
                       <CardHeader className="flex items-center gap-4 px-6 py-6">
@@ -391,7 +440,8 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
                     key={index}
                     variants={itemVariants}
                     whileHover={{ scale: 1.03 }}
-                    className="bg-white/10 backdrop-blur-sm border border-blue-700/30 rounded-xl shadow-2xl hover:shadow-blue-500/50 transition-all duration-500 flex flex-col"
+                    // Apply backdrop-blur only on screens larger than 'sm' for performance
+                    className="bg-white/10 rounded-xl shadow-2xl hover:shadow-blue-500/50 transition-all duration-500 flex flex-col will-change-transform will-change-opacity border border-blue-700/30 sm:backdrop-blur-sm"
                   >
                     <Card className="bg-transparent border-0 flex flex-col flex-1">
                       <CardHeader className="flex items-center gap-4 px-6 py-6">
@@ -415,7 +465,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
           </div>
         </section>
 
-        {/* Industries We Serve */}
+        {/* Industries We Empower */}
         <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-white relative overflow-hidden">
           {/* Background elements (CSS animations are performant) */}
           <div className="absolute inset-0 opacity-20">
@@ -447,7 +497,8 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
                     key={index}
                     variants={itemVariants}
                     whileHover={{ scale: 1.03 }}
-                    className="bg-white/10 backdrop-blur-sm border border-blue-700/30 rounded-xl shadow-2xl hover:shadow-teal-500/50 transition-all duration-500 flex flex-col"
+                    // Apply backdrop-blur only on screens larger than 'sm' for performance
+                    className="bg-white/10 rounded-xl shadow-2xl hover:shadow-teal-500/50 transition-all duration-500 flex flex-col will-change-transform will-change-opacity border border-blue-700/30 sm:backdrop-blur-sm"
                   >
                     <Card className="bg-transparent border-0 flex flex-col flex-1">
                       <CardHeader className="flex items-center gap-4 px-6 py-6">
@@ -497,7 +548,8 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
                     key={index}
                     variants={itemVariants}
                     whileHover={{ scale: 1.03 }}
-                    className="bg-white/10 backdrop-blur-sm border border-blue-700/30 rounded-xl shadow-2xl hover:shadow-blue-500/50 transition-all duration-500 flex flex-col"
+                    // Apply backdrop-blur only on screens larger than 'sm' for performance
+                    className="bg-white/10 rounded-xl shadow-2xl hover:shadow-blue-500/50 transition-all duration-500 flex flex-col will-change-transform will-change-opacity border border-blue-700/30 sm:backdrop-blur-sm"
                   >
                     <Card className="bg-transparent border-0 flex flex-col flex-1">
                       <CardHeader className="flex items-center gap-4 px-6 py-6">
@@ -546,55 +598,15 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
               viewport={{ once: true, amount: 0.3 }} // Optimizes animations for elements entering viewport
               className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
             >
-              {[
-                {
-                  title: "Accurate Cost Estimation",
-                  desc: "Thorough analysis ensures precise budget and timeline commitments, preventing surprises.",
-                  icon: "Clipboard",
-                },
-                {
-                  title: "Competence-Based Team",
-                  desc: "We assign specialists with skills tailored to your project needs, ensuring optimal expertise.",
-                  icon: "Users2",
-                },
-                {
-                  title: "Comprehensive Risk Management",
-                  desc: "Proactive risk identification and mitigation for smooth delivery and project stability.",
-                  icon: "CheckCircle",
-                },
-                {
-                  title: "Agile Delivery",
-                  desc: "Iterative sprints for rapid, flexible, and high-quality releases, adapting to evolving needs.",
-                  icon: "Zap", // Changed to Zap for Agile
-                },
-                {
-                  title: "Budget Control",
-                  desc: "Continuous monitoring and transparent reporting to prevent unexpected cost overruns.",
-                  icon: "DollarSign", // Changed to DollarSign for Budget
-                },
-                {
-                  title: "Responsible Deadlines",
-                  desc: "Structured processes and proactive management to meet deadlines without compromising quality.",
-                  icon: "CalendarCheck", // Changed to CalendarCheck for Deadlines
-                },
-                {
-                  title: "Regular Reporting & Demos",
-                  desc: "Weekly calls, biweekly demos, and detailed progress updates keep you fully informed.",
-                  icon: "FileText", // Changed to FileText for Reporting
-                },
-                {
-                  title: "Knowledge Management",
-                  desc: "Seamless knowledge sharing and documentation for project continuity and long-term success.",
-                  icon: "Lightbulb", // Changed to Lightbulb for Knowledge Management
-                },
-              ].map((practice, index) => {
+              {qualityControlPractices.map((practice, index) => { // Using the defined qualityControlPractices
                 const IconComponent = IconMap[practice.icon as keyof typeof IconMap];
                 return (
                   <motion.div
                     key={index}
                     variants={itemVariants}
                     whileHover={{ scale: 1.03 }}
-                    className="bg-white/10 backdrop-blur-sm border border-blue-700/30 rounded-xl shadow-2xl hover:shadow-blue-500/50 transition-all duration-500 flex flex-col"
+                    // Apply backdrop-blur only on screens larger than 'sm' for performance
+                    className="bg-white/10 rounded-xl shadow-2xl hover:shadow-blue-500/50 transition-all duration-500 flex flex-col will-change-transform will-change-opacity border border-blue-700/30 sm:backdrop-blur-sm"
                   >
                     <Card className="bg-transparent border-0 flex flex-col flex-1">
                       <CardHeader className="flex items-center gap-4 px-6 py-6">
@@ -668,7 +680,8 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
                   key={index}
                   variants={itemVariants}
                   whileHover={{ scale: 1.03 }}
-                  className="bg-white/10 backdrop-blur-sm border border-blue-700/30 rounded-xl shadow-2xl hover:shadow-blue-500/50 transition-all duration-500 flex flex-col"
+                  // Apply backdrop-blur only on screens larger than 'sm' for performance
+                  className="bg-white/10 rounded-xl shadow-2xl hover:shadow-blue-500/50 transition-all duration-500 flex flex-col will-change-transform will-change-opacity border border-blue-700/30 sm:backdrop-blur-sm"
                 >
                   <Card className="bg-transparent border-0 flex flex-col flex-1">
                     <CardContent className="pt-6 px-6 pb-6 flex flex-col flex-1">

@@ -311,7 +311,7 @@ export default function AboutPage() {
                 className="flex-1 relative h-80 md:h-96 w-full overflow-hidden rounded-xl border border-blue-700/30 group bg-white/10 backdrop-blur-sm shadow-2xl shadow-blue-500/20"
               >
                 <Image
-                  src="/about-image.jpg" // Changed to placeholder for robustness
+                  src="/about-image.jpg"
                   alt="BabbageTechnologies Team in Action"
                   width={800}
                   height={600}
@@ -524,44 +524,44 @@ export default function AboutPage() {
 
         {/* Our Guarantees for Success */}
         <section className="py-20 md:py-28 bg-gradient-to-br from-gray-900 to-blue-950 text-gray-100 relative">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg"
-            >
-              What We Do to Guarantee Project Success
-            </motion.h2>
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
-            >
-              {guarantees.map((item, i) => {
-                const IconComponent = IconMap[item.icon as keyof typeof IconMap];
-                return (
-                  <motion.div
-                    key={i}
-                    variants={itemVariants}
-                    whileHover={{ scale: 1.03 }}
-                    className="bg-white/10 backdrop-blur-sm border border-blue-700/30 rounded-xl shadow-2xl hover:shadow-blue-500/50 transition-all duration-500 p-6 flex flex-col items-center text-center"
-                  >
-                    <div className="p-4 bg-blue-700/20 rounded-full shadow-inner border border-blue-400/50 mb-4">
-                      {IconComponent && <IconComponent className="w-8 h-8 text-teal-400" />}
-                    </div>
-                    <h4 className="font-bold text-xl md:text-2xl text-white mb-2">{item.title}</h4>
-                    <p className="text-base text-blue-200 leading-relaxed">{item.desc}</p>
-                  </motion.div>
-                );
-              })}
-            </motion.div>
-          </div>
-        </section>
-
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
+          viewport={{ once: true }}
+          className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg"
+        >
+          What We Do to Guarantee Project Success
+        </motion.h2>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {guarantees.map((item, i) => {
+            const IconComponent = IconMap[item.icon as keyof typeof IconMap];
+            return (
+              <motion.div
+                key={i}
+                variants={itemVariants}
+                whileHover={{ scale: 1.03 }}
+                // Added will-change property for potential micro-optimization during animations
+                className="bg-white/10 backdrop-blur-sm border border-blue-700/30 rounded-xl shadow-2xl hover:shadow-blue-500/50 transition-all duration-500 p-6 flex flex-col items-center text-center will-change-transform will-change-opacity"
+              >
+                <div className="p-4 bg-blue-700/20 rounded-full shadow-inner border border-blue-400/50 mb-4">
+                  {IconComponent && <IconComponent className="w-8 h-8 text-teal-400" />}
+                </div>
+                <h4 className="font-bold text-xl md:text-2xl text-white mb-2">{item.title}</h4>
+                <p className="text-base text-blue-200 leading-relaxed">{item.desc}</p>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+      </div>
+    </section>
         {/* Our Services (from previous About) */}
         <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-white relative overflow-hidden">
           {/* Background elements */}
