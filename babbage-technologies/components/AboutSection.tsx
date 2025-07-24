@@ -311,7 +311,7 @@ export default function AboutPage() {
                 className="flex-1 relative h-80 md:h-96 w-full overflow-hidden rounded-xl border border-blue-700/30 group bg-white/10 backdrop-blur-sm shadow-2xl shadow-blue-500/20"
               >
                 <Image
-                  src="/about-image.jpg"
+                  src="/about.jpg"
                   alt="BabbageTechnologies Team in Action"
                   width={800}
                   height={600}
