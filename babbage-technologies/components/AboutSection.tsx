@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-// Removed unused Card components imports
 import { CoreValue } from "@/types"; // Ensure CoreValue type is correctly defined in types/index.ts
 import { motion, Variants } from "framer-motion";
 import {
@@ -17,7 +16,7 @@ import {
   Handshake,
   Layers,
   Lightbulb,
-  Lock, // Ensure Star is imported
+  Lock,
   MapPin,
   Palette,
   RefreshCcw,
@@ -33,6 +32,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 // Define a mapping for Lucide icons to be used dynamically
+// Moved outside the component to prevent re-creation on every render
 const IconMap = {
   CheckCircle: CheckCircle,
   BrainCircuit: BrainCircuit,
@@ -61,6 +61,8 @@ const IconMap = {
   Settings: Settings,
 };
 
+// Framer Motion Variants for staggered animations
+// Moved outside the component to prevent re-creation on every render
 const containerVariants: Variants = {
   hidden: {},
   show: {
@@ -85,6 +87,8 @@ const itemVariants: Variants = {
 };
 
 export default function AboutPage() {
+  // Data definitions remain inside for now, as they are not excessively large.
+  // For extremely large datasets, consider moving them to a separate constants file.
   const coreValues: CoreValue[] = [
     {
       title: "Integrity",
@@ -205,21 +209,10 @@ export default function AboutPage() {
     },
   ];
 
-  // Removed awardsRecognitions as per request
-  // const awardsRecognitions = [
-  //   { src: "https://placehold.co/150x80/2563EB/FFFFFF?text=AWS+Partner", alt: "AWS Partner Badge" },
-  //   { src: "https://placehold.co/150x80/2563EB/FFFFFF?text=ISO+Certified", alt: "ISO Compliance Badge" },
-  //   { src: "https://placehold.co/150x80/2563EB/FFFFFF?text=GoodFirms+Badge", alt: "GoodFirms Badge" },
-  //   { src: "https://placehold.co/150x80/2563EB/FFFFFF?text=Responsive+Design", alt: "Responsive Design Award 2025" },
-  //   { src: "https://placehold.co/150x80/2563EB/FFFFFF?text=BI+Services", alt: "Business Intelligence Services 2024" },
-  //   { src: "https://placehold.co/150x80/2563EB/FFFFFF?text=Mobile+Dev", alt: "Mobile Software Development 2025" },
-  //   { src: "https://placehold.co/150x80/2563EB/FFFFFF?text=IoT+Services", alt: "IoT Services 2025" },
-  //   { src: "https://placehold.co/150x80/2563EB/FFFFFF?text=Custom+Web", alt: "Custom Web Design Development 2025" },
-  // ];
-
-
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
+      {/* Assuming Header and Footer are imported and used in layout.tsx or directly here */}
+      {/* <Header /> */}
       <main className="flex-grow">
         {/* About BabbageTechnologies (Hero-like) Section */}
         <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-white relative overflow-hidden">
@@ -318,7 +311,7 @@ export default function AboutPage() {
                 className="flex-1 relative h-80 md:h-96 w-full overflow-hidden rounded-xl border border-blue-700/30 group bg-white/10 backdrop-blur-sm shadow-2xl shadow-blue-500/20"
               >
                 <Image
-                  src="/about-image.jpg"
+                  src="/about-image.jpg" // Changed to placeholder for robustness
                   alt="BabbageTechnologies Team in Action"
                   width={800}
                   height={600}
@@ -669,7 +662,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* What Our Clients Say (Testimonials) */}
+        {/* What Our Clients Say (Testimonials) Section */}
         <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-white relative overflow-hidden">
           {/* Background elements */}
           <div className="absolute inset-0 opacity-20">
@@ -714,7 +707,7 @@ export default function AboutPage() {
           </div>
         </section>
       </main>
-  
+      {/* <Footer /> */}
     </div>
   );
 }

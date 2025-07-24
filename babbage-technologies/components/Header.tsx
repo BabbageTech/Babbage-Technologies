@@ -1,17 +1,11 @@
 "use client";
 
 import { Button } from "@/components/ui/button"; // Assuming Button component is available
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { motion } from "framer-motion"; // Import motion for animations
-import { Menu } from "lucide-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from 'react'; // Import useState and useEffect
+import { Menu, X } from "lucide-react"; // Import Menu and X icons from lucide-react
+import Link from 'next/link';
+import { usePathname } from "next/navigation"; // Import usePathname for active link highlighting
+import React, { useEffect, useState } from 'react'; // Import useState and useEffect
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -21,13 +15,13 @@ const navLinks = [
   { label: "Contact", href: "/contact" },
 ];
 
-export default function Header() {
+const Header: React.FC = () => {
   const pathname = usePathname();
-  const [isScrolled, setIsScrolled] = useState(false); // State to track scroll position
+  const [isScrolled, setIsScrolled] = useState(false); // State to track scroll position for transparency
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile menu open/close
 
   useEffect(() => {
     const handleScroll = () => {
-      // Set isScrolled to true if scrolled down more than 50px, otherwise false
       if (window.scrollY > 50) {
         setIsScrolled(true);
       } else {
@@ -35,27 +29,34 @@ export default function Header() {
       }
     };
 
-    // Add scroll event listener when component mounts
     window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Set initial state
 
-    // Call handleScroll once on mount to set initial state
-    handleScroll();
-
-    // Clean up the event listener when component unmounts
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []); // Empty dependency array ensures this effect runs only once on mount
+  }, []);
+
+  // Effect to prevent body scrolling when mobile menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = ''; // Clean up on unmount
+    };
+  }, [isMenuOpen]);
 
   return (
     <motion.header
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.2 }}
-      // Dynamically apply classes based on scroll state
       className={`fixed w-full top-0 z-50 transition-all duration-300 ease-in-out
         ${isScrolled
-          ? "bg-gradient-to-r from-blue-50/80 to-white/80 shadow-md backdrop-blur-md border-b border-blue-100/50" // More transparent and less shadow when scrolled
+          ? "bg-white/80 shadow-md backdrop-blur-md border-b border-blue-100/50" // More transparent and "colourless" white when scrolled
           : "bg-gradient-to-r from-blue-50 to-white shadow-lg backdrop-blur-sm border-b border-blue-100" // Opaque and full shadow when at top
         }`}
     >
@@ -96,43 +97,59 @@ export default function Header() {
           </Link>
         </nav>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu Toggle */}
         <div className="md:hidden flex items-center">
-          {/* Call to Action Button for Mobile (optional, can be moved inside dropdown if preferred) */}
-          <Link href="/contact" className="mr-4">
-            <Button
-              aria-label="Get a Quote"
-              className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-md text-sm font-semibold shadow-sm transition-all duration-300"
-            >
-              Quote
-            </Button>
-          </Link>
-          <DropdownMenu>
-            <DropdownMenuTrigger className="focus:outline-none p-2 rounded-md bg-blue-100/50 hover:bg-blue-200/70 transition-colors duration-200 shadow-sm border border-blue-200">
-              <Menu className="h-7 w-7 text-blue-800" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent
-              align="end"
-              className="mt-3 w-48 bg-white/95 backdrop-blur-md border border-blue-200 rounded-lg shadow-xl overflow-hidden"
-            >
-              {navLinks.map((link) => (
-                <DropdownMenuItem key={link.href} asChild>
-                  <Link
-                    href={link.href}
-                    className={`block w-full px-4 py-2 text-base font-medium transition-colors duration-200
-                      ${pathname === link.href
-                        ? "bg-blue-100 text-blue-800 font-semibold"
-                        : "text-gray-700 hover:bg-blue-50 hover:text-blue-700"
-                      }`}
-                  >
-                    {link.label}
-                  </Link>
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="focus:outline-none p-2 rounded-md bg-blue-100/50 hover:bg-blue-200/70 transition-colors duration-200 shadow-sm border border-blue-200"
+            aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          >
+            {isMenuOpen ? <X className="h-7 w-7 text-blue-800" /> : <Menu className="h-7 w-7 text-blue-800" />}
+          </button>
         </div>
       </div>
+
+      {/* Custom Mobile Menu Overlay */}
+      {isMenuOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          className="md:hidden fixed inset-0 top-[68px] bg-blue-900/95 backdrop-blur-md z-40 flex flex-col items-center py-8 px-6 border-t border-blue-200 shadow-xl" // Changed background to dark blue for contrast
+        >
+          <nav className="flex flex-col space-y-6 text-center w-full">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setIsMenuOpen(false)} // Close menu on link click
+                className={`block text-xl font-medium py-3 rounded-lg transition-colors duration-200
+                  ${pathname === link.href
+                    ? "bg-teal-600 text-white font-semibold" // Active link on dark background
+                    : "text-blue-100 hover:bg-teal-600 hover:text-white" // Regular link on dark background
+                  }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+          {/* Mobile CTA button inside menu, full width */}
+          <div className="mt-8 w-full px-4">
+            <Link href="/contact">
+              <Button
+                aria-label="Get a Quote"
+                className="w-full bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg text-base font-semibold shadow-md transition-all duration-300 transform hover:scale-[1.02]"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Get a Quote
+              </Button>
+            </Link>
+          </div>
+        </motion.div>
+      )}
     </motion.header>
   );
-}
+};
+
+export default Header;

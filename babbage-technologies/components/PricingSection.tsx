@@ -1,4 +1,3 @@
-// app/pricing/page.tsx
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -21,6 +20,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 // Define a mapping for Lucide icons to be used dynamically
+// Moved outside the component to prevent re-creation on every render, improving efficiency.
 const IconMap = {
   CheckCircle2: CheckCircle2,
   Clipboard: Clipboard,
@@ -38,7 +38,8 @@ const IconMap = {
   Lightbulb: Lightbulb,
 };
 
-
+// Framer Motion Variants for staggered animations
+// Moved outside the component to prevent re-creation on every render, improving efficiency.
 const containerVariants: Variants = {
   hidden: {},
   show: {
@@ -62,58 +63,136 @@ const itemVariants: Variants = {
   },
 };
 
+// Variants for FAQ accordion animation
+// Moved outside the component to prevent re-creation on every render, improving efficiency.
 const faqVariants: Variants = {
   hidden: { height: 0, opacity: 0 },
   show: { height: "auto", opacity: 1, transition: { duration: 0.4, ease: "easeOut" } },
 };
 
-export default function PricingPage() {
-  const plans: PricingPlan[] = [
-    {
-      title: "Individual",
-      price: "Ksh 15,000+",
-      features: [
-        "1 Web or Mobile App",
-        "Basic Cloud Hosting",
-        "Email Support",
-        "1 User License",
-        "Standard UI/UX Design",
-      ],
-    },
-    {
-      title: "Small Business",
-      price: "Ksh 35,000+",
-      features: [
-        "Standard Cloud Hosting",
-        "Priority Support",
-        "User Licenses",
-        "Advanced UI/UX Design",
-      ],
-      isPopular: true,
-    },
-    {
-      title: "Institution",
-      price: "Ksh 100,000+",
-      features: [
-        "Custom ERP/HMS",
-        "Premium Cloud Hosting",
-        "24/7 Support",
-        "User Licenses",
-        "Enterprise UI/UX Design",
-      ],
-    },
-    {
-      title: "Enterprise",
-      price: "Contact Us",
-      features: [
-        "Several Apps",
-        "Dedicated Cloud Servers",
-        "Dedicated Account Manager",
-        "Custom Integrations & Audits",
-      ],
-    },
-  ];
+// Data definitions moved outside the component to prevent re-creation on every render,
+// which is a good optimization for performance.
+const plans: PricingPlan[] = [
+  {
+    title: "Individual",
+    price: "Ksh 15,000+",
+    features: [
+      "1 Web or Mobile App",
+      "Basic Cloud Hosting",
+      "Email Support",
+      "1 User License",
+      "Standard UI/UX Design",
+    ],
+  },
+  {
+    title: "Small Business",
+    price: "Ksh 35,000+",
+    features: [
+      "Standard Cloud Hosting",
+      "Priority Support",
+      "User Licenses",
+      "Advanced UI/UX Design",
+    ],
+    isPopular: true,
+  },
+  {
+    title: "Institution",
+    price: "Ksh 100,000+",
+    features: [
+      "Custom ERP/HMS",
+      "Premium Cloud Hosting",
+      "24/7 Support",
+      "User Licenses",
+      "Enterprise UI/UX Design",
+    ],
+  },
+  {
+    title: "Enterprise",
+    price: "Contact Us",
+    features: [
+      "Several Apps",
+      "Dedicated Cloud Servers",
+      "Dedicated Account Manager",
+      "Custom Integrations & Audits",
+    ],
+  },
+];
 
+const pricingModels = [
+  {
+    title: "Time & Material",
+    desc: "Monthly billing based on actual development hours, with flexible scope and fixed hourly rates.",
+    icon: "Clock",
+  },
+  {
+    title: "Fixed Budget",
+    desc: "Defined budget with prioritized features delivered within cost constraints and clear milestones.",
+    icon: "CheckCircle2",
+  },
+  {
+    title: "Fixed Price",
+    desc: "Set price for a predefined scope, ideal for projects with clear, stable requirements and outcomes.",
+    icon: "Server",
+  },
+  {
+    title: "Dedicated Team",
+    desc: "Exclusive team of experts tailored to your project’s needs for seamless integration and long-term collaboration.",
+    icon: "Users2",
+  },
+];
+
+const keyCostComponents = [
+  {
+    title: "Requirements & Planning",
+    desc: "15% of budget. Stakeholder interviews, risk identification, project roadmaps.",
+    icon: "Clipboard",
+  },
+  {
+    title: "Architecture & UI/UX Design",
+    desc: "10% of budget. Covers system architecture, mockups, wireframes, and user-focused design.",
+    icon: "Layers",
+  },
+  {
+    title: "Coding",
+    desc: "55% of budget. Involves coding, code reviews, biweekly demos, and progress tracking.",
+    icon: "Code",
+  },
+  {
+    title: "Quality Assurance",
+    desc: "15% of budget. Includes functionality, performance, security, and accessibility testing.",
+    icon: "CheckCircle2",
+  },
+  {
+    title: "Support & Maintenance",
+    desc: "~15% yearly. Ensures stability with monitoring, updates, and new features.",
+    icon: "Settings",
+  },
+];
+
+const faqs = [
+  {
+    question: "How much does it cost to develop software?",
+    answer: "Costs vary based on complexity, features, and team location. Simple apps can start from Ksh 1,500,000, while complex enterprise solutions can exceed Ksh 75,000,000. We provide detailed, transparent estimations after a discovery phase.",
+  },
+  {
+    question: "What factors influence software development cost?",
+    answer: "Key factors include project scope and complexity, chosen technology stack, required integrations, team size and expertise, desired timeline, and ongoing maintenance and support needs. UI/UX complexity also plays a significant role.",
+  },
+  {
+    question: "Can I get a custom quote for my project?",
+    answer: "Absolutely! We highly recommend a free, no-obligation cost and timeline estimation. Simply fill out our contact form with your project details, and our business analysts and technical experts will provide a detailed proposal.",
+  },
+  {
+    question: "How long does it take to develop software?",
+    answer: "Development timelines depend heavily on project scope and complexity. A minimum viable product (MVP) for a simple app might take 3-6 months, while a comprehensive enterprise solution could take 12+ months. We provide clear timelines in our project estimations.",
+  },
+  {
+    question: "Do you offer post-launch support and maintenance?",
+    answer: "Yes, comprehensive post-launch support and maintenance are integral to our service. This typically includes monitoring, bug fixes, security updates, performance optimization, and feature enhancements, usually allocated as ~15% of the yearly development budget.",
+  },
+];
+
+export default function PricingPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const toggleFaq = (index: number) => {
@@ -122,10 +201,12 @@ export default function PricingPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
+      {/* Assuming Header and Footer are imported and used in layout.tsx or directly here */}
+      {/* <Header /> */}
       <main className="flex-grow">
         {/* Free Cost Estimation */}
         <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-white relative overflow-hidden">
-          {/* Background elements */}
+          {/* Background elements (CSS animations are performant) */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-teal-500 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
             <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
@@ -136,7 +217,7 @@ export default function PricingPage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }}
+              viewport={{ once: true }} // Ensures animation runs only once when in view
             >
               <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 drop-shadow-lg">
                 Get a Free Cost & Timeline Estimation
@@ -165,7 +246,7 @@ export default function PricingPage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }}
+              viewport={{ once: true }} // Ensures animation runs only once when in view
               className="text-center mb-12 md:mb-16"
             >
               <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 drop-shadow-lg">
@@ -181,7 +262,7 @@ export default function PricingPage() {
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.3 }} // Optimizes animations for elements entering viewport
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
             >
               {plans.map((plan, index) => (
@@ -230,7 +311,7 @@ export default function PricingPage() {
 
         {/* Pricing Models */}
         <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-gray-100 relative overflow-hidden">
-          {/* Background elements */}
+          {/* Background elements (CSS animations are performant) */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-1000"></div>
             <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-teal-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-3000"></div>
@@ -241,7 +322,7 @@ export default function PricingPage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }}
+              viewport={{ once: true }} // Ensures animation runs only once when in view
               className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg"
             >
               Flexible Engagement Models
@@ -250,31 +331,10 @@ export default function PricingPage() {
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.3 }} // Optimizes animations for elements entering viewport
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
             >
-              {[
-                {
-                  title: "Time & Material",
-                  desc: "Monthly billing based on actual development hours, with flexible scope and fixed hourly rates.",
-                  icon: "Clock",
-                },
-                {
-                  title: "Fixed Budget",
-                  desc: "Defined budget with prioritized features delivered within cost constraints and clear milestones.",
-                  icon: "CheckCircle2",
-                },
-                {
-                  title: "Fixed Price",
-                  desc: "Set price for a predefined scope, ideal for projects with clear, stable requirements and outcomes.",
-                  icon: "Server",
-                },
-                {
-                  title: "Dedicated Team",
-                  desc: "Exclusive team of experts tailored to your project’s needs for seamless integration and long-term collaboration.",
-                  icon: "Users2",
-                },
-              ].map((model, index) => {
+              {pricingModels.map((model, index) => {
                 const IconComponent = IconMap[model.icon as keyof typeof IconMap];
                 return (
                   <motion.div
@@ -306,7 +366,7 @@ export default function PricingPage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }}
+              viewport={{ once: true }} // Ensures animation runs only once when in view
               className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg"
             >
               Key Cost Components of Software Development
@@ -315,36 +375,10 @@ export default function PricingPage() {
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.3 }} // Optimizes animations for elements entering viewport
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6"
             >
-              {[
-                {
-                  title: "Requirements & Planning",
-                  desc: "15% of budget. Stakeholder interviews, risk identification, project roadmaps.",
-                  icon: "Clipboard",
-                },
-                {
-                  title: "Architecture & UI/UX Design",
-                  desc: "10% of budget. Covers system architecture, mockups, wireframes, and user-focused design.",
-                  icon: "Layers",
-                },
-                {
-                  title: "Coding",
-                  desc: "55% of budget. Involves coding, code reviews, biweekly demos, and progress tracking.",
-                  icon: "Code",
-                },
-                {
-                  title: "Quality Assurance",
-                  desc: "15% of budget. Includes functionality, performance, security, and accessibility testing.",
-                  icon: "CheckCircle2",
-                },
-                {
-                  title: "Support & Maintenance",
-                  desc: "~15% yearly. Ensures stability with monitoring, updates, and new features.",
-                  icon: "Settings",
-                },
-              ].map((component, index) => {
+              {keyCostComponents.map((component, index) => {
                 const IconComponent = IconMap[component.icon as keyof typeof IconMap];
                 return (
                   <motion.div
@@ -372,7 +406,7 @@ export default function PricingPage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }}
+              viewport={{ once: true }} // Ensures animation runs only once when in view
               className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12"
             >
               Frequently Asked Questions
@@ -381,31 +415,10 @@ export default function PricingPage() {
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.3 }} // Optimizes animations for elements entering viewport
               className="space-y-6 max-w-4xl mx-auto"
             >
-              {[
-                {
-                  question: "How much does it cost to develop software?",
-                  answer: "Costs vary based on complexity, features, and team location. Simple apps can start from Ksh 1,500,000, while complex enterprise solutions can exceed Ksh 75,000,000. We provide detailed, transparent estimations after a discovery phase.",
-                },
-                {
-                  question: "What factors influence software development cost?",
-                  answer: "Key factors include project scope and complexity, chosen technology stack, required integrations, team size and expertise, desired timeline, and ongoing maintenance and support needs. UI/UX complexity also plays a significant role.",
-                },
-                {
-                  question: "Can I get a custom quote for my project?",
-                  answer: "Absolutely! We highly recommend a free, no-obligation cost and timeline estimation. Simply fill out our contact form with your project details, and our business analysts and technical experts will provide a detailed proposal.",
-                },
-                {
-                  question: "How long does it take to develop software?",
-                  answer: "Development timelines depend heavily on project scope and complexity. A minimum viable product (MVP) for a simple app might take 3-6 months, while a comprehensive enterprise solution could take 12+ months. We provide clear timelines in our project estimations.",
-                },
-                {
-                  question: "Do you offer post-launch support and maintenance?",
-                  answer: "Yes, comprehensive post-launch support and maintenance are integral to our service. This typically includes monitoring, bug fixes, security updates, performance optimization, and feature enhancements, usually allocated as ~15% of the yearly development budget.",
-                },
-              ].map((faq, index) => (
+              {faqs.map((faq, index) => (
                 <motion.div
                   key={index}
                   variants={itemVariants}
@@ -445,7 +458,7 @@ export default function PricingPage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100, delay: 0.5 }}
-              viewport={{ once: true }}
+              viewport={{ once: true }} // Ensures animation runs only once when in view
               className="text-center mt-12"
             >
               <Link href="/contact">
@@ -460,6 +473,7 @@ export default function PricingPage() {
           </div>
         </section>
       </main>
+      {/* <Footer /> */}
     </div>
   );
 }

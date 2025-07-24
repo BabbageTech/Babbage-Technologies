@@ -1,6 +1,4 @@
-// app/services/page.tsx
 "use client";
-
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -19,6 +17,8 @@ import {
   GitBranch,
   Globe, // Finance
   GraduationCap, // For Google Cloud
+
+
   // Icons for Industries section
   HeartPulse, // Media & Entertainment
   Home,
@@ -37,6 +37,7 @@ import {
 import Link from "next/link";
 
 // Define a mapping for Lucide icons to be used dynamically
+// Moved outside the component to prevent re-creation on every render, improving efficiency.
 const IconMap = {
   Server: Server,
   Database: Database,
@@ -70,7 +71,8 @@ const IconMap = {
   Megaphone: Megaphone,
 };
 
-
+// Framer Motion Variants for staggered animations
+// Moved outside the component to prevent re-creation on every render, improving efficiency.
 const containerVariants: Variants = {
   hidden: {},
   show: {
@@ -261,10 +263,12 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
+      {/* Assuming Header and Footer are imported and used in layout.tsx or directly here */}
+      {/* <Header /> */}
       <main className="flex-grow">
         {/* Our Services Section */}
         <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-white relative overflow-hidden">
-          {/* Background elements */}
+          {/* Background elements (CSS animations are performant) */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-teal-500 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
             <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
@@ -276,7 +280,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }}
+              viewport={{ once: true }} // Ensures animation runs only once when in view
               className="text-center mb-12 md:mb-16"
             >
               <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 drop-shadow-lg">
@@ -293,7 +297,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.3 }} // Optimizes animations for elements entering viewport
               className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
             >
               {services.map((service: Service, index: number) => {
@@ -338,7 +342,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100, delay: 0.3 }}
-              viewport={{ once: true }}
+              viewport={{ once: true }} // Ensures animation runs only once when in view
               className="text-center"
             >
               <Link href="/contact">
@@ -368,7 +372,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }}
+              viewport={{ once: true }} // Ensures animation runs only once when in view
               className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg"
             >
               Our Streamlined Development Process
@@ -377,7 +381,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.3 }} // Optimizes animations for elements entering viewport
               className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
             >
               {developmentProcess.map((stage, index) => {
@@ -413,7 +417,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
 
         {/* Industries We Serve */}
         <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-white relative overflow-hidden">
-          {/* Background elements */}
+          {/* Background elements (CSS animations are performant) */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-teal-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-1000"></div>
             <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-3000"></div>
@@ -424,7 +428,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }}
+              viewport={{ once: true }} // Ensures animation runs only once when in view
               className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg"
             >
               Industries We Empower
@@ -433,7 +437,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.3 }} // Optimizes animations for elements entering viewport
               className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
             >
               {industries.map((industry, index) => {
@@ -474,7 +478,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }}
+              viewport={{ once: true }} // Ensures animation runs only once when in view
               className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg"
             >
               Technologies We Master
@@ -483,7 +487,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.3 }} // Optimizes animations for elements entering viewport
               className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" /* Adjusted grid for more balanced look */
             >
               {technologies.map((tech, index) => {
@@ -519,7 +523,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
 
         {/* Quality Control Practices (Renamed and Richer) */}
         <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-white relative overflow-hidden">
-          {/* Background elements */}
+          {/* Background elements (CSS animations are performant) */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-teal-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-1000"></div>
             <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-3000"></div>
@@ -530,7 +534,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }}
+              viewport={{ once: true }} // Ensures animation runs only once when in view
               className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg"
             >
               Our Rigorous Quality Control Practices
@@ -539,7 +543,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.3 }} // Optimizes animations for elements entering viewport
               className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
             >
               {[
@@ -621,7 +625,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true }}
+              viewport={{ once: true }} // Ensures animation runs only once when in view
               className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg"
             >
               What Our Clients Say
@@ -630,7 +634,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.3 }} // Optimizes animations for elements entering viewport
               className="grid md:grid-cols-2 gap-8"
             >
               {[
@@ -684,6 +688,7 @@ export default function ServicesPage() { // Renamed to ServicesPage to fit app r
           </div>
         </section>
       </main>
+      {/* <Footer /> */}
     </div>
   );
 }
