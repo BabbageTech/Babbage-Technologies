@@ -83,7 +83,8 @@ export default function ContactPage() { // Renamed to ContactPage for clarity
                     <Phone className="w-6 h-6 text-blue-600 flex-shrink-0" />
                     <div>
                       <h4 className="font-semibold text-gray-900">Phone Number</h4>
-                      <p>+254711762682</p>
+                      <p>+254114161768</p>
+                      <p>+254768378046</p>
                     </div>
                   </div>
 
@@ -91,7 +92,7 @@ export default function ContactPage() { // Renamed to ContactPage for clarity
                     <Mail className="w-6 h-6 text-blue-600 flex-shrink-0" />
                     <div>
                       <h4 className="font-semibold text-gray-900">Email Address</h4>
-                      <p>info@babbagetechnologies.com</p>
+                      <p>babbagetechnologies@gmail.com</p>
                     </div>
                   </div>
                 </div>

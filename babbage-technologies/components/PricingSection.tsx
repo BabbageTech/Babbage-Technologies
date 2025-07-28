@@ -85,7 +85,7 @@ const plans: PricingPlan[] = [
     ],
   },
   {
-    title: "Small Business",
+    title: "Businesses",
     price: "Ksh 35,000+",
     features: [
       "Standard Cloud Hosting",
@@ -99,7 +99,7 @@ const plans: PricingPlan[] = [
     title: "Institution",
     price: "Ksh 100,000+",
     features: [
-      "Custom ERP/HMS",
+      "Custom system apps",
       "Premium Cloud Hosting",
       "24/7 Support",
       "User Licenses",

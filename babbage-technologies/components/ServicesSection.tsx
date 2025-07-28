@@ -18,6 +18,11 @@ import {
   FileJson, // For Responsible Deadlines
   FileText // For Regular Reporting & Demos
   ,
+
+
+
+
+
   Film,
   GitBranch,
   Globe,
@@ -308,10 +313,8 @@ export default function ServicesPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      {/* Assuming Header and Footer are imported and used in layout.tsx or directly here */}
-      {/* <Header /> */}
       <main className="flex-grow">
-        {/* Our Services Section */}
+        {/* Our Services Section - DARK */}
         <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-white relative overflow-hidden">
           {/* Background elements (CSS animations are performant) */}
           <div className="absolute inset-0 opacity-20">
@@ -342,7 +345,7 @@ export default function ServicesPage() {
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.1 }} 
+              viewport={{ once: true, amount: 0.1 }}
               className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
             >
               {services.map((service: Service, index: number) => {
@@ -410,15 +413,15 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* Development Process */}
-        <section className="py-20 md:py-28 bg-gradient-to-br from-gray-900 to-blue-950 text-gray-100 relative">
+        {/* Development Process - LIGHT */}
+        <section className="py-20 md:py-28 bg-gray-100 text-gray-800 relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg"
+              className="text-4xl md:text-5xl font-extrabold text-center text-blue-900 mb-12 drop-shadow-sm"
             >
               Our Streamlined Development Process
             </motion.h2>
@@ -426,7 +429,7 @@ export default function ServicesPage() {
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.1 }} 
+              viewport={{ once: true, amount: 0.1 }}
               className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
             >
               {developmentProcess.map((stage, index) => {
@@ -436,19 +439,19 @@ export default function ServicesPage() {
                     key={index}
                     variants={itemVariants}
                     whileHover={{ scale: 1.03 }}
-                    className="bg-white/10 rounded-xl shadow-2xl hover:shadow-blue-500/50 transition-all duration-500 flex flex-col will-change-transform will-change-opacity border border-blue-700/30 sm:backdrop-blur-sm"
+                    className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col flex-1"
                   >
                     <Card className="bg-transparent border-0 flex flex-col flex-1">
                       <CardHeader className="flex items-center gap-4 px-6 py-6">
-                        <div className="p-4 bg-blue-700/20 rounded-full shadow-inner border border-blue-400/50">
-                          {IconComponent && <IconComponent className="w-8 h-8 text-teal-400" />}
+                        <div className="p-4 bg-blue-100 rounded-full shadow-inner">
+                          {IconComponent && <IconComponent className="w-8 h-8 text-blue-700" />}
                         </div>
-                        <CardTitle className="text-xl md:text-2xl font-extrabold text-white">
+                        <CardTitle className="text-xl md:text-2xl font-extrabold text-blue-800">
                           {stage.title}
                         </CardTitle>
                       </CardHeader>
                       <CardContent className="pt-4 px-6 pb-6 flex flex-col flex-1">
-                        <p className="text-base text-blue-200 leading-relaxed flex-1">
+                        <p className="text-base text-gray-600 leading-relaxed flex-1">
                           {stage.desc}
                         </p>
                       </CardContent>
@@ -460,8 +463,8 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* Industries We Empower */}
-        <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-white relative overflow-hidden"> {/* Changed background */}
+        {/* Industries We Empower - DARK */}
+        <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-white relative overflow-hidden">
           {/* Background elements (CSS animations are performant) */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-teal-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-1000"></div>
@@ -516,15 +519,15 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* Technologies We Master */}
-        <section className="py-20 md:py-28 bg-gradient-to-br from-gray-900 to-blue-950 text-gray-100 relative"> {/* Changed background */}
+        {/* Technologies We Master - LIGHT */}
+        <section className="py-20 md:py-28 bg-gray-100 text-gray-800 relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg"
+              className="text-4xl md:text-5xl font-extrabold text-center text-blue-900 mb-12 drop-shadow-sm"
             >
               Technologies We Master
             </motion.h2>
@@ -532,7 +535,7 @@ export default function ServicesPage() {
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.1 }} 
+              viewport={{ once: true, amount: 0.1 }}
               className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
             >
               {technologies.map((tech, index) => {
@@ -542,19 +545,19 @@ export default function ServicesPage() {
                     key={index}
                     variants={itemVariants}
                     whileHover={{ scale: 1.03 }}
-                    className="bg-white/10 rounded-xl shadow-2xl hover:shadow-blue-500/50 transition-all duration-500 flex flex-col will-change-transform will-change-opacity border border-blue-700/30 sm:backdrop-blur-sm"
+                    className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col flex-1"
                   >
                     <Card className="bg-transparent border-0 flex flex-col flex-1">
                       <CardHeader className="flex items-center gap-4 px-6 py-6">
-                        <div className="p-4 bg-blue-700/20 rounded-full shadow-inner border border-blue-400/50">
-                          {IconComponent && <IconComponent className="w-8 h-8 text-teal-400" />}
+                        <div className="p-4 bg-blue-100 rounded-full shadow-inner">
+                          {IconComponent && <IconComponent className="w-8 h-8 text-blue-700" />}
                         </div>
-                        <CardTitle className="text-xl md:text-2xl font-extrabold text-white">
+                        <CardTitle className="text-xl md:text-2xl font-extrabold text-blue-800">
                           {tech.title}
                         </CardTitle>
                       </CardHeader>
                       <CardContent className="pt-4 px-6 pb-6 flex flex-col flex-1">
-                        <p className="text-base text-blue-200 leading-relaxed flex-1">
+                        <p className="text-base text-gray-600 leading-relaxed flex-1">
                           {tech.desc}
                         </p>
                       </CardContent>
@@ -566,8 +569,8 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* Quality Control Practices (Renamed and Richer) */}
-        <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-white relative overflow-hidden"> {/* Changed background */}
+        {/* Quality Control Practices - DARK */}
+        <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-white relative overflow-hidden">
           {/* Background elements (CSS animations are performant) */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-teal-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-1000"></div>
@@ -588,7 +591,7 @@ export default function ServicesPage() {
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.1 }} 
+              viewport={{ once: true, amount: 0.1 }}
               className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
             >
               {qualityControlPractices.map((practice, index) => {
@@ -598,7 +601,7 @@ export default function ServicesPage() {
                     key={index}
                     variants={itemVariants}
                     whileHover={{ scale: 1.03 }}
-                    className="bg-white/10 rounded-xl shadow-2xl hover:shadow-blue-500/50 transition-all duration-500 flex flex-col will-change-transform will-change-opacity border border-blue-700/30 sm:backdrop-blur-sm"
+                    className="bg-white/10 rounded-xl shadow-2xl hover:shadow-teal-500/50 transition-all duration-500 flex flex-col will-change-transform will-change-opacity border border-blue-700/30 sm:backdrop-blur-sm"
                   >
                     <Card className="bg-transparent border-0 flex flex-col flex-1">
                       <CardHeader className="flex items-center gap-4 px-6 py-6">
@@ -622,15 +625,15 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* Testimonials */}
-        <section className="py-20 md:py-28 bg-gradient-to-br from-gray-900 to-blue-950 text-gray-100 relative"> {/* Changed background */}
+        {/* Testimonials - LIGHT */}
+        <section className="py-20 md:py-28 bg-gray-100 text-gray-800 relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg"
+              className="text-4xl md:text-5xl font-extrabold text-center text-blue-900 mb-12 drop-shadow-sm"
             >
               What Our Clients Say
             </motion.h2>
@@ -638,7 +641,7 @@ export default function ServicesPage() {
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.1 }} 
+              viewport={{ once: true, amount: 0.1 }}
               className="grid md:grid-cols-2 gap-8"
             >
               {[
@@ -652,37 +655,22 @@ export default function ServicesPage() {
                   author: "Damian Gevertz",
                   role: "Founder & CEO, Widgety",
                 },
-                {
-                  quote: "“Babbage Technologies is exceptional in every regard: cost-effectiveness, professionalism, transparency, and their willingness to advise. They were invaluable when our idea was still nascent.”",
-                  author: "David Logan",
-                  role: "Founder, Umergence",
-                },
-                {
-                  quote: "“If you seek high standards, Babbage Technologies is the firm. Their professional workflows ensure exceptional quality. Crucially, they help refine your business logic, not just blindly follow instructions.”",
-                  author: "Domien Van Eynde",
-                  role: "Team Lead, Daiokan.com",
-                },
-                {
-                  quote: "“Working with Babbage Technologies on our core product was a pleasure. They brought engineering expertise, enthusiasm, and a team focused on creating quality features rapidly. Truly outstanding!”",
-                  author: "Paul S. Chun",
-                  role: "CTO, Rivalfox GmbH",
-                },
               ].map((testimonial, index) => (
                 <motion.div
                   key={index}
                   variants={itemVariants}
                   whileHover={{ scale: 1.03 }}
-                  className="bg-white/10 rounded-xl shadow-2xl hover:shadow-blue-500/50 transition-all duration-500 flex flex-col will-change-transform will-change-opacity border border-blue-700/30 sm:backdrop-blur-sm"
+                  className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col flex-1"
                 >
                   <Card className="bg-transparent border-0 flex flex-col flex-1">
                     <CardContent className="pt-6 px-6 pb-6 flex flex-col flex-1">
                       <p
-                        className="text-blue-200 italic mb-4 flex-1"
+                        className="text-gray-700 italic mb-4 flex-1"
                         dangerouslySetInnerHTML={{ __html: testimonial.quote }}
                       />
                       <div className="mt-auto"> {/* Pushes author info to the bottom */}
-                        <p className="text-white font-semibold">{testimonial.author}</p>
-                        <p className="text-teal-400 text-sm">{testimonial.role}</p>
+                        <p className="text-blue-800 font-semibold">{testimonial.author}</p>
+                        <p className="text-teal-600 text-sm">{testimonial.role}</p>
                       </div>
                     </CardContent>
                   </Card>
@@ -692,7 +680,6 @@ export default function ServicesPage() {
           </div>
         </section>
       </main>
-      {/* <Footer /> */}
     </div>
   );
 }
