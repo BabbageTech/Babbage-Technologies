@@ -2,23 +2,22 @@
 
 import { motion, Variants } from "framer-motion";
 import {
-  Award, BrainCircuit,
+  Award,
+  BrainCircuit,
   CalendarCheck,
   CheckCircle,
-  Clipboard,
   Clock,
   Code,
   DollarSign,
   FileText,
   Globe,
   Handshake,
-  Layers,
   Lightbulb,
   Lock,
   MapPin,
   Palette,
   RefreshCcw,
-  Server, Settings,
+  Server,
   ShieldCheck,
   Star,
   TrendingUp,
@@ -29,61 +28,101 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button"; // Assuming Button component exists
-import { CoreValue } from "@/types"; // Ensure CoreValue type is correctly defined in types/index.ts
+import { Button } from "@/components/ui/button";
 
-// Define a mapping for Lucide icons to be used dynamically
+// Icon mapping for dynamic rendering
 const IconMap = {
-  CheckCircle: CheckCircle,
-  BrainCircuit: BrainCircuit,
-  ShieldCheck: ShieldCheck,
-  Users2: Users2,
-  Star: Star,
-  Award: Award,
-  Globe: Globe,
-  Clock: Clock,
-  MapPin: MapPin,
-  Lightbulb: Lightbulb,
-  TrendingUp: TrendingUp,
-  DollarSign: DollarSign,
-  CalendarCheck: CalendarCheck,
-  FileText: FileText,
-  Code: Code,
-  UserCheck: UserCheck,
-  Handshake: Handshake,
-  Zap: Zap,
-  Lock: Lock,
-  RefreshCcw: RefreshCcw,
-  Palette: Palette,
-  Clipboard: Clipboard,
-  Layers: Layers,
-  Server: Server,
-  Settings: Settings,
+  CheckCircle,
+  BrainCircuit,
+  ShieldCheck,
+  Users2,
+  Star,
+  Award,
+  Globe,
+  Clock,
+  MapPin,
+  Lightbulb,
+  TrendingUp,
+  DollarSign,
+  CalendarCheck,
+  FileText,
+  Code,
+  UserCheck,
+  Handshake,
+  Zap,
+  Lock,
+  RefreshCcw,
+  Palette,
+  Server,
 };
 
-// Framer Motion Variants for staggered animations
+// Framer Motion variants
 const containerVariants: Variants = {
-  hidden: {},
+  hidden: { opacity: 0 },
   show: {
+    opacity: 1,
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.1,
     },
   },
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 30 },
   show: {
     opacity: 1,
     y: 0,
     transition: {
       duration: 0.6,
-      type: "spring",
-      stiffness: 100,
-      damping: 12,
+      ease: "easeOut",
     },
   },
 };
+
+const fadeInUpVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+};
+
+// Types
+interface CoreValue {
+  title: string;
+  desc: string;
+  icon: keyof typeof IconMap;
+}
+
+interface Guarantee {
+  title: string;
+  desc: string;
+  icon: keyof typeof IconMap;
+}
+
+interface Service {
+  title: string;
+  desc: string;
+}
+
+interface TeamMember {
+  name: string;
+  title: string;
+  img: string;
+}
+
+interface Testimonial {
+  quote: string;
+  author: string;
+  role: string;
+}
+
+interface Stat {
+  icon: keyof typeof IconMap;
+  value: string;
+  label: string;
+}
 
 export default function AboutPage() {
   const coreValues: CoreValue[] = [
@@ -94,266 +133,279 @@ export default function AboutPage() {
     },
     {
       title: "Innovation",
-      desc: "Our open and teamwork-driven environment encourages innovative solutions through collective intelligence.",
+      desc: "Our collaborative environment encourages innovative solutions through collective intelligence.",
       icon: "BrainCircuit",
     },
     {
       title: "Reliability",
-      desc: "We deliver dependable tech with long-term stability and robust performance.",
+      desc: "We deliver dependable technology with long-term stability and robust performance.",
       icon: "ShieldCheck",
     },
     {
       title: "Customer Focus",
-      desc: "We prioritize long-term partnerships and align our solutions with clients’ business goals.",
+      desc: "We prioritize long-term partnerships and align solutions with your business goals.",
       icon: "Users2",
     },
     {
-      title: "Agility & Adaptability",
+      title: "Agility",
       desc: "Our agile processes ensure swift adaptation to changing client needs and market demands.",
       icon: "Zap",
     },
     {
-      title: "Security & Confidentiality",
-      desc: "Stringent data protection measures safeguard client information, ensuring peace of mind.",
+      title: "Security First",
+      desc: "Stringent data protection measures safeguard your information, ensuring peace of mind.",
       icon: "Lock",
     },
     {
-      title: "Continuous Improvement",
-      desc: "Our relentless pursuit of excellence and innovation underpins every project, exceeding client expectations.",
+      title: "Continuous Growth",
+      desc: "We relentlessly pursue excellence and innovation, exceeding client expectations.",
       icon: "RefreshCcw",
     },
     {
-      title: "Cultural Sensitivity",
-      desc: "We respect and incorporate the cultural diversity of our clients, ensuring globally applicable solutions.",
-      icon: "Palette",
+      title: "Global Perspective",
+      desc: "We respect cultural diversity, delivering solutions that work across borders.",
+      icon: "Globe",
     },
   ];
 
-  const guarantees = [
+  const guarantees: Guarantee[] = [
     {
       title: "Accurate Cost Estimation",
-      desc: "Detailed analysis of business goals and user needs for precise budget and timeline assessments.",
+      desc: "Detailed analysis of business goals for precise budget and timeline assessments.",
       icon: "DollarSign",
     },
     {
-      title: "Competence-Based Team Selection",
-      desc: "Matching best-suited candidates to each role, aligning skills, interests, and expertise.",
+      title: "Expert Team Selection",
+      desc: "Matching the best-suited experts to each role based on skills and experience.",
       icon: "Users2",
     },
     {
-      title: "Comprehensive Risk Management",
-      desc: "Proactive identification, assessment, and mitigation of risks for project stability and early threat addressing.",
+      title: "Risk Management",
+      desc: "Proactive identification and mitigation of risks for project stability.",
       icon: "ShieldCheck",
     },
     {
       title: "Agile Delivery",
-      desc: "Flexible and iterative approach ensuring timely delivery, adaptation to changing requirements, and continuous improvement.",
+      desc: "Flexible, iterative approach ensuring timely delivery and continuous improvement.",
       icon: "Zap",
     },
     {
       title: "Budget Control",
-      desc: "Accurate scoping and prioritization of features to ensure efficient resource allocation and prevent overruns.",
+      desc: "Accurate scoping and prioritization to prevent cost overruns.",
       icon: "TrendingUp",
     },
     {
-      title: "Responsible Deadlines",
-      desc: "Structured processes and proactive change management to meet deadlines without compromising quality.",
+      title: "On-Time Delivery",
+      desc: "Structured processes to meet deadlines without compromising quality.",
       icon: "CalendarCheck",
     },
     {
-      title: "Regular Reporting",
-      desc: "Transparent communication with detailed weekly updates, demos, and timesheet reports.",
+      title: "Transparent Reporting",
+      desc: "Weekly updates, demos, and detailed timesheet reports.",
       icon: "FileText",
     },
     {
-      title: "Knowledge Management",
-      desc: "Seamless knowledge sharing and documentation to support project continuity and long-term success.",
+      title: "Knowledge Transfer",
+      desc: "Seamless documentation and knowledge sharing for long-term success.",
       icon: "Lightbulb",
     },
   ];
 
-  const servicesOffered = [
-    { title: "Discovery", desc: "Validate ideas, choose technologies, and plan releases to minimize risks." },
+  const servicesOffered: Service[] = [
+    { title: "Discovery & Strategy", desc: "Validate ideas, choose technologies, and plan releases to minimize risks." },
     { title: "UI/UX Design", desc: "Craft intuitive, user-friendly interfaces for seamless experiences." },
-    { title: "Software Development", desc: "Build scalable web, mobile, and IoT solutions tailored to your needs." },
+    { title: "Custom Software Development", desc: "Build scalable web, mobile, and ERP solutions tailored to your needs." },
     { title: "QA & Testing", desc: "Ensure flawless performance with rigorous quality assurance." },
+    { title: "Cloud & DevOps", desc: "Scalable infrastructure and automated deployments." },
     { title: "Staff Augmentation", desc: "Augment your team with our expert developers." },
   ];
 
-  const managementTeam = [
-    { name: "Simon Keya", title: "CTO & CoFounder", img: "https://placehold.co/150x150/2563EB/FFFFFF?text=CEO" },
-    { name: "Kelvin Wekesa", title: "COO & CoFounder", img: "https://placehold.co/150x150/2563EB/FFFFFF?text=Partner" },
-    { name: "Elena Safonova", title: "Head of QA", img: "https://placehold.co/150x150/2563EB/FFFFFF?text=QA" },
-    { name: "Kate Merzlova", title: "Head of Sales & Marketing", img: "https://placehold.co/150x150/2563EB/FFFFFF?text=Sales" },
-    { name: "Irina Baryshnaya", title: "Head of PM", img: "https://placehold.co/150x150/2563EB/FFFFFF?text=PM" },
+  const managementTeam: TeamMember[] = [
+    { name: "Simon Keya", title: "CTO & Co-Founder", img: "https://placehold.co/400x400/1D3557/FFFFFF?text=SK" },
+    { name: "Kelvin Wekesa", title: "COO & Co-Founder", img: "https://placehold.co/400x400/1D3557/FFFFFF?text=KW" },
+    { name: "Elena Safonova", title: "Head of QA", img: "https://placehold.co/400x400/1D3557/FFFFFF?text=ES" },
+    { name: "Kate Merzlova", title: "Head of Sales & Marketing", img: "https://placehold.co/400x400/1D3557/FFFFFF?text=KM" },
+    { name: "Irina Baryshnaya", title: "Head of Project Management", img: "https://placehold.co/400x400/1D3557/FFFFFF?text=IB" },
   ];
 
-  const clientTestimonials = [
+  const stats: Stat[] = [
+    { icon: "Star", value: "98%", label: "Client Satisfaction" },
+    { icon: "Award", value: "50+", label: "Projects Delivered" },
+    { icon: "Globe", value: "12+", label: "Industries Served" },
+    { icon: "Users2", value: "85%", label: "Senior Specialists" },
+    { icon: "Clock", value: "5+", label: "Avg. Client Engagement" },
+    { icon: "TrendingUp", value: "40%", label: "Avg. Efficiency Gain" },
+  ];
+
+  const testimonials: Testimonial[] = [
     {
-      quote: "“Babbage Technologies provided a competitive edge with their well-thought solutions and unwavering commitment to quality. They truly understand business value.”",
+      quote: "Barbage Technologies provided a competitive edge with their well-thought solutions and unwavering commitment to quality. They truly understand business value.",
       author: "Alexander McCaig",
       role: "Co-Founder & CEO, Tartle",
     },
     {
-      quote: "“Their thorough investigation and transparent approach ensured our project was a resounding success. Babbage Technologies is highly recommended for their professionalism and guidance!”",
+      quote: "Their thorough investigation and transparent approach ensured our project was a resounding success. Highly recommended for their professionalism and guidance!",
       author: "Damian Gevertz",
       role: "Founder & CEO, Widgety",
     },
     {
-      quote: "“Babbage Technologies is exceptional in every regard: cost-effectiveness, professionalism, transparency, and their willingness to advise. They were invaluable when our idea was still nascent.”",
+      quote: "Barbage Technologies is exceptional in every regard: cost-effectiveness, professionalism, transparency, and their willingness to advise. Invaluable when our idea was still nascent.",
       author: "David Logan",
       role: "Founder, Umergence",
     },
   ];
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50">
+    <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-grow">
-        {/* About BabbageTechnologies (Hero-like) Section - DARK */}
-        <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-white relative overflow-hidden">
-          {/* Background elements */}
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-teal-500 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
-            <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
+        {/* ========== HERO SECTION ========== */}
+        <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary-hover to-primary">
+          {/* Animated background elements */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-secondary rounded-full blur-3xl animate-pulse" />
+            <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-accent rounded-full blur-3xl animate-pulse delay-1000" />
           </div>
-
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+          
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true, amount: 0.1 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
             >
-              <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-4 tracking-tight drop-shadow-lg">
-                About Babbage<span className="text-teal-400">Technologies</span>
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
+                </span>
+                <span className="text-sm text-white/90">Enterprise Software Partners</span>
+              </div>
+              
+              <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
+                About Barbage
+                <span className="text-accent"> Technologies</span>
               </h1>
-              <p className="text-xl text-blue-200 max-w-3xl mx-auto leading-relaxed">
+              
+              <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
                 Empowering businesses through innovative software, robust cloud technology, and
                 enterprise-grade systems tailored for your growth and success.
               </p>
             </motion.div>
           </div>
+          
+          {/* Bottom wave */}
+          <div className="absolute bottom-0 left-0 right-0">
+            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 120L60 110C120 100 240 80 360 75C480 70 600 80 720 85C840 90 960 90 1080 85C1200 80 1320 70 1380 65L1440 60V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#F1FAEE"/>
+            </svg>
+          </div>
         </section>
 
-        {/* Why Choose Us Section - LIGHT */}
-        <section className="py-20 md:py-28 bg-gray-100 text-gray-800 relative overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* ========== WHY CHOOSE US SECTION ========== */}
+        <section className="py-24 md:py-32 bg-background">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
-              viewport={{ once: true, amount: 0.1 }}
-              className="flex flex-col-reverse lg:flex-row items-center gap-12"
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={containerVariants}
+              className="flex flex-col-reverse lg:flex-row items-center gap-16"
             >
-              {/* Text Content */}
-              <div className="flex-1 space-y-6">
-                <h2 className="text-4xl md:text-5xl font-extrabold text-blue-900 mb-4 drop-shadow-lg">
-                  Why Choose Us?
+              <motion.div variants={itemVariants} className="flex-1 space-y-6">
+                <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2">
+                  <span className="text-sm font-semibold text-primary">Why Choose Us</span>
+                </div>
+                <h2 className="text-4xl md:text-5xl font-bold text-text-primary">
+                  Your Trusted Technology Partner
                 </h2>
-                <p className="text-xl text-gray-600 leading-relaxed">
-                  We deliver future-proof software and cloud solutions built to last. Our agile processes, transparent communication, and senior expertise ensure project success.
+                <p className="text-lg text-text-secondary leading-relaxed">
+                  We deliver future-proof software and cloud solutions built to last. Our agile processes, 
+                  transparent communication, and senior expertise ensure project success from start to finish.
                 </p>
-                <ul className="space-y-3 text-gray-700 text-lg">
-                  <li>
-                    <CheckCircle className="inline w-6 h-6 mr-3 text-blue-700" />
-                    Accurate cost estimation and budget control
-                  </li>
-                  <li>
-                    <CheckCircle className="inline w-6 h-6 mr-3 text-blue-700" />
-                    Competence-based team selection
-                  </li>
-                  <li>
-                    <CheckCircle className="inline w-6 h-6 mr-3 text-blue-700" />
-                    Comprehensive risk management
-                  </li>
-                  <li>
-                    <CheckCircle className="inline w-6 h-6 mr-3 text-blue-700" />
-                    Agile delivery with regular reporting
-                  </li>
+                <ul className="space-y-4">
+                  {[
+                    "Accurate cost estimation and budget control",
+                    "Competence-based team selection",
+                    "Comprehensive risk management",
+                    "Agile delivery with regular reporting",
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-center gap-3">
+                      <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
+                      <span className="text-text-secondary">{item}</span>
+                    </li>
+                  ))}
                 </ul>
-                <div className="mt-6 flex flex-wrap gap-4">
+                <div className="flex flex-wrap gap-4 pt-4">
                   <Link href="/contact">
-                    <Button
-                      aria-label="Get in Touch"
-                      className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 rounded-lg font-semibold shadow-[0_0_15px_rgba(13,148,136,0.6)] transition-all duration-300 transform hover:scale-105"
-                    >
+                    <Button className="bg-accent hover:bg-accent-hover text-white px-8 py-3 rounded-button font-semibold transition-all duration-300 hover:shadow-lg">
                       Get in Touch
                     </Button>
                   </Link>
                   <Link href="/services">
-                    <Button
-                      aria-label="Learn More"
-                      className="bg-blue-700 hover:bg-blue-800 text-white px-8 py-3 rounded-lg font-semibold shadow-[0_0_10px_rgba(29,78,216,0.5)] transition-all duration-300 transform hover:scale-105"
-                    >
+                    <Button variant="outline" className="px-8 py-3 rounded-button font-semibold">
                       Learn More
                     </Button>
                   </Link>
                 </div>
-              </div>
+              </motion.div>
 
-              {/* Image */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
-                viewport={{ once: true, amount: 0.1 }}
-                className="flex-1 relative h-80 md:h-96 w-full overflow-hidden rounded-xl border border-gray-200 group bg-white shadow-lg shadow-gray-200/50" // Adjusted for light background
+                variants={itemVariants}
+                whileHover={{ scale: 1.02 }}
+                className="flex-1 relative"
               >
-                <Image
-                  src="/about.jpg" // Placeholder image for demonstration
-                  alt="BabbageTechnologies Team in Action"
-                  width={800}
-                  height={600}
-                  quality={80}
-                  loading="eager"
-                  className="rounded-xl transition-transform duration-500 group-hover:scale-105 object-cover w-full h-full"
-                />
+                <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur-2xl" />
+                <div className="relative bg-surface rounded-2xl overflow-hidden shadow-card border border-border">
+                  <Image
+                    src="/about-hero.jpg"
+                    alt="Barbage Technologies Team"
+                    width={600}
+                    height={500}
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
               </motion.div>
             </motion.div>
           </div>
         </section>
 
-        {/* Our Impact (Stats) Section - DARK */}
-        <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-white relative">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* ========== STATS SECTION ========== */}
+        <section className="py-20 bg-primary relative overflow-hidden">
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+          </div>
+          
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true, amount: 0.1 }}
-              className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg"
+              transition={{ duration: 0.7 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-5xl font-bold text-center text-white mb-12"
             >
               Our Impact in Numbers
             </motion.h2>
+            
             <motion.div
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.1 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+              viewport={{ once: true }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6"
             >
-              {[
-                { icon: Star, value: "89%", label: "Satisfaction Rate" },
-                { icon: Award, value: "10+", label: "Successful Projects" },
-                { icon: Globe, value: "5+", label: "Industries Served" },
-                { icon: Users2, value: "60%", label: "Senior Specialists" },
-                { icon: Clock, value: "3+", label: "Years’ Client Engagement" },
-                { icon: Clock, value: "3+", label: "Years on the Market" },
-              ].map((stat, i) => {
-                const IconComponent = IconMap[stat.icon.displayName as keyof typeof IconMap || 'Star'];
+              {stats.map((stat, idx) => {
+                const IconComponent = IconMap[stat.icon];
                 return (
                   <motion.div
-                    key={i}
+                    key={idx}
                     variants={itemVariants}
                     whileHover={{ scale: 1.05 }}
-                    className="bg-white/10 backdrop-blur-sm border border-blue-700/30 rounded-xl shadow-2xl shadow-blue-500/20 hover:shadow-blue-500/40 transition-all duration-500 p-6 flex flex-col items-center text-center will-change-transform will-change-opacity"
+                    className="bg-white/10 backdrop-blur-sm rounded-card p-6 text-center border border-white/20"
                   >
-                    <div className="p-4 bg-blue-700/20 rounded-full shadow-inner border border-blue-400/50 mb-4">
-                      {IconComponent && <IconComponent className="w-8 h-8 text-teal-400" />}
+                    <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                      {IconComponent && <IconComponent className="w-6 h-6 text-accent" />}
                     </div>
-                    <p className="text-4xl font-extrabold text-teal-300 mb-2">{stat.value}</p>
-                    <p className="text-lg text-blue-200">{stat.label}</p>
+                    <p className="text-3xl font-bold text-white mb-1">{stat.value}</p>
+                    <p className="text-sm text-white/70">{stat.label}</p>
                   </motion.div>
                 );
               })}
@@ -361,96 +413,104 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Who We Are & Our Commitment - LIGHT */}
-        <section className="py-20 md:py-28 bg-gray-100 text-gray-800 relative overflow-hidden">
+        {/* ========== WHO WE ARE SECTION ========== */}
+        <section className="py-24 md:py-32 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true, amount: 0.1 }}
-              className="text-4xl md:text-5xl font-extrabold text-center text-blue-900 mb-12 drop-shadow-sm"
-            >
-              Who We Are & Our Commitment
-            </motion.h2>
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, type: "spring", stiffness: 100, delay: 0.1 }}
-              viewport={{ once: true, amount: 0.1 }}
-              className="grid md:grid-cols-2 gap-12 items-center"
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={containerVariants}
+              className="grid lg:grid-cols-2 gap-16 items-center"
             >
-              <div className="space-y-6">
-                <p className="text-lg leading-relaxed text-gray-700">
-                  BabbageTechnologies is a leading software development solutions provider dedicated to empowering businesses with cutting-edge technology. Founded on principles of innovation, integrity, and client-centricity, we specialize in crafting custom software, optimizing cloud infrastructure, and driving digital transformation.
+              <motion.div variants={itemVariants} className="space-y-6">
+                <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2">
+                  <span className="text-sm font-semibold text-primary">Our Story</span>
+                </div>
+                <h2 className="text-4xl md:text-5xl font-bold text-text-primary">
+                  Who We Are & Our Commitment
+                </h2>
+                <p className="text-lg text-text-secondary leading-relaxed">
+                  Barbage Technologies is a leading software development solutions provider dedicated to 
+                  empowering businesses with cutting-edge technology. Founded on principles of innovation, 
+                  integrity, and client-centricity, we specialize in crafting custom software, optimizing 
+                  cloud infrastructure, and driving digital transformation.
                 </p>
-                <p className="text-lg leading-relaxed text-gray-700">
-                  Our commitment extends beyond just code. We believe in building lasting partnerships, understanding your unique challenges, and delivering solutions that not only meet but exceed your expectations. With a team of seasoned experts, we navigate the complexities of the digital landscape to provide secure, scalable, and impactful results.
+                <p className="text-lg text-text-secondary leading-relaxed">
+                  Our commitment extends beyond just code. We believe in building lasting partnerships, 
+                  understanding your unique challenges, and delivering solutions that exceed expectations. 
+                  With a team of seasoned experts, we navigate the complexities of the digital landscape 
+                  to provide secure, scalable, and impactful results.
                 </p>
                 <Link href="/contact">
-                  <Button
-                    aria-label="Learn About Our Approach"
-                    className="bg-blue-700 hover:bg-blue-800 text-white px-8 py-3 rounded-lg font-semibold shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105"
-                  >
-                    Learn About Our Approach
+                  <Button className="bg-primary hover:bg-primary-hover text-white px-8 py-3 rounded-button font-semibold">
+                    Learn About Our Approach →
                   </Button>
                 </Link>
-              </div>
+              </motion.div>
+
               <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
-                viewport={{ once: true, amount: 0.1 }}
-                className="relative h-80 md:h-96 w-full overflow-hidden rounded-xl border border-gray-200 group bg-white shadow-lg shadow-gray-200/50"
+                variants={itemVariants}
+                whileHover={{ scale: 1.02 }}
+                className="relative"
               >
-                <Image
-                  src="/Commitment.jpg" // Placeholder image
-                  alt="Our Commitment"
-                  width={800}
-                  height={600}
-                  quality={80}
-                  loading="eager"
-                  className="rounded-xl transition-transform duration-500 group-hover:scale-105 object-cover w-full h-full"
-                />
+                <div className="absolute -inset-4 bg-gradient-to-r from-secondary/20 to-primary/20 rounded-2xl blur-2xl" />
+                <div className="relative bg-surface rounded-2xl overflow-hidden shadow-card border border-border">
+                  <Image
+                    src="/commitment.jpg"
+                    alt="Our Commitment"
+                    width={600}
+                    height={500}
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
               </motion.div>
             </motion.div>
           </div>
         </section>
 
-        {/* Our Core Values Section - DARK */}
-        <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-white relative overflow-hidden">
+        {/* ========== CORE VALUES SECTION ========== */}
+        <section className="py-24 md:py-32 bg-surface-alt">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true, amount: 0.1 }}
-              className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg"
+            <motion.div
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              variants={fadeInUpVariants}
+              className="text-center max-w-3xl mx-auto mb-16"
             >
-              Our Core Values
-            </motion.h2>
+              <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-4">
+                <span className="text-sm font-semibold text-primary">Our Foundation</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-4">
+                Our Core Values
+              </h2>
+              <p className="text-lg text-text-secondary">
+                The principles that guide everything we do, from code to client relationships.
+              </p>
+            </motion.div>
+
             <motion.div
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.1 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+              viewport={{ once: true }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
             >
-              {coreValues.map((value, i) => {
-                const IconComponent = IconMap[value.icon as keyof typeof IconMap];
+              {coreValues.map((value, idx) => {
+                const IconComponent = IconMap[value.icon];
                 return (
                   <motion.div
-                    key={i}
+                    key={idx}
                     variants={itemVariants}
-                    whileHover={{ scale: 1.03 }}
-                    className="bg-white/10 backdrop-blur-sm border border-blue-700/30 rounded-xl shadow-2xl hover:shadow-teal-500/50 transition-all duration-500 p-6 flex flex-col items-center text-center"
+                    whileHover={{ y: -5 }}
+                    className="bg-surface rounded-card p-6 border border-border hover:shadow-card-hover transition-all duration-300"
                   >
-                    <div className="p-4 bg-blue-700/20 rounded-full shadow-inner border border-blue-400/50 mb-4">
-                      {IconComponent && <IconComponent className="w-8 h-8 text-teal-400" />}
+                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+                      {IconComponent && <IconComponent className="w-6 h-6 text-primary" />}
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-2">{value.title}</h3>
-                    <p className="text-blue-200 leading-relaxed">{value.desc}</p>
+                    <h3 className="text-xl font-bold text-text-primary mb-2">{value.title}</h3>
+                    <p className="text-text-secondary text-sm leading-relaxed">{value.desc}</p>
                   </motion.div>
                 );
               })}
@@ -458,39 +518,48 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Our Guarantees Section - LIGHT */}
-        <section className="py-20 md:py-28 bg-gray-100 text-gray-800 relative overflow-hidden">
+        {/* ========== GUARANTEES SECTION ========== */}
+        <section className="py-24 md:py-32 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true, amount: 0.1 }}
-              className="text-4xl md:text-5xl font-extrabold text-center text-blue-900 mb-12 drop-shadow-sm"
+            <motion.div
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              variants={fadeInUpVariants}
+              className="text-center max-w-3xl mx-auto mb-16"
             >
-              Our Guarantees
-            </motion.h2>
+              <div className="inline-flex items-center gap-2 bg-accent/10 rounded-full px-4 py-2 mb-4">
+                <span className="text-sm font-semibold text-accent">Our Promise</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-4">
+                Our Guarantees
+              </h2>
+              <p className="text-lg text-text-secondary">
+                When you partner with us, you can count on these commitments.
+              </p>
+            </motion.div>
+
             <motion.div
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.1 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+              viewport={{ once: true }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
             >
-              {guarantees.map((guarantee, i) => {
-                const IconComponent = IconMap[guarantee.icon as keyof typeof IconMap];
+              {guarantees.map((guarantee, idx) => {
+                const IconComponent = IconMap[guarantee.icon];
                 return (
                   <motion.div
-                    key={i}
+                    key={idx}
                     variants={itemVariants}
-                    whileHover={{ scale: 1.03 }}
-                    className="bg-white p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center"
+                    whileHover={{ y: -5 }}
+                    className="bg-surface rounded-card p-6 border border-border text-center"
                   >
-                    <div className="p-4 bg-blue-100 rounded-full mb-4 shadow-inner">
-                      {IconComponent && <IconComponent className="w-8 h-8 text-blue-700" />}
+                    <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      {IconComponent && <IconComponent className="w-6 h-6 text-accent" />}
                     </div>
-                    <h3 className="text-xl font-bold text-blue-800 mb-2">{guarantee.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{guarantee.desc}</p>
+                    <h3 className="text-lg font-bold text-text-primary mb-2">{guarantee.title}</h3>
+                    <p className="text-text-secondary text-sm">{guarantee.desc}</p>
                   </motion.div>
                 );
               })}
@@ -498,126 +567,146 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Services Offered Section - DARK */}
-        <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-white relative overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true, amount: 0.1 }}
-              className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg"
+        {/* ========== SERVICES SECTION ========== */}
+        <section className="py-24 md:py-32 bg-primary relative overflow-hidden">
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+          </div>
+          
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              variants={fadeInUpVariants}
+              className="text-center max-w-3xl mx-auto mb-16"
             >
-              Services We Offer
-            </motion.h2>
+              <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-2 mb-4">
+                <span className="text-sm font-semibold text-accent">Our Expertise</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                Services We Offer
+              </h2>
+              <p className="text-lg text-white/80">
+                End-to-end solutions for your digital transformation journey.
+              </p>
+            </motion.div>
+
             <motion.div
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.1 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+              viewport={{ once: true }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
             >
-              {servicesOffered.map((service, i) => (
+              {servicesOffered.map((service, idx) => (
                 <motion.div
-                  key={i}
+                  key={idx}
                   variants={itemVariants}
-                  whileHover={{ scale: 1.03 }}
-                  className="bg-white/10 backdrop-blur-sm border border-blue-700/30 rounded-xl shadow-2xl hover:shadow-teal-500/50 transition-all duration-500 p-6 flex flex-col items-center text-center"
+                  whileHover={{ scale: 1.02 }}
+                  className="bg-white/10 backdrop-blur-sm rounded-card p-6 border border-white/20 hover:border-accent/50 transition-all"
                 >
                   <h3 className="text-xl font-bold text-white mb-2">{service.title}</h3>
-                  <p className="text-blue-200 leading-relaxed">{service.desc}</p>
+                  <p className="text-white/70 text-sm leading-relaxed">{service.desc}</p>
                 </motion.div>
               ))}
             </motion.div>
           </div>
         </section>
 
-        {/* Management Team Section - LIGHT */}
-        <section className="py-20 md:py-28 bg-gray-100 text-gray-800 relative overflow-hidden">
+        {/* ========== TEAM SECTION ========== */}
+        <section className="py-24 md:py-32 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true, amount: 0.1 }}
-              className="text-4xl md:text-5xl font-extrabold text-center text-blue-900 mb-12 drop-shadow-sm"
+            <motion.div
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              variants={fadeInUpVariants}
+              className="text-center max-w-3xl mx-auto mb-16"
             >
-              Meet Our Management Team
-            </motion.h2>
+              <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-4">
+                <span className="text-sm font-semibold text-primary">Leadership</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-4">
+                Meet Our Management Team
+              </h2>
+              <p className="text-lg text-text-secondary">
+                Industry veterans committed to your success.
+              </p>
+            </motion.div>
+
             <motion.div
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.1 }}
-              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 justify-items-center"
+              viewport={{ once: true }}
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6"
             >
-              {managementTeam.map((member, i) => (
+              {managementTeam.map((member, idx) => (
                 <motion.div
-                  key={i}
+                  key={idx}
                   variants={itemVariants}
-                  whileHover={{ scale: 1.05 }}
-                  className="flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300"
+                  whileHover={{ y: -5 }}
+                  className="bg-surface rounded-card p-6 border border-border text-center hover:shadow-card-hover transition-all"
                 >
-                  <div className="relative w-32 h-32 mb-4 rounded-full overflow-hidden border-4 border-blue-600 shadow-md">
+                  <div className="relative w-24 h-24 mx-auto mb-4">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary rounded-full opacity-20" />
                     <Image
                       src={member.img}
                       alt={member.name}
-                      width={150}
-                      height={150}
-                      quality={80}
-                      loading="lazy"
-                      className="object-cover w-full h-full"
+                      width={96}
+                      height={96}
+                      className="relative rounded-full object-cover w-full h-full"
                     />
                   </div>
-                  <h3 className="text-xl font-bold text-blue-800">{member.name}</h3>
-                  <p className="text-teal-600 text-sm">{member.title}</p>
+                  <h3 className="text-lg font-bold text-text-primary">{member.name}</h3>
+                  <p className="text-sm text-text-secondary">{member.title}</p>
                 </motion.div>
               ))}
             </motion.div>
           </div>
         </section>
 
-        {/* Client Testimonials Section - DARK */}
-        <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-white relative overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true, amount: 0.3 }}
-              className="text-4xl md:text-5xl font-extrabold text-white mb-4 drop-shadow-sm"
+        {/* ========== TESTIMONIALS SECTION ========== */}
+        <section className="py-24 md:py-32 bg-surface-alt">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              variants={fadeInUpVariants}
+              className="text-center max-w-3xl mx-auto mb-16"
             >
-              What Our Clients Say
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, type: "spring", stiffness: 100, delay: 0.1 }}
-              viewport={{ once: true, amount: 0.3 }}
-              className="text-lg text-blue-200 max-w-3xl mx-auto mb-12"
-            >
-              Hear directly from businesses that have achieved success with our partnership.
-            </motion.p>
+              <div className="inline-flex items-center gap-2 bg-accent/10 rounded-full px-4 py-2 mb-4">
+                <span className="text-sm font-semibold text-accent">Testimonials</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-4">
+                What Our Clients Say
+              </h2>
+              <p className="text-lg text-text-secondary">
+                Hear directly from businesses that have achieved success with our partnership.
+              </p>
+            </motion.div>
+
             <motion.div
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true }}
               className="grid md:grid-cols-3 gap-8"
             >
-              {clientTestimonials.map((testimonial, i) => (
+              {testimonials.map((testimonial, idx) => (
                 <motion.div
-                  key={i}
+                  key={idx}
                   variants={itemVariants}
-                  whileHover={{ scale: 1.03 }}
-                  className="bg-white/10 backdrop-blur-sm border border-blue-700/30 rounded-xl shadow-2xl hover:shadow-teal-500/50 transition-all duration-500 p-8 flex flex-col items-center text-center"
+                  whileHover={{ y: -5 }}
+                  className="bg-surface rounded-card p-8 border border-border hover:shadow-card-hover transition-all"
                 >
-                  <p className="text-blue-100 italic mb-4 flex-1 text-base leading-relaxed">
-                    {testimonial.quote}
-                  </p>
-                  <div className="mt-auto">
-                    <p className="text-white font-semibold">{testimonial.author}</p>
-                    <p className="text-teal-400 text-sm">{testimonial.role}</p>
+                  <div className="text-accent text-4xl mb-4">&quot;</div>
+                  <p className="text-text-secondary leading-relaxed mb-6">{testimonial.quote}</p>
+                  <div className="border-t border-border pt-4">
+                    <p className="font-bold text-text-primary">{testimonial.author}</p>
+                    <p className="text-sm text-text-secondary">{testimonial.role}</p>
                   </div>
                 </motion.div>
               ))}
@@ -625,38 +714,27 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Call to Action Section - LIGHT */}
-        <section className="py-20 md:py-28 bg-gray-100 text-gray-800 relative overflow-hidden">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true, amount: 0.3 }}
-              className="text-4xl md:text-5xl font-extrabold text-blue-900 mb-6 drop-shadow-sm"
-            >
-              Ready to Transform Your Business?
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, type: "spring", stiffness: 100, delay: 0.1 }}
-              viewport={{ once: true, amount: 0.3 }}
-              className="text-xl text-gray-600 mb-10 leading-relaxed"
-            >
-              Let&apos;s discuss your project and discover how BabbageTechnologies can help you achieve your goals.
-            </motion.p>
+        {/* ========== CTA SECTION ========== */}
+        <section className="py-24 md:py-32 bg-gradient-to-br from-primary to-primary-hover relative overflow-hidden">
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent rounded-full blur-3xl" />
+          </div>
+          
+          <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, type: "spring", stiffness: 100, delay: 0.2 }}
-              viewport={{ once: true, amount: 0.3 }}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              variants={fadeInUpVariants}
             >
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                Ready to Transform Your Business?
+              </h2>
+              <p className="text-xl text-white/80 mb-10 leading-relaxed">
+                Let&apos;s discuss your project and discover how Barbage Technologies can help you achieve your goals.
+              </p>
               <Link href="/contact">
-                <Button
-                  aria-label="Contact Us Today"
-                  className="bg-teal-600 hover:bg-teal-700 text-white px-10 py-4 rounded-lg font-semibold shadow-[0_0_20px_rgba(13,148,136,0.7)] transition-all duration-300 transform hover:scale-105 text-xl"
-                >
+                <Button className="bg-accent hover:bg-accent-hover text-white px-10 py-4 rounded-button font-semibold text-lg transition-all duration-300 hover:shadow-lg hover:scale-105">
                   Contact Us Today
                 </Button>
               </Link>

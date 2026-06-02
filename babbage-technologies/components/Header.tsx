@@ -1,43 +1,36 @@
 "use client";
 
-import { Button } from "@/components/ui/button"; // Assuming Button component is available
-import { motion } from "framer-motion"; // Import motion for animations
-import { Menu, X } from "lucide-react"; // Import Menu and X icons from lucide-react
+import { Button } from "@/components/ui/button";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, ChevronRight } from "lucide-react";
 import Link from 'next/link';
-import { usePathname } from "next/navigation"; // Import usePathname for active link highlighting
-import React, { useEffect, useState } from 'react'; // Import useState and useEffect
+import { usePathname } from "next/navigation";
+import React, { useEffect, useState } from 'react';
 
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
-  { label: "Pricing", href: "/pricing" },
+  { label: "Projects", href: "/projects" },
   { label: "Contact", href: "/contact" },
 ];
 
 const Header: React.FC = () => {
   const pathname = usePathname();
-  const [isScrolled, setIsScrolled] = useState(false); // State to track scroll position for transparency
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile menu open/close
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 20);
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Set initial state
+    handleScroll();
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Effect to prevent body scrolling when mobile menu is open
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -45,110 +38,155 @@ const Header: React.FC = () => {
       document.body.style.overflow = '';
     }
     return () => {
-      document.body.style.overflow = ''; // Clean up on unmount
+      document.body.style.overflow = '';
     };
   }, [isMenuOpen]);
 
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
+
   return (
-    <motion.header
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.2 }}
-      className={`fixed w-full top-0 z-50 transition-all duration-300 ease-in-out
-        ${isScrolled
-          ? "bg-white/80 shadow-md backdrop-blur-md border-b border-blue-100/50" // More transparent and "colourless" white when scrolled
-          : "bg-gradient-to-r from-blue-50 to-white shadow-lg backdrop-blur-sm border-b border-blue-100" // Opaque and full shadow when at top
+    <>
+      <motion.header
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.2 }}
+        className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+          isScrolled
+            ? "bg-white/95 backdrop-blur-md shadow-card border-b border-border"
+            : "bg-transparent"
         }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo / Brand */}
-        <Link href="/" className="text-3xl font-extrabold text-blue-900 tracking-tight drop-shadow-sm">
-          Babbage<span className="text-teal-600">Technologies</span>
-        </Link>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`relative text-lg font-medium transition-all duration-300 ease-in-out group
-                ${pathname === link.href
-                  ? "text-blue-800 font-semibold"
-                  : "text-gray-700 hover:text-blue-800"
-                }`}
-            >
-              {link.label}
-              {/* Underline effect */}
-              <span
-                className={`absolute bottom-0 left-0 w-full h-0.5 bg-teal-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out
-                  ${pathname === link.href ? "scale-x-100" : ""}`}
-              ></span>
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 lg:h-20">
+            {/* Logo */}
+            <Link href="/" className="flex-shrink-0 group">
+              <h1 className="text-2xl lg:text-3xl font-bold tracking-tight">
+                <span className="text-primary">Barbage</span>
+                <span className={`${isScrolled ? "text-accent" : "text-accent"} transition-colors`}>
+                  Technologies
+                </span>
+              </h1>
             </Link>
-          ))}
-          {/* Call to Action Button for Desktop */}
-          <Link href="/contact">
-            <Button
-              aria-label="Get a Quote"
-              className="ml-6 bg-teal-600 hover:bg-teal-700 text-white px-6 py-2.5 rounded-lg text-base font-semibold shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105"
-            >
-              Get a Quote
-            </Button>
-          </Link>
-        </nav>
 
-        {/* Mobile Menu Toggle */}
-        <div className="md:hidden flex items-center">
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="focus:outline-none p-2 rounded-md bg-blue-100/50 hover:bg-blue-200/70 transition-colors duration-200 shadow-sm border border-blue-200"
-            aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-          >
-            {isMenuOpen ? <X className="h-7 w-7 text-blue-800" /> : <Menu className="h-7 w-7 text-blue-800" />}
-          </button>
-        </div>
-      </div>
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center gap-1 lg:gap-2">
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`relative px-4 py-2 text-sm lg:text-base font-medium transition-all duration-200 rounded-button group ${
+                      isActive
+                        ? "text-primary"
+                        : "text-text-secondary hover:text-primary"
+                    }`}
+                  >
+                    {link.label}
+                    {isActive && (
+                      <motion.span
+                        layoutId="activeNav"
+                        className="absolute bottom-0 left-4 right-4 h-0.5 bg-accent rounded-full"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                    {!isActive && (
+                      <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-accent rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-200" />
+                    )}
+                  </Link>
+                );
+              })}
+            </nav>
 
-      {/* Custom Mobile Menu Overlay */}
-      {isMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-          className="md:hidden fixed inset-0 top-[68px] bg-blue-900/95 backdrop-blur-md z-40 flex flex-col items-center py-8 px-6 border-t border-blue-200 shadow-xl" // Changed background to dark blue for contrast
-        >
-          <nav className="flex flex-col space-y-6 text-center w-full">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setIsMenuOpen(false)} // Close menu on link click
-                className={`block text-xl font-medium py-3 rounded-lg transition-colors duration-200
-                  ${pathname === link.href
-                    ? "bg-teal-600 text-white font-semibold" // Active link on dark background
-                    : "text-blue-100 hover:bg-teal-600 hover:text-white" // Regular link on dark background
-                  }`}
-              >
-                {link.label}
+            {/* Desktop CTA */}
+            <div className="hidden md:block">
+              <Link href="/contact">
+                <Button className="bg-accent hover:bg-accent-hover text-white px-6 py-2.5 rounded-button font-semibold shadow-md hover:shadow-lg transition-all duration-300">
+                  Get a Quote
+                  <ChevronRight className="w-4 h-4 ml-1" />
+                </Button>
               </Link>
-            ))}
-          </nav>
-          {/* Mobile CTA button inside menu, full width */}
-          <div className="mt-8 w-full px-4">
-            <Link href="/contact">
-              <Button
-                aria-label="Get a Quote"
-                className="w-full bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg text-base font-semibold shadow-md transition-all duration-300 transform hover:scale-[1.02]"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Get a Quote
-              </Button>
-            </Link>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden p-2 rounded-button bg-surface border border-border shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
+              aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            >
+              {isMenuOpen ? (
+                <X className="h-5 w-5 text-text-primary" />
+              ) : (
+                <Menu className="h-5 w-5 text-text-primary" />
+              )}
+            </button>
           </div>
-        </motion.div>
-      )}
-    </motion.header>
+        </div>
+      </motion.header>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-40 bg-primary/95 backdrop-blur-md md:hidden"
+            style={{ top: "64px" }}
+          >
+            <motion.nav
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="flex flex-col h-full"
+            >
+              <div className="flex-1 overflow-y-auto py-8 px-6">
+                <div className="space-y-2">
+                  {navLinks.map((link, idx) => {
+                    const isActive = pathname === link.href;
+                    return (
+                      <motion.div
+                        key={link.href}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: idx * 0.05 }}
+                      >
+                        <Link
+                          href={link.href}
+                          className={`flex items-center justify-between py-3 px-4 rounded-button text-lg font-medium transition-all ${
+                            isActive
+                              ? "bg-accent text-white"
+                              : "text-white/80 hover:bg-white/10 hover:text-white"
+                          }`}
+                        >
+                          {link.label}
+                          {isActive && <ChevronRight className="w-4 h-4" />}
+                        </Link>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+
+                {/* Mobile CTA */}
+                <div className="mt-8 pt-6 border-t border-white/20">
+                  <Link href="/contact" className="block">
+                    <Button className="w-full bg-accent hover:bg-accent-hover text-white py-3 rounded-button font-semibold text-base">
+                      Get a Quote
+                      <ChevronRight className="w-4 h-4 ml-1" />
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </motion.nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

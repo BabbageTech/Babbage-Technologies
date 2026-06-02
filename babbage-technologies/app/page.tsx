@@ -1,76 +1,93 @@
 "use client";
 
 import { motion, Variants } from 'framer-motion';
-import { CheckCircle, Code, Lightbulb, TrendingUp, Users2 } from 'lucide-react'; // Import relevant icons
+import { 
+  ArrowRight, 
+  CheckCircle, 
+  Code, 
+  Star, 
+  TrendingUp, 
+  Users2,
+  Zap,
+  Shield,
+  Rocket,
+  LayoutDashboard
+} from 'lucide-react';
 import Link from 'next/link';
 
-import { Button } from "@/components/ui/button"; // Assuming Button component exists
+import { Button } from "@/components/ui/button";
 
-// Framer Motion Variants for staggered animations
-// Moved outside the component to prevent re-creation on every render, improving efficiency.
+// Animation variants
 const containerVariants: Variants = {
-  hidden: {},
+  hidden: { opacity: 0 },
   show: {
-    transition: {
-      staggerChildren: 0.15,
-    },
+    opacity: 1,
+    transition: { staggerChildren: 0.1 },
   },
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 30 },
   show: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.6,
-      type: "spring",
-      stiffness: 100,
-      damping: 12,
-    },
+    transition: { duration: 0.5, ease: "easeOut" },
   },
 };
 
-// Data definitions moved outside the component to prevent re-creation on every render,
-// which is a good optimization for performance.
+const fadeInUpVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6 },
+  },
+};
+
+// Services data
 const servicesOverview = [
   {
     title: "Custom Software Development",
-    desc: "Tailored applications for web, mobile, and desktop to fit your unique business needs.",
+    desc: "Tailored ERP, HMS, and scalable solutions to drive business growth from ideation to deployment.",
     icon: Code,
+    color: "primary",
   },
   {
     title: "Cloud Solutions & DevOps",
     desc: "Scalable cloud infrastructure, seamless deployments, and robust operational support.",
-    icon: Lightbulb,
+    icon: Rocket,
+    color: "secondary",
   },
   {
     title: "UI/UX Design & Consulting",
     desc: "Crafting intuitive and engaging user experiences that drive adoption and satisfaction.",
-    icon: Users2,
+    icon: LayoutDashboard,
+    color: "accent",
   },
   {
     title: "Data Analytics & AI",
     desc: "Transforming raw data into actionable insights and intelligent automation.",
     icon: TrendingUp,
+    color: "primary",
   },
 ];
 
+// Features data
 const features = [
   {
     title: "Client-Centric Approach",
     desc: "Your vision is our blueprint. We align our expertise with your business goals for optimal outcomes.",
-    icon: CheckCircle,
+    icon: Users2,
   },
   {
     title: "Agile & Transparent Processes",
     desc: "Iterative development with continuous feedback ensures flexibility and clarity at every stage.",
-    icon: CheckCircle,
+    icon: Zap,
   },
   {
     title: "Experienced Team",
     desc: "Leverage the expertise of our seasoned developers, designers, and project managers.",
-    icon: CheckCircle,
+    icon: Shield,
   },
   {
     title: "Scalable & Secure Solutions",
@@ -79,178 +96,304 @@ const features = [
   },
 ];
 
+// Stats data
+const stats = [
+  { value: "50+", label: "Projects Delivered" },
+  { value: "98%", label: "Client Satisfaction" },
+  { value: "40%", label: "Avg. Efficiency Gain" },
+  { value: "24/7", label: "Support Available" },
+];
+
+// Testimonials data
 const testimonials = [
   {
-    quote: "“Babbage Technologies transformed our operations with their innovative software. Truly exceptional service!”",
+    quote: "Barbage Technologies transformed our operations with their innovative software. Truly exceptional service!",
     author: "Jane Doe",
     role: "CEO, InnovateCorp",
+    rating: 5,
   },
   {
-    quote: "“Their cloud expertise is unparalleled. Our infrastructure is more robust and efficient than ever before.”",
+    quote: "Their cloud expertise is unparalleled. Our infrastructure is more robust and efficient than ever before.",
     author: "John Smith",
     role: "CTO, CloudPro Solutions",
+    rating: 5,
+  },
+  {
+    quote: "The team at Barbage delivered beyond our expectations. Professional, timely, and technically excellent.",
+    author: "Sarah Johnson",
+    role: "Product Director, TechFlow",
+    rating: 5,
   },
 ];
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50">
+    <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-grow">
-        {/* Hero Section */}
-        <section className="relative h-screen flex items-center justify-center text-center bg-gradient-to-br from-blue-900 to-indigo-950 text-white overflow-hidden">
-          {/* Background elements */}
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-teal-500 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
-            <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
-            <div className="absolute top-1/2 left-1/2 w-56 h-56 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
+        {/* ========== HERO SECTION ========== */}
+        <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-primary via-primary-hover to-primary">
+          {/* Animated background elements */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-pulse" />
+            <div className="absolute bottom-1/3 right-1/4 w-128 h-128 bg-accent/10 rounded-full blur-3xl animate-pulse delay-1000" />
+            <div className="absolute inset-0 opacity-5">
+              <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+            </div>
           </div>
 
-          <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
-              className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight drop-shadow-lg"
-            >
-              Innovate. Build. <span className="text-teal-400">Transform.</span>
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, type: "spring", stiffness: 100, delay: 0.2 }}
-              className="text-xl md:text-2xl text-blue-200 mb-10 max-w-2xl mx-auto leading-relaxed"
-            >
-              Your trusted partner for cutting-edge software development, cloud solutions, and digital transformation.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, type: "spring", stiffness: 100, delay: 0.4 }}
-              className="flex flex-col sm:flex-row justify-center gap-4"
-            >
-              <Link href="/contact">
-                <Button
-                  aria-label="Start a Project"
-                  className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 rounded-lg font-semibold shadow-[0_0_15px_rgba(13,148,136,0.6)] transition-all duration-300 transform hover:scale-105 text-lg"
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Left Column - Content */}
+              <div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6"
                 >
-                  Start a Project
-                </Button>
-              </Link>
-              <Link href="/services">
-                <Button
-                  aria-label="Explore Services"
-                  className="bg-blue-700 hover:bg-blue-800 text-white px-8 py-3 rounded-lg font-semibold shadow-[0_0_10px_rgba(29,78,216,0.5)] transition-all duration-300 transform hover:scale-105 text-lg"
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
+                  </span>
+                  <span className="text-sm text-white/90 font-medium">Enterprise Software Partners</span>
+                </motion.div>
+
+                <motion.h1
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-tight"
                 >
-                  Explore Services
-                </Button>
-              </Link>
-            </motion.div>
+                  Innovate. Build.
+                  <span className="block text-accent">Transform.</span>
+                </motion.h1>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="text-lg md:text-xl text-white/80 max-w-lg mt-6 leading-relaxed"
+                >
+                  Your trusted partner for cutting-edge software development, cloud solutions, 
+                  and digital transformation. Empowering businesses since 2020.
+                </motion.p>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  className="flex flex-wrap gap-4 mt-8"
+                >
+                  <Link href="/contact">
+                    <Button className="bg-accent hover:bg-accent-hover text-white px-8 py-3 rounded-button text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group">
+                      Start a Project
+                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
+                  <Link href="/services">
+                    <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 px-8 py-3 rounded-button text-base font-semibold">
+                      Explore Services
+                    </Button>
+                  </Link>
+                </motion.div>
+
+                {/* Stats Row */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                  className="flex flex-wrap gap-6 md:gap-8 mt-10 pt-6 border-t border-white/20"
+                >
+                  {stats.map((stat, idx) => (
+                    <div key={idx} className="text-center md:text-left">
+                      <div className="text-2xl md:text-3xl font-bold text-accent">{stat.value}</div>
+                      <div className="text-sm text-white/70">{stat.label}</div>
+                    </div>
+                  ))}
+                </motion.div>
+              </div>
+
+              {/* Right Column - Dashboard Preview */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="relative hidden lg:block"
+              >
+                <div className="relative">
+                  <div className="absolute -inset-4 bg-gradient-to-r from-accent/20 to-secondary/20 rounded-2xl blur-2xl" />
+                  <div className="relative bg-surface rounded-2xl shadow-2xl overflow-hidden border border-white/20">
+                    <div className="bg-surface-alt px-6 py-4 border-b border-border">
+                      <div className="flex items-center gap-2">
+                        <div className="w-3 h-3 rounded-full bg-error" />
+                        <div className="w-3 h-3 rounded-full bg-accent" />
+                        <div className="w-3 h-3 rounded-full bg-success" />
+                        <div className="ml-3 text-sm text-text-secondary">dashboard.barbage.tech</div>
+                      </div>
+                    </div>
+                    <div className="p-6">
+                      <div className="grid grid-cols-3 gap-4 mb-6">
+                        <div className="bg-surface-alt rounded-lg p-4 border border-border">
+                          <div className="text-sm text-text-secondary">Revenue</div>
+                          <div className="text-2xl font-bold text-text-primary">$124,500</div>
+                          <div className="text-xs text-success">↑ 12%</div>
+                        </div>
+                        <div className="bg-surface-alt rounded-lg p-4 border border-border">
+                          <div className="text-sm text-text-secondary">Users</div>
+                          <div className="text-2xl font-bold text-text-primary">8,249</div>
+                          <div className="text-xs text-success">↑ 8%</div>
+                        </div>
+                        <div className="bg-surface-alt rounded-lg p-4 border border-border">
+                          <div className="text-sm text-text-secondary">Projects</div>
+                          <div className="text-2xl font-bold text-text-primary">142</div>
+                          <div className="text-xs text-text-secondary">Active: 12</div>
+                        </div>
+                      </div>
+                      <div className="bg-surface-alt rounded-lg p-4 border border-border">
+                        <div className="text-sm text-text-secondary mb-4">Monthly Activity</div>
+                        <div className="flex items-end gap-2 h-32">
+                          <div className="flex-1 bg-primary/30 rounded-t h-16" />
+                          <div className="flex-1 bg-primary/50 rounded-t h-24" />
+                          <div className="flex-1 bg-primary rounded-t h-32" />
+                          <div className="flex-1 bg-primary/50 rounded-t h-20" />
+                          <div className="flex-1 bg-primary/30 rounded-t h-12" />
+                          <div className="flex-1 bg-primary/20 rounded-t h-8" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="absolute -bottom-3 -right-3 bg-accent text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg">
+                    Trusted Worldwide
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Bottom wave */}
+          <div className="absolute bottom-0 left-0 right-0">
+            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 120L60 110C120 100 240 80 360 75C480 70 600 80 720 85C840 90 960 90 1080 85C1200 80 1320 70 1380 65L1440 60V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#F1FAEE"/>
+            </svg>
           </div>
         </section>
 
-        {/* Services Overview Section */}
-        <section className="py-20 md:py-28 bg-gray-100 text-gray-800">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true, amount: 0.3 }}
-              className="text-4xl md:text-5xl font-extrabold text-blue-900 mb-4 drop-shadow-sm"
+        {/* ========== SERVICES OVERVIEW SECTION ========== */}
+        <section className="py-24 md:py-32 bg-background">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              variants={fadeInUpVariants}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="text-center max-w-3xl mx-auto mb-16"
             >
-              Our Core Expertise
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, type: "spring", stiffness: 100, delay: 0.1 }}
-              viewport={{ once: true, amount: 0.3 }}
-              className="text-lg text-gray-600 max-w-3xl mx-auto mb-12"
-            >
-              We offer a comprehensive suite of services designed to accelerate your digital journey and deliver tangible business value.
-            </motion.p>
+              <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-4">
+                <span className="text-sm font-semibold text-primary">Our Expertise</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-4">
+                Core Services
+              </h2>
+              <p className="text-lg text-text-secondary">
+                We offer a comprehensive suite of services designed to accelerate your digital journey 
+                and deliver tangible business value.
+              </p>
+            </motion.div>
+
             <motion.div
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+              viewport={{ once: true }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
             >
-              {servicesOverview.map((service, i) => {
+              {servicesOverview.map((service, idx) => {
                 const Icon = service.icon;
+                const colorClasses = {
+                  primary: "bg-primary/10 text-primary",
+                  secondary: "bg-secondary/10 text-secondary",
+                  accent: "bg-accent/10 text-accent",
+                };
                 return (
                   <motion.div
-                    key={i}
+                    key={idx}
                     variants={itemVariants}
-                    whileHover={{ scale: 1.03 }}
-                    className="bg-white p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center"
+                    whileHover={{ y: -5 }}
+                    className="bg-surface rounded-card p-6 border border-border hover:shadow-card-hover transition-all duration-300 group"
                   >
-                    <div className="p-4 bg-blue-100 rounded-full mb-4 shadow-inner">
-                      <Icon className="w-8 h-8 text-blue-700" />
+                    <div className={`w-12 h-12 ${colorClasses[service.color as keyof typeof colorClasses]} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                      <Icon className="w-6 h-6" />
                     </div>
-                    <h3 className="text-xl font-bold text-blue-800 mb-2">{service.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{service.desc}</p>
+                    <h3 className="text-xl font-bold text-text-primary mb-2">{service.title}</h3>
+                    <p className="text-text-secondary text-sm leading-relaxed">{service.desc}</p>
                   </motion.div>
                 );
               })}
             </motion.div>
+
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, type: "spring", stiffness: 100, delay: 0.5 }}
-              viewport={{ once: true, amount: 0.3 }}
-              className="mt-12"
+              variants={fadeInUpVariants}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="text-center mt-12"
             >
               <Link href="/services">
-                <Button
-                  aria-label="View All Services"
-                  className="bg-blue-700 hover:bg-blue-800 text-white px-8 py-3 rounded-lg font-semibold shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-lg"
-                >
+                <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
                   View All Services
+                  <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </Link>
             </motion.div>
           </div>
         </section>
 
-        {/* Why Choose Us / Features Section */}
-        <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-white relative overflow-hidden">
-          {/* Background elements */}
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-teal-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-1000"></div>
-            <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-3000"></div>
+        {/* ========== WHY CHOOSE US SECTION ========== */}
+        <section className="py-24 md:py-32 bg-primary relative overflow-hidden">
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
           </div>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true, amount: 0.3 }}
-              className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 drop-shadow-lg"
+
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              variants={fadeInUpVariants}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="text-center max-w-3xl mx-auto mb-16"
             >
-              Why Partner with BabbageTechnologies?
-            </motion.h2>
+              <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-2 mb-4">
+                <span className="text-sm font-semibold text-accent">Why Choose Us</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                Partner with Barbage Technologies
+              </h2>
+              <p className="text-lg text-white/80">
+                We combine technical excellence with business acumen to deliver software that drives real outcomes.
+              </p>
+            </motion.div>
+
             <motion.div
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+              viewport={{ once: true }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
             >
-              {features.map((feature, i) => {
+              {features.map((feature, idx) => {
                 const Icon = feature.icon;
                 return (
                   <motion.div
-                    key={i}
+                    key={idx}
                     variants={itemVariants}
-                    whileHover={{ scale: 1.03 }}
-                    className="bg-white/10 backdrop-blur-sm border border-blue-700/30 rounded-xl shadow-2xl hover:shadow-teal-500/50 transition-all duration-500 p-6 flex flex-col items-center text-center"
+                    whileHover={{ y: -5 }}
+                    className="bg-white/10 backdrop-blur-sm rounded-card p-6 border border-white/20 hover:border-accent/50 transition-all duration-300 text-center"
                   >
-                    <div className="p-4 bg-blue-700/20 rounded-full shadow-inner border border-blue-400/50 mb-4">
-                      <Icon className="w-8 h-8 text-teal-400" />
+                    <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Icon className="w-6 h-6 text-accent" />
                     </div>
-                    <h3 className="text-xl md:text-2xl font-extrabold text-white mb-2">{feature.title}</h3>
-                    <p className="text-base text-blue-200 leading-relaxed">{feature.desc}</p>
+                    <h3 className="text-lg font-bold text-white mb-2">{feature.title}</h3>
+                    <p className="text-white/70 text-sm leading-relaxed">{feature.desc}</p>
                   </motion.div>
                 );
               })}
@@ -258,47 +401,52 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Client Testimonials Section */}
-        <section className="py-20 md:py-28 bg-gray-100 text-gray-800">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true, amount: 0.3 }}
-              className="text-4xl md:text-5xl font-extrabold text-blue-900 mb-4 drop-shadow-sm"
+        {/* ========== TESTIMONIALS SECTION ========== */}
+        <section className="py-24 md:py-32 bg-background">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              variants={fadeInUpVariants}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="text-center max-w-3xl mx-auto mb-16"
             >
-              What Our Clients Say
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, type: "spring", stiffness: 100, delay: 0.1 }}
-              viewport={{ once: true, amount: 0.3 }}
-              className="text-lg text-gray-600 max-w-3xl mx-auto mb-12"
-            >
-              Hear directly from businesses that have achieved success with our partnership.
-            </motion.p>
+              <div className="inline-flex items-center gap-2 bg-accent/10 rounded-full px-4 py-2 mb-4">
+                <span className="text-sm font-semibold text-accent">Testimonials</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-4">
+                What Our Clients Say
+              </h2>
+              <p className="text-lg text-text-secondary">
+                Hear directly from businesses that have achieved success with our partnership.
+              </p>
+            </motion.div>
+
             <motion.div
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
-              className="grid md:grid-cols-2 gap-8"
+              viewport={{ once: true }}
+              className="grid md:grid-cols-3 gap-8"
             >
-              {testimonials.map((testimonial, i) => (
+              {testimonials.map((testimonial, idx) => (
                 <motion.div
-                  key={i}
+                  key={idx}
                   variants={itemVariants}
-                  whileHover={{ scale: 1.03 }}
-                  className="bg-white p-8 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center"
+                  whileHover={{ y: -5 }}
+                  className="bg-surface rounded-card p-8 border border-border hover:shadow-card-hover transition-all duration-300"
                 >
-                  <p className="text-gray-700 italic mb-4 flex-1 text-base leading-relaxed">
-                    {testimonial.quote}
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-accent text-accent" />
+                    ))}
+                  </div>
+                  <p className="text-text-secondary leading-relaxed mb-6 italic">
+                    &ldquo;{testimonial.quote}&rdquo;
                   </p>
-                  <div className="mt-auto">
-                    <p className="text-blue-800 font-semibold">{testimonial.author}</p>
-                    <p className="text-teal-600 text-sm">{testimonial.role}</p>
+                  <div className="border-t border-border pt-4">
+                    <p className="font-bold text-text-primary">{testimonial.author}</p>
+                    <p className="text-sm text-text-tertiary">{testimonial.role}</p>
                   </div>
                 </motion.div>
               ))}
@@ -306,44 +454,29 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Call to Action Section */}
-        <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 to-indigo-950 text-white relative overflow-hidden">
-          {/* Background elements */}
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-teal-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-1000"></div>
-            <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-3000"></div>
+        {/* ========== CTA SECTION ========== */}
+        <section className="py-24 md:py-32 bg-gradient-to-br from-primary to-primary-hover relative overflow-hidden">
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent rounded-full blur-3xl" />
           </div>
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
-              viewport={{ once: true, amount: 0.3 }}
-              className="text-4xl md:text-5xl font-extrabold text-white mb-6 drop-shadow-lg"
-            >
-              Ready to Transform Your Business?
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, type: "spring", stiffness: 100, delay: 0.1 }}
-              viewport={{ once: true, amount: 0.3 }}
-              className="text-xl text-blue-200 mb-10 leading-relaxed"
-            >
-              Lets discuss your project and discover how BabbageTechnologies can help you achieve your goals.
-            </motion.p>
+
+          <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, type: "spring", stiffness: 100, delay: 0.2 }}
-              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeInUpVariants}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
             >
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                Ready to Transform Your Business?
+              </h2>
+              <p className="text-xl text-white/80 mb-10 leading-relaxed">
+                Let&apos;s discuss your project and discover how Barbage Technologies can help you achieve your goals.
+              </p>
               <Link href="/contact">
-                <Button
-                  aria-label="Contact Us Today"
-                  className="bg-teal-600 hover:bg-teal-700 text-white px-10 py-4 rounded-lg font-semibold shadow-[0_0_20px_rgba(13,148,136,0.7)] transition-all duration-300 transform hover:scale-105 text-xl"
-                >
+                <Button className="bg-accent hover:bg-accent-hover text-white px-10 py-4 rounded-button text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                   Contact Us Today
+                  <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
               </Link>
             </motion.div>
