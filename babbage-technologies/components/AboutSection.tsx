@@ -457,7 +457,7 @@ export default function AboutPage() {
                 <div className="absolute -inset-4 bg-gradient-to-r from-secondary/20 to-primary/20 rounded-2xl blur-2xl" />
                 <div className="relative bg-surface rounded-2xl overflow-hidden shadow-card border border-border">
                   <Image
-                    src="/commitment.jpg"
+                    src="/Commitment.jpg"
                     alt="Our Commitment"
                     width={600}
                     height={500}
