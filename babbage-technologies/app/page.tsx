@@ -11,7 +11,8 @@ import {
   Zap,
   Shield,
   Rocket,
-  LayoutDashboard
+  LayoutDashboard,
+  ChevronRight
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -131,8 +132,7 @@ export default function HomePage() {
     <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-grow">
         {/* ========== HERO SECTION ========== */}
-        {/* Added pt-16 lg:pt-20 to account for fixed header height */}
-        <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-primary via-primary-hover to-primary pt-16 lg:pt-20">
+        <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary-hover to-primary">
           {/* Animated background elements */}
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-pulse" />
@@ -142,7 +142,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 lg:pt-40 pb-16 lg:pb-20">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Left Column - Content */}
               <div>
@@ -196,21 +196,6 @@ export default function HomePage() {
                       Explore Services
                     </Button>
                   </Link>
-                </motion.div>
-
-                {/* Stats Row */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.4 }}
-                  className="flex flex-wrap gap-6 md:gap-8 mt-10 pt-6 border-t border-white/20"
-                >
-                  {stats.map((stat, idx) => (
-                    <div key={idx} className="text-center md:text-left">
-                      <div className="text-2xl md:text-3xl font-bold text-accent">{stat.value}</div>
-                      <div className="text-sm text-white/70">{stat.label}</div>
-                    </div>
-                  ))}
                 </motion.div>
               </div>
 
@@ -271,9 +256,28 @@ export default function HomePage() {
             </div>
           </div>
 
+          {/* Stats Section - Inside Hero, Above Wave */}
+          <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="bg-surface/10 backdrop-blur-md rounded-2xl border border-white/20 p-6 md:p-8"
+            >
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+                {stats.map((stat, idx) => (
+                  <div key={idx} className="text-center">
+                    <div className="text-2xl md:text-3xl font-bold text-accent">{stat.value}</div>
+                    <div className="text-sm text-white/70 mt-1">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+
           {/* Bottom wave */}
           <div className="absolute bottom-0 left-0 right-0">
-            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
               <path d="M0 120L60 110C120 100 240 80 360 75C480 70 600 80 720 85C840 90 960 90 1080 85C1200 80 1320 70 1380 65L1440 60V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#F1FAEE"/>
             </svg>
           </div>
@@ -311,22 +315,29 @@ export default function HomePage() {
               {servicesOverview.map((service, idx) => {
                 const Icon = service.icon;
                 const colorClasses = {
-                  primary: "bg-primary/10 text-primary",
-                  secondary: "bg-secondary/10 text-secondary",
-                  accent: "bg-accent/10 text-accent",
+                  primary: "bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white",
+                  secondary: "bg-secondary/10 text-secondary group-hover:bg-secondary group-hover:text-white",
+                  accent: "bg-accent/10 text-accent group-hover:bg-accent group-hover:text-white",
                 };
                 return (
                   <motion.div
                     key={idx}
                     variants={itemVariants}
-                    whileHover={{ y: -5 }}
-                    className="bg-surface rounded-card p-6 border border-border hover:shadow-card-hover transition-all duration-300 group"
+                    whileHover={{ y: -8 }}
+                    className="group bg-surface rounded-card p-6 border border-border hover:shadow-card-hover transition-all duration-300"
                   >
-                    <div className={`w-12 h-12 ${colorClasses[service.color as keyof typeof colorClasses]} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                    <div className={`w-12 h-12 ${colorClasses[service.color as keyof typeof colorClasses]} rounded-xl flex items-center justify-center mb-4 transition-all duration-300`}>
                       <Icon className="w-6 h-6" />
                     </div>
-                    <h3 className="text-xl font-bold text-text-primary mb-2">{service.title}</h3>
+                    <h3 className="text-xl font-bold text-text-primary mb-2 group-hover:text-primary transition-colors">
+                      {service.title}
+                    </h3>
                     <p className="text-text-secondary text-sm leading-relaxed">{service.desc}</p>
+                    <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <Link href="/services" className="text-accent text-sm font-medium inline-flex items-center gap-1">
+                        Learn more <ChevronRight className="w-3 h-3" />
+                      </Link>
+                    </div>
                   </motion.div>
                 );
               })}
@@ -350,9 +361,9 @@ export default function HomePage() {
         </section>
 
         {/* ========== WHY CHOOSE US SECTION ========== */}
-        <section className="py-24 md:py-32 bg-primary relative overflow-hidden">
-          <div className="absolute inset-0 opacity-5">
-            <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+        <section className="py-24 md:py-32 bg-surface-alt relative overflow-hidden">
+          <div className="absolute inset-0 opacity-30">
+            <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -363,13 +374,13 @@ export default function HomePage() {
               viewport={{ once: true }}
               className="text-center max-w-3xl mx-auto mb-16"
             >
-              <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-2 mb-4">
-                <span className="text-sm font-semibold text-accent">Why Choose Us</span>
+              <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-4">
+                <span className="text-sm font-semibold text-primary">Why Choose Us</span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-4">
                 Partner with Barbage Technologies
               </h2>
-              <p className="text-lg text-white/80">
+              <p className="text-lg text-text-secondary">
                 We combine technical excellence with business acumen to deliver software that drives real outcomes.
               </p>
             </motion.div>
@@ -388,13 +399,13 @@ export default function HomePage() {
                     key={idx}
                     variants={itemVariants}
                     whileHover={{ y: -5 }}
-                    className="bg-white/10 backdrop-blur-sm rounded-card p-6 border border-white/20 hover:border-accent/50 transition-all duration-300 text-center"
+                    className="bg-surface rounded-card p-6 border border-border hover:shadow-card-hover transition-all duration-300 text-center group"
                   >
-                    <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Icon className="w-6 h-6 text-accent" />
+                    <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary transition-colors duration-300">
+                      <Icon className="w-7 h-7 text-primary group-hover:text-white transition-colors duration-300" />
                     </div>
-                    <h3 className="text-lg font-bold text-white mb-2">{feature.title}</h3>
-                    <p className="text-white/70 text-sm leading-relaxed">{feature.desc}</p>
+                    <h3 className="text-lg font-bold text-text-primary mb-2">{feature.title}</h3>
+                    <p className="text-text-secondary text-sm leading-relaxed">{feature.desc}</p>
                   </motion.div>
                 );
               })}
@@ -403,8 +414,12 @@ export default function HomePage() {
         </section>
 
         {/* ========== TESTIMONIALS SECTION ========== */}
-        <section className="py-24 md:py-32 bg-background">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-24 md:py-32 bg-primary relative overflow-hidden">
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+          </div>
+
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               variants={fadeInUpVariants}
               initial="hidden"
@@ -412,13 +427,13 @@ export default function HomePage() {
               viewport={{ once: true }}
               className="text-center max-w-3xl mx-auto mb-16"
             >
-              <div className="inline-flex items-center gap-2 bg-accent/10 rounded-full px-4 py-2 mb-4">
+              <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-2 mb-4">
                 <span className="text-sm font-semibold text-accent">Testimonials</span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-4">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
                 What Our Clients Say
               </h2>
-              <p className="text-lg text-text-secondary">
+              <p className="text-lg text-white/80">
                 Hear directly from businesses that have achieved success with our partnership.
               </p>
             </motion.div>
@@ -435,19 +450,19 @@ export default function HomePage() {
                   key={idx}
                   variants={itemVariants}
                   whileHover={{ y: -5 }}
-                  className="bg-surface rounded-card p-8 border border-border hover:shadow-card-hover transition-all duration-300"
+                  className="bg-white/10 backdrop-blur-sm rounded-card p-8 border border-white/20 hover:border-accent/50 transition-all duration-300"
                 >
                   <div className="flex gap-1 mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <Star key={i} className="w-4 h-4 fill-accent text-accent" />
                     ))}
                   </div>
-                  <p className="text-text-secondary leading-relaxed mb-6 italic">
+                  <p className="text-white/80 leading-relaxed mb-6 italic">
                     &ldquo;{testimonial.quote}&rdquo;
                   </p>
-                  <div className="border-t border-border pt-4">
-                    <p className="font-bold text-text-primary">{testimonial.author}</p>
-                    <p className="text-sm text-text-tertiary">{testimonial.role}</p>
+                  <div className="border-t border-white/20 pt-4">
+                    <p className="font-bold text-white">{testimonial.author}</p>
+                    <p className="text-sm text-accent">{testimonial.role}</p>
                   </div>
                 </motion.div>
               ))}
@@ -456,30 +471,33 @@ export default function HomePage() {
         </section>
 
         {/* ========== CTA SECTION ========== */}
-        <section className="py-24 md:py-32 bg-gradient-to-br from-primary to-primary-hover relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent rounded-full blur-3xl" />
-          </div>
-
-          <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <section className="py-24 md:py-32 bg-background">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <motion.div
               variants={fadeInUpVariants}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
+              className="bg-gradient-to-br from-primary to-primary-hover rounded-2xl p-12 md:p-16 relative overflow-hidden shadow-2xl"
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                Ready to Transform Your Business?
-              </h2>
-              <p className="text-xl text-white/80 mb-10 leading-relaxed">
-                Let&apos;s discuss your project and discover how Barbage Technologies can help you achieve your goals.
-              </p>
-              <Link href="/contact">
-                <Button className="bg-accent hover:bg-accent-hover text-white px-10 py-4 rounded-button text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                  Contact Us Today
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
-              </Link>
+              <div className="absolute inset-0 opacity-10">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent rounded-full blur-3xl" />
+              </div>
+              
+              <div className="relative z-10">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+                  Ready to Transform Your Business?
+                </h2>
+                <p className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed max-w-2xl mx-auto">
+                  Let&apos;s discuss your project and discover how Barbage Technologies can help you achieve your goals.
+                </p>
+                <Link href="/contact">
+                  <Button className="bg-accent hover:bg-accent-hover text-white px-10 py-4 rounded-button text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    Contact Us Today
+                    <ArrowRight className="w-5 h-5 ml-2" />
+                  </Button>
+                </Link>
+              </div>
             </motion.div>
           </div>
         </section>
