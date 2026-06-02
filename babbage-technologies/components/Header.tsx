@@ -11,25 +11,13 @@ const navLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
-  { label: "Projects", href: "/projects" },
+  { label: "Pricing", href: "/pricing" },
   { label: "Contact", href: "/contact" },
 ];
 
 const Header: React.FC = () => {
   const pathname = usePathname();
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -53,11 +41,7 @@ const Header: React.FC = () => {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.2 }}
-        className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? "bg-white/95 backdrop-blur-md shadow-card border-b border-border"
-            : "bg-transparent"
-        }`}
+        className="fixed w-full top-0 z-50 bg-surface shadow-card border-b border-border transition-all duration-300"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
@@ -65,7 +49,7 @@ const Header: React.FC = () => {
             <Link href="/" className="flex-shrink-0 group">
               <h1 className="text-2xl lg:text-3xl font-bold tracking-tight">
                 <span className="text-primary">Barbage</span>
-                <span className={`${isScrolled ? "text-accent" : "text-accent"} transition-colors`}>
+                <span className="text-accent transition-colors">
                   Technologies
                 </span>
               </h1>
@@ -135,7 +119,7 @@ const Header: React.FC = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-primary/95 backdrop-blur-md md:hidden"
+            className="fixed inset-0 z-40 bg-primary md:hidden"
             style={{ top: "64px" }}
           >
             <motion.nav
