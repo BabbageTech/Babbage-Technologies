@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Babbage Technologies — Website
 
-## Getting Started
+A Next.js 15 / React 19 / Tailwind v4 marketing site for Babbage Technologies,
+a software development company.
 
-First, run the development server:
+## Design direction
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+The identity is built around the company's namesake, Charles Babbage, designer
+of the Analytical Engine — the first general-purpose mechanical computer.
+Instead of a generic navy-and-amber SaaS template, the site uses:
+
+- **Palette** — ink (near-black graphite), warm paper, brass and verdigris
+  (oxidised copper), the metals of Victorian precision instruments.
+- **Type** — Fraunces (display serif) for headings, IBM Plex Mono for labels,
+  plate numbers and specs, Inter for body copy.
+- **Signature devices** — a "sprocket rule" (a row of perforations, echoing
+  punch-card stock) used as a section divider, and numbered "plate" labels
+  (`PLATE 01 — SERVICES`) styled after engineering drawings, since Babbage's
+  own Engine drawings were literally numbered plates.
+- **Hero graphic** — a hand-built, animated SVG gear-train diagram in place of
+  the generic "dashboard mockup" pattern.
+
+## Structure
+
+```
+app/
+  page.tsx                 Home
+  work/page.tsx             Work — project index
+  work/[slug]/page.tsx       Work — case study detail
+  services/page.tsx         Services
+  about/page.tsx             About
+  pricing/page.tsx           Pricing
+  contact/page.tsx           Contact
+components/
+  Header.tsx, Footer.tsx     Site chrome
+  EngineDiagram.tsx          Signature hero SVG
+  SprocketRule.tsx           Section-divider component
+  PlateLabel.tsx             Mono "eyebrow" label component
+  *Section.tsx / Contact.tsx Page bodies
+  ui/                        button primitive (shadcn-style)
+lib/
+  site-data.ts                Central content: services, projects, pricing,
+                               team, testimonials, nav links, company info
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Work / Projects page
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Added per the redesign brief: `/work` lists case studies, each with its own
+`/work/[slug]` detail page (problem / approach / result, stack, client).
+Six entries are seeded in `lib/site-data.ts` — three based on the real client
+testimonials already in the codebase (Tartle, Widgety, Umergence), three
+representative placeholders covering logistics, healthcare and retail.
+**Replace the placeholder entries with real case studies and imagery** before
+launch, and double-check the Tartle/Widgety/Umergence summaries with those
+clients if you don't already have sign-off to describe the engagements.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Content notes
 
-## Learn More
+- Fixed a naming inconsistency: the site previously read "Barbage" in the
+  header, footer and contact copy; the project itself (package name, folder,
+  metadata) was always "Babbage". Copy now reads "Babbage Technologies"
+  throughout. **Double-check `hello@babbagetechnologies.com` against your
+  actual domain** — the original code used `barbagetech.com`, which may be
+  your real registered domain rather than a typo.
+- Team names, pricing tiers (Ksh) and the contact phone/email were carried
+  over from the original codebase as real business content.
+- `ContactForm.tsx` keeps the original EmailJS integration (service/template
+  IDs) so form submissions keep working.
 
-To learn more about Next.js, take a look at the following resources:
+## Getting started
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm install
+npm run dev     # http://localhost:3000
+npm run build   # production build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Housekeeping already done
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Removed a duplicate `next.config.js` that conflicted with `next.config.ts`.
+- Removed unused shadcn primitives (`card`, `tabs`, `dropdown-menu`, `input`,
+  `textarea`) and their now-unnecessary dependencies, since none were in use.
+- Consolidated the toast notifier to a single instance in the root layout
+  (it was previously mounted twice, in the footer and the contact form).

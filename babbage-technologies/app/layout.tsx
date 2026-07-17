@@ -1,13 +1,42 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import { Inter } from "next/font/google";
+import { Fraunces, IBM_Plex_Mono, Inter } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+  display: "swap",
+  axes: ["opsz", "SOFT", "WONK"],
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-plex-mono",
+  display: "swap",
+});
 
 export const metadata = {
-  title: "Babbage Technologies Portfolio",
-  description: "Professional portfolio for a tech startup specializing in software and cloud solutions",
+  title: "Babbage Technologies — Software, engineered like an instrument",
+  description:
+    "Babbage Technologies designs and builds custom software, cloud infrastructure and digital products for growing businesses in Nairobi and beyond.",
+  manifest: "/site.webmanifest",
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({
@@ -16,8 +45,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className={`${inter.variable} ${fraunces.variable} ${plexMono.variable}`}>
+      <body className="font-body bg-background text-foreground">
+        <Toaster />
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />

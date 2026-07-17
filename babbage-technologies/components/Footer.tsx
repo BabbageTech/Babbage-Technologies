@@ -1,10 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { company, navLinks } from "@/lib/site-data";
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Send, Twitter } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
+import SprocketRule from "./SprocketRule";
 
 export default function Footer() {
   const [newsletterEmail, setNewsletterEmail] = useState("");
@@ -19,35 +20,22 @@ export default function Footer() {
       });
       return;
     }
-    
+
     setIsSubscribing(true);
-    // Simulate API call
     setTimeout(() => {
-      toast.success("Subscribed successfully! 🎉", {
+      toast.success("Subscribed. Welcome aboard.", {
         duration: 3000,
         position: "bottom-center",
-        style: {
-          background: "#10B981",
-          color: "#fff",
-        },
+        style: { background: "#3E6259", color: "#EFECE3" },
       });
       setNewsletterEmail("");
       setIsSubscribing(false);
-    }, 1000);
+    }, 900);
   };
-
-  const quickLinks = [
-    { label: "About Us", href: "/about" },
-    { label: "Services", href: "/services" },
-    { label: "Projects", href: "/projects" },
-    { label: "Contact", href: "/contact" },
-    { label: "Blog", href: "/blog" },
-  ];
 
   const legalLinks = [
     { label: "Privacy Policy", href: "/privacy-policy" },
     { label: "Terms of Service", href: "/terms-of-service" },
-    { label: "Sitemap", href: "/sitemap" },
   ];
 
   const socialLinks = [
@@ -59,36 +47,22 @@ export default function Footer() {
 
   return (
     <>
-      <Toaster />
-      <motion.footer
-        initial={{ y: 50, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.2 }}
-        viewport={{ once: true }}
-        className="relative overflow-hidden bg-primary"
-      >
-        {/* Animated background elements */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-secondary rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-accent rounded-full blur-3xl animate-pulse delay-1000" />
-          <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+      <footer className="bg-ink text-text-paper">
+        <SprocketRule tone="ink" className="pt-8" />
+        <div className="section-container py-16 lg:py-20">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
             {/* Company Info */}
-            <div className="space-y-4">
-              <Link href="/" className="inline-block">
-                <h3 className="text-2xl font-bold text-white">
-                  Barbage<span className="text-accent">Technologies</span>
-                </h3>
+            <div className="space-y-4 lg:col-span-1">
+              <Link href="/" className="inline-flex items-center gap-2.5">
+                <span className="w-8 h-8 rounded-full border border-brass/60 flex items-center justify-center text-brass-bright font-mono text-[13px]">
+                  B
+                </span>
+                <span className="font-display text-lg font-semibold text-text-paper">Babbage</span>
               </Link>
-              <p className="text-white/70 text-sm leading-relaxed">
-                Innovating software and cloud solutions to drive your business forward.
-                We are committed to excellence and long-term partnerships.
+              <p className="text-text-paper-muted text-sm leading-relaxed max-w-xs">
+                Custom software, cloud infrastructure and digital products, engineered with the
+                precision of an instrument, not assembled from a template.
               </p>
-              
-              {/* Social Links */}
               <div className="flex space-x-3 pt-2">
                 {socialLinks.map((social, idx) => {
                   const IconComponent = social.icon;
@@ -99,9 +73,9 @@ export default function Footer() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={social.label}
-                      className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-all duration-300 group"
+                      className="w-9 h-9 border border-ink-line rounded-full flex items-center justify-center hover:border-brass hover:text-brass-bright transition-all duration-300 text-text-paper-muted"
                     >
-                      <IconComponent className="w-4 h-4 text-white/70 group-hover:text-white transition-colors" />
+                      <IconComponent className="w-4 h-4" />
                     </Link>
                   );
                 })}
@@ -110,15 +84,14 @@ export default function Footer() {
 
             {/* Quick Links */}
             <div>
-              <h4 className="text-lg font-semibold text-white mb-5">Quick Links</h4>
+              <h4 className="plate-label text-text-paper-muted mb-5">Navigate</h4>
               <ul className="space-y-3">
-                {quickLinks.map((link, idx) => (
+                {[{ label: "Home", href: "/" }, ...navLinks].map((link, idx) => (
                   <li key={idx}>
                     <Link
                       href={link.href}
-                      className="text-white/60 hover:text-accent transition-colors duration-200 text-sm group inline-flex items-center gap-1"
+                      className="text-text-paper-muted hover:text-brass-bright transition-colors duration-200 text-sm"
                     >
-                      <span className="w-0 group-hover:w-1.5 h-0.5 bg-accent transition-all duration-200" />
                       {link.label}
                     </Link>
                   </li>
@@ -126,90 +99,68 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Contact Info */}
+            {/* Contact */}
             <div>
-              <h4 className="text-lg font-semibold text-white mb-5">Get in Touch</h4>
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <Mail className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                  <a href="mailto:hello@barbagetech.com" className="text-white/60 hover:text-accent transition-colors text-sm break-all">
-                    hello@barbagetech.com
+              <h4 className="plate-label text-text-paper-muted mb-5">Reach us</h4>
+              <ul className="space-y-4 text-sm">
+                <li className="flex items-start gap-3 text-text-paper-muted">
+                  <MapPin className="w-4 h-4 mt-0.5 text-brass-bright shrink-0" />
+                  <span>{company.address.join(", ")}</span>
+                </li>
+                <li className="flex items-start gap-3 text-text-paper-muted">
+                  <Phone className="w-4 h-4 mt-0.5 text-brass-bright shrink-0" />
+                  <a href={`tel:${company.phones[0].replace(/\s/g, "")}`} className="hover:text-brass-bright transition-colors">
+                    {company.phones[0]}
                   </a>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Phone className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                  <div>
-                    <a href="tel:+254114161768" className="text-white/60 hover:text-accent transition-colors text-sm block">
-                      +254 114 161 768
-                    </a>
-                    <a href="tel:+254768378046" className="text-white/60 hover:text-accent transition-colors text-sm block">
-                      +254 768 378 046
-                    </a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <MapPin className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                  <span className="text-white/60 text-sm">
-                    1234 Innovation Street, <br />
-                    Nairobi, Kenya
-                  </span>
-                </div>
-              </div>
+                </li>
+                <li className="flex items-start gap-3 text-text-paper-muted">
+                  <Mail className="w-4 h-4 mt-0.5 text-brass-bright shrink-0" />
+                  <a href={`mailto:${company.email}`} className="hover:text-brass-bright transition-colors">
+                    {company.email}
+                  </a>
+                </li>
+              </ul>
             </div>
 
             {/* Newsletter */}
             <div>
-              <h4 className="text-lg font-semibold text-white mb-5">Stay Connected</h4>
-              <p className="text-white/60 text-sm mb-4">
-                Subscribe to our newsletter for the latest updates and insights.
+              <h4 className="plate-label text-text-paper-muted mb-5">Stay posted</h4>
+              <p className="text-text-paper-muted text-sm mb-4">
+                Occasional notes on new work and openings. No spam.
               </p>
-              <form onSubmit={handleNewsletterSubmit} className="space-y-3">
-                <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
-                  <input
-                    type="email"
-                    value={newsletterEmail}
-                    onChange={(e) => setNewsletterEmail(e.target.value)}
-                    placeholder="Your email address"
-                    className="w-full pl-10 pr-4 py-2.5 bg-white/10 border border-white/20 rounded-button text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all text-sm"
-                    aria-label="Email for newsletter"
-                  />
-                </div>
+              <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
+                <input
+                  type="email"
+                  value={newsletterEmail}
+                  onChange={(e) => setNewsletterEmail(e.target.value)}
+                  placeholder="you@company.com"
+                  aria-label="Email address"
+                  className="min-w-0 flex-1 bg-ink-soft border border-ink-line rounded-button px-3 py-2 text-sm text-text-paper placeholder:text-text-paper-muted/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-brass"
+                />
                 <button
                   type="submit"
                   disabled={isSubscribing}
-                  className="w-full bg-accent hover:bg-accent-hover text-white px-4 py-2.5 rounded-button text-sm font-semibold transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-70"
+                  aria-label="Subscribe"
+                  className="shrink-0 bg-brass hover:bg-brass-hover disabled:opacity-60 text-text-paper rounded-button px-3 transition-colors"
                 >
-                  {isSubscribing ? (
-                    <>
-                      <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                      </svg>
-                      Subscribing...
-                    </>
-                  ) : (
-                    <>
-                      Subscribe
-                      <Send className="w-3.5 h-3.5" />
-                    </>
-                  )}
+                  <Send className="w-4 h-4" />
                 </button>
               </form>
             </div>
           </div>
+        </div>
 
-          {/* Copyright and Legal Links */}
-          <div className="mt-12 pt-8 border-t border-white/10 text-center">
-            <p className="text-white/40 text-xs">
-              &copy; {new Date().getFullYear()} Barbage Technologies. All rights reserved.
+        <div className="border-t border-ink-line">
+          <div className="section-container py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-xs text-text-paper-muted font-mono">
+              © {new Date().getFullYear()} Babbage Technologies. All rights reserved.
             </p>
-            <div className="flex flex-wrap justify-center gap-6 mt-3">
+            <div className="flex gap-6">
               {legalLinks.map((link, idx) => (
                 <Link
                   key={idx}
                   href={link.href}
-                  className="text-white/40 hover:text-accent transition-colors text-xs"
+                  className="text-xs text-text-paper-muted hover:text-brass-bright transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -217,7 +168,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-      </motion.footer>
+      </footer>
     </>
   );
 }
