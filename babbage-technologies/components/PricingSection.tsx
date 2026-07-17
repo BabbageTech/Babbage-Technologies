@@ -23,7 +23,7 @@ const faqs = [
   {
     question: "How much does it cost to develop software?",
     answer:
-      "Costs vary based on complexity, features and timeline. Simple apps can start from Ksh 1,500,000, while complex enterprise solutions can exceed Ksh 75,000,000. We give a detailed, transparent estimate after a discovery phase — the figures above are starting points, not the full range.",
+      "Costs vary based on complexity, features and timeline. Simple apps can start from Ksh 40,000 while complex enterprise solutions can exceed Ksh 200,000-2,000,000. We give a detailed, transparent estimate after a discovery phase — the figures above are starting points, not the full range.",
   },
   {
     question: "What factors influence software development cost?",
