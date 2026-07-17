@@ -5,8 +5,8 @@ export const company = {
   name: "Babbage Technologies",
   short: "Babbage",
   tagline: "Software, engineered like an instrument.",
-  email: "hello@babbagetechnologies.com",
-  supportEmail: "support@babbagetechnologies.com",
+  email: "babbagetechnologies@gmail.com",
+  supportEmail: "babbagetechnologies@gmail.com",
   phones: ["+254 114 161 768", "+254 768 378 046"],
   address: ["1234 Innovation Street", "Nairobi, Kenya"],
 };
@@ -220,7 +220,7 @@ export const pricingPlans: PricingPlan[] = [
   },
   {
     title: "Businesses",
-    price: "Ksh 35,000+",
+    price: "Ksh 30,000+",
     features: [
       "Standard cloud hosting",
       "Priority support",
