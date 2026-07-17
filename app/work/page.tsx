@@ -26,7 +26,7 @@ export default function WorkPage() {
           <div className="section-container">
             <PlateLabel index="01" tone="paper">Work</PlateLabel>
             <h1 className="font-display text-5xl md:text-6xl text-text-paper mt-6 max-w-2xl leading-[1.05]">
-              Instruments we&apos;ve built for other people&apos;s businesses
+              Product&apos;s we&apos;ve built for other people&apos;s businesses
             </h1>
             <p className="text-lg text-text-paper-muted max-w-xl mt-6 leading-relaxed">
               A selection of engagements across product, platform and infrastructure work.
