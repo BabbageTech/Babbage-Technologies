@@ -1,0 +1,10 @@
+# Sits inside the "babbage-technologies" folder — the same level as
+# package.json — so it applies once Netlify's Base directory setting
+# points here (which your build log confirms it already does).
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

@@ -1,5 +1,6 @@
 "use client";
 
+import DuotonePhoto from "@/components/DuotonePhoto";
 import PlateLabel from "@/components/PlateLabel";
 import SprocketRule from "@/components/SprocketRule";
 import { Button } from "@/components/ui/button";
@@ -59,16 +60,32 @@ export default function AboutSection() {
               the standard we hold our own work to: designed completely, before it&apos;s built at all.
             </p>
           </div>
+
+          <div className="section-container mt-16">
+            <DuotonePhoto
+              src="/about-hero.jpg"
+              alt="The Babbage Technologies team at work"
+              priority
+              className="w-full h-[320px] md:h-[440px] rounded-card-lg"
+            />
+          </div>
+
           <SprocketRule tone="ink" className="mt-16" />
         </section>
 
         {/* ========== STORY ========== */}
         <section className="section-padding bg-background">
-          <div className="section-container grid md:grid-cols-12 gap-10">
-            <div className="md:col-span-4">
+          <div className="section-container grid md:grid-cols-12 gap-10 items-start">
+            <div className="md:col-span-5">
               <PlateLabel index="02">Our story</PlateLabel>
+              <DuotonePhoto
+                src="/about.jpg"
+                alt="Members of the Babbage Technologies team collaborating"
+                tone="ink-verdigris"
+                className="w-full aspect-[4/5] rounded-card-lg mt-6"
+              />
             </div>
-            <div className="md:col-span-8 space-y-6 text-text-secondary leading-relaxed text-lg">
+            <div className="md:col-span-7 md:pt-14 space-y-6 text-text-secondary leading-relaxed text-lg">
               <p>
                 Babbage Technologies works with founders, operators and institutions across
                 Kenya and beyond who need software built properly the first time — not

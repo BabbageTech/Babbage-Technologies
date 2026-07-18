@@ -1,5 +1,6 @@
 "use client";
 
+import DuotonePhoto from "@/components/DuotonePhoto";
 import EngineDiagram from "@/components/EngineDiagram";
 import PlateLabel from "@/components/PlateLabel";
 import SprocketRule from "@/components/SprocketRule";
@@ -171,21 +172,37 @@ export default function HomePage() {
               A sequence, not a scramble
             </h2>
 
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="grid grid-cols-1 md:grid-cols-4 gap-8"
-            >
-              {processSteps.map((step) => (
-                <motion.div key={step.n} variants={itemVariants} className="border-t border-ink-line pt-6">
-                  <div className="font-mono text-brass-bright text-sm mb-4">{step.n}</div>
-                  <h3 className="font-display text-2xl text-text-paper mb-2">{step.title}</h3>
-                  <p className="text-text-paper-muted text-sm leading-relaxed">{step.desc}</p>
-                </motion.div>
-              ))}
-            </motion.div>
+            <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.97 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="lg:col-span-5"
+              >
+                <DuotonePhoto
+                  src="/Commitment.jpg"
+                  alt="Babbage Technologies team committed to the process"
+                  className="w-full aspect-[4/5] rounded-card-lg"
+                />
+              </motion.div>
+
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-8"
+              >
+                {processSteps.map((step) => (
+                  <motion.div key={step.n} variants={itemVariants} className="border-t border-ink-line pt-6">
+                    <div className="font-mono text-brass-bright text-sm mb-4">{step.n}</div>
+                    <h3 className="font-display text-2xl text-text-paper mb-2">{step.title}</h3>
+                    <p className="text-text-paper-muted text-sm leading-relaxed">{step.desc}</p>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
           </div>
         </section>
 

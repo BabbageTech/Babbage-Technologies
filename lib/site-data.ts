@@ -5,8 +5,8 @@ export const company = {
   name: "Babbage Technologies",
   short: "Babbage",
   tagline: "Software, engineered like an instrument.",
-  email: "babbagetechnologies@gmail.com",
-  supportEmail: "babbagetechnologies@gmail.com",
+  email: "hello@babbagetechnologies.com",
+  supportEmail: "support@babbagetechnologies.com",
   phones: ["+254 114 161 768", "+254 768 378 046"],
   address: ["1234 Innovation Street", "Nairobi, Kenya"],
 };
@@ -24,7 +24,7 @@ export const services: Service[] = [
   {
     id: "custom-software",
     title: "Custom Software Development",
-    summary: "Rapid development of scalable, maintainable software applications.",
+    summary: "Rapid development of scalable, maintainable web applications.",
     detail:
       "Bespoke ERP, HMS and line-of-business systems built around how your team actually works, from the first blueprint through to production.",
     stack: ["React.js", "Node.js", "Django", "FastAPI", "Ruby on Rails"],
@@ -220,7 +220,7 @@ export const pricingPlans: PricingPlan[] = [
   },
   {
     title: "Businesses",
-    price: "Ksh 30,000+",
+    price: "Ksh 35,000+",
     features: [
       "Standard cloud hosting",
       "Priority support",

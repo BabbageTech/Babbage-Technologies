@@ -67,6 +67,21 @@ clients if you don't already have sign-off to describe the engagements.
 - `ContactForm.tsx` keeps the original EmailJS integration (service/template
   IDs) so form submissions keep working.
 
+## Photography
+
+Three real photos from the original `/public` folder (`about-hero.jpg`,
+`about.jpg`, `Commitment.jpg`) are now wired in via `components/DuotonePhoto.tsx`,
+which applies a grayscale + brass/verdigris color-blend treatment so they sit
+naturally next to the ink/brass linework instead of reading as stock photos
+on a different design system. Placement:
+
+- `about-hero.jpg` — banner under the About page hero
+- `about.jpg` — beside the "Our story" copy on About
+- `Commitment.jpg` — beside the process steps in Home's "How we work" section
+
+Swap the `src` in those three spots for real team/office photography when
+you have it — the duotone treatment will apply automatically.
+
 ## Getting started
 
 ```bash
