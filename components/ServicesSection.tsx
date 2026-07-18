@@ -100,10 +100,10 @@ export default function ServicesSection() {
         </section>
 
         {/* ========== INDUSTRIES ========== */}
-        <section className="section-padding bg-ink">
+        <section className="section-padding bg-paper-dim">
           <div className="section-container">
-            <PlateLabel index="02" tone="paper">Industries</PlateLabel>
-            <h2 className="font-display text-4xl md:text-5xl text-text-paper mt-4 mb-16 max-w-xl">
+            <PlateLabel index="02">Industries</PlateLabel>
+            <h2 className="font-display text-4xl md:text-5xl text-text-primary mt-4 mb-16 max-w-xl">
               Domains we know well
             </h2>
 
@@ -112,15 +112,22 @@ export default function ServicesSection() {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="grid grid-cols-2 md:grid-cols-4 gap-8"
+              className="grid grid-cols-2 md:grid-cols-4 gap-6"
             >
-              {industries.map((industry) => {
+              {industries.map((industry, idx) => {
                 const Icon = industryIcons[industry.icon] ?? HomeIcon;
+                const chip = idx % 2 === 0 ? "bg-brass/12 text-brass-hover" : "bg-verdigris/12 text-verdigris";
                 return (
-                  <motion.div key={industry.name} variants={itemVariants} className="border-t border-ink-line pt-5">
-                    <Icon className="w-5 h-5 text-brass-bright mb-4" />
-                    <h3 className="font-display text-lg text-text-paper mb-1.5">{industry.name}</h3>
-                    <p className="text-text-paper-muted text-sm leading-relaxed">{industry.desc}</p>
+                  <motion.div
+                    key={industry.name}
+                    variants={itemVariants}
+                    className="bg-surface rounded-card p-6 shadow-card hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-300"
+                  >
+                    <div className={`w-9 h-9 rounded-full flex items-center justify-center mb-4 ${chip}`}>
+                      <Icon className="w-4 h-4" />
+                    </div>
+                    <h3 className="font-display text-lg text-text-primary mb-1.5">{industry.name}</h3>
+                    <p className="text-text-secondary text-sm leading-relaxed">{industry.desc}</p>
                   </motion.div>
                 );
               })}

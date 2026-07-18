@@ -60,56 +60,49 @@ export default function AboutSection() {
               the standard we hold our own work to: designed completely, before it&apos;s built at all.
             </p>
           </div>
-
-          <div className="section-container mt-16">
-            <DuotonePhoto
-              src="/about-hero.jpg"
-              alt="The Babbage Technologies team at work"
-              priority
-              className="w-full h-[320px] md:h-[440px] rounded-card-lg"
-            />
-          </div>
-
           <SprocketRule tone="ink" className="mt-16" />
         </section>
 
         {/* ========== STORY ========== */}
         <section className="section-padding bg-background">
-          <div className="section-container grid md:grid-cols-12 gap-10 items-start">
-            <div className="md:col-span-5">
+          <div className="section-container grid md:grid-cols-12 gap-10 md:gap-14 items-center">
+            <div className="md:col-span-7 order-2 md:order-1">
               <PlateLabel index="02">Our story</PlateLabel>
+              <div className="space-y-6 text-text-secondary leading-relaxed text-lg mt-6">
+                <p>
+                  Babbage Technologies works with founders, operators and institutions across
+                  Kenya and beyond who need software built properly the first time — not
+                  prototyped, patched and rebuilt three times over.
+                </p>
+                <p>
+                  We keep our team small on purpose. A senior engineer, designer and project
+                  lead stay on your project from discovery through to the support ticket
+                  filed a year after launch, instead of a rotating cast of contractors.
+                </p>
+                <p>
+                  That approach shows up in the numbers our clients care about: projects that
+                  ship on the estimate, systems that don&apos;t need a rewrite eighteen months in,
+                  and a support line that actually gets answered.
+                </p>
+              </div>
+            </div>
+            <div className="md:col-span-5 order-1 md:order-2">
               <DuotonePhoto
                 src="/about.jpg"
                 alt="Members of the Babbage Technologies team collaborating"
-                tone="ink-verdigris"
-                className="w-full aspect-[4/5] rounded-card-lg mt-6"
+                tilt={-1.5}
+                className="w-full aspect-[4/3] rounded-card-lg"
               />
-            </div>
-            <div className="md:col-span-7 md:pt-14 space-y-6 text-text-secondary leading-relaxed text-lg">
-              <p>
-                Babbage Technologies works with founders, operators and institutions across
-                Kenya and beyond who need software built properly the first time — not
-                prototyped, patched and rebuilt three times over.
-              </p>
-              <p>
-                We keep our team small on purpose. A senior engineer, designer and project
-                lead stay on your project from discovery through to the support ticket
-                filed a year after launch, instead of a rotating cast of contractors.
-              </p>
-              <p>
-                That approach shows up in the numbers our clients care about: projects that
-                ship on the estimate, systems that don&apos;t need a rewrite eighteen months in,
-                and a support line that actually gets answered.
-              </p>
+              <p className="plate-label text-text-tertiary mt-5 ml-2">— mid-sprint, Nairobi studio</p>
             </div>
           </div>
         </section>
 
         {/* ========== VALUES ========== */}
-        <section className="section-padding bg-ink">
+        <section className="section-padding bg-paper-dim">
           <div className="section-container">
-            <PlateLabel index="03" tone="paper">What we hold to</PlateLabel>
-            <h2 className="font-display text-4xl md:text-5xl text-text-paper mt-4 mb-16 max-w-xl">
+            <PlateLabel index="03">What we hold to</PlateLabel>
+            <h2 className="font-display text-4xl md:text-5xl text-text-primary mt-4 mb-16 max-w-xl">
               Six working principles
             </h2>
 
@@ -118,15 +111,22 @@ export default function AboutSection() {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
             >
-              {values.map((value) => {
+              {values.map((value, idx) => {
                 const Icon = value.icon;
+                const chip = idx % 2 === 0 ? "bg-brass/12 text-brass-hover" : "bg-verdigris/12 text-verdigris";
                 return (
-                  <motion.div key={value.title} variants={itemVariants} className="border-t border-ink-line pt-5">
-                    <Icon className="w-5 h-5 text-brass-bright mb-4" />
-                    <h3 className="font-display text-lg text-text-paper mb-1.5">{value.title}</h3>
-                    <p className="text-text-paper-muted text-sm leading-relaxed">{value.desc}</p>
+                  <motion.div
+                    key={value.title}
+                    variants={itemVariants}
+                    className="bg-surface rounded-card p-6 shadow-card hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-300"
+                  >
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center mb-5 ${chip}`}>
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <h3 className="font-display text-lg text-text-primary mb-1.5">{value.title}</h3>
+                    <p className="text-text-secondary text-sm leading-relaxed">{value.desc}</p>
                   </motion.div>
                 );
               })}
@@ -149,15 +149,22 @@ export default function AboutSection() {
               viewport={{ once: true }}
               className="grid grid-cols-2 md:grid-cols-5 gap-8"
             >
-              {team.map((member) => (
-                <motion.div key={member.name} variants={itemVariants}>
-                  <div className="w-16 h-16 rounded-full bg-ink border border-brass/50 flex items-center justify-center font-mono text-brass-bright text-sm mb-4">
-                    {initials(member.name)}
-                  </div>
-                  <h3 className="font-display text-base text-text-primary">{member.name}</h3>
-                  <p className="text-text-tertiary text-sm">{member.title}</p>
-                </motion.div>
-              ))}
+              {team.map((member, idx) => {
+                const palette = [
+                  "bg-brass text-text-paper",
+                  "bg-verdigris text-text-paper",
+                  "bg-ink text-brass-bright",
+                ];
+                return (
+                  <motion.div key={member.name} variants={itemVariants}>
+                    <div className={`w-16 h-16 rounded-full flex items-center justify-center font-mono text-sm mb-4 ${palette[idx % palette.length]}`}>
+                      {initials(member.name)}
+                    </div>
+                    <h3 className="font-display text-base text-text-primary">{member.name}</h3>
+                    <p className="text-text-tertiary text-sm">{member.title}</p>
+                  </motion.div>
+                );
+              })}
             </motion.div>
           </div>
         </section>

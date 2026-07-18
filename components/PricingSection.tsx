@@ -119,14 +119,14 @@ export default function PricingSection() {
         </section>
 
         {/* ========== FAQ ========== */}
-        <section className="section-padding bg-ink">
+        <section className="section-padding bg-paper-dim">
           <div className="section-container max-w-3xl">
-            <PlateLabel index="02" tone="paper">Questions</PlateLabel>
-            <h2 className="font-display text-4xl md:text-5xl text-text-paper mt-4 mb-12">
+            <PlateLabel index="02">Questions</PlateLabel>
+            <h2 className="font-display text-4xl md:text-5xl text-text-primary mt-4 mb-12">
               Before you ask
             </h2>
 
-            <div className="divide-y divide-ink-line border-t border-b border-ink-line">
+            <div className="divide-y divide-paper-line border-t border-b border-paper-line">
               {faqs.map((faq, idx) => {
                 const isOpen = openFaq === idx;
                 return (
@@ -136,11 +136,11 @@ export default function PricingSection() {
                       className="w-full flex items-center justify-between py-6 text-left group"
                       aria-expanded={isOpen}
                     >
-                      <span className="font-display text-lg text-text-paper pr-6 group-hover:text-brass-bright transition-colors">
+                      <span className="font-display text-lg text-text-primary pr-6 group-hover:text-brass-hover transition-colors">
                         {faq.question}
                       </span>
                       <ChevronDown
-                        className={`w-5 h-5 text-brass-bright shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                        className={`w-5 h-5 text-brass-hover shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
                       />
                     </button>
                     <motion.div
@@ -149,7 +149,7 @@ export default function PricingSection() {
                       transition={{ duration: 0.25, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <p className="text-text-paper-muted leading-relaxed pb-6 max-w-xl">{faq.answer}</p>
+                      <p className="text-text-secondary leading-relaxed pb-6 max-w-xl">{faq.answer}</p>
                     </motion.div>
                   </div>
                 );

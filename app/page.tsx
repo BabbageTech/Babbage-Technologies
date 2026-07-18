@@ -165,14 +165,14 @@ export default function HomePage() {
         </section>
 
         {/* ========== APPROACH ========== */}
-        <section className="section-padding bg-ink relative">
+        <section className="section-padding bg-paper-dim relative">
           <div className="section-container">
-            <PlateLabel index="03" tone="paper">How we work</PlateLabel>
-            <h2 className="font-display text-4xl md:text-5xl text-text-paper mt-4 mb-16 max-w-xl">
+            <PlateLabel index="03">How we work</PlateLabel>
+            <h2 className="font-display text-4xl md:text-5xl text-text-primary mt-4 mb-16 max-w-xl">
               A sequence, not a scramble
             </h2>
 
-            <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+            <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
               <motion.div
                 initial={{ opacity: 0, scale: 0.97 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -182,8 +182,9 @@ export default function HomePage() {
               >
                 <DuotonePhoto
                   src="/Commitment.jpg"
-                  alt="Babbage Technologies team committed to the process"
-                  className="w-full aspect-[4/5] rounded-card-lg"
+                  alt="The Babbage Technologies team working through a project together"
+                  tilt={1}
+                  className="w-full aspect-[4/3] rounded-card-lg"
                 />
               </motion.div>
 
@@ -195,10 +196,10 @@ export default function HomePage() {
                 className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-8"
               >
                 {processSteps.map((step) => (
-                  <motion.div key={step.n} variants={itemVariants} className="border-t border-ink-line pt-6">
-                    <div className="font-mono text-brass-bright text-sm mb-4">{step.n}</div>
-                    <h3 className="font-display text-2xl text-text-paper mb-2">{step.title}</h3>
-                    <p className="text-text-paper-muted text-sm leading-relaxed">{step.desc}</p>
+                  <motion.div key={step.n} variants={itemVariants} className="border-t-2 border-brass/30 pt-6">
+                    <div className="font-mono text-brass-hover text-sm mb-4">{step.n}</div>
+                    <h3 className="font-display text-2xl text-text-primary mb-2">{step.title}</h3>
+                    <p className="text-text-secondary text-sm leading-relaxed">{step.desc}</p>
                   </motion.div>
                 ))}
               </motion.div>

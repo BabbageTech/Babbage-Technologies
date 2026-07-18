@@ -1,49 +1,53 @@
 import Image from "next/image";
 
 /**
- * Wraps a photograph in the ink/brass duotone treatment used
- * throughout the site, so real photography sits comfortably next to
- * the brass/verdigris linework instead of reading as a stock photo
- * dropped onto a different design system.
+ * A photo treatment that keeps real colour (the previous version
+ * desaturated everything into a brass duotone, which read as cold
+ * and filtered rather than human) and instead gives it a slightly
+ * crafted, tactile presence: a fine brass corner mark and an
+ * optional gentle tilt, so it feels placed by hand rather than
+ * snapped into a grid.
  *
  * Uses next/image with `fill`, so the parent needs a sized,
- * `position: relative` box (pass that via className, e.g. an
- * aspect-ratio or fixed-height div).
+ * `position: relative` box (pass that via className).
  */
 export default function DuotonePhoto({
   src,
   alt,
   className = "",
   priority = false,
-  tone = "ink-brass",
+  tilt = 0,
 }: {
   src: string;
   alt: string;
   className?: string;
   priority?: boolean;
-  tone?: "ink-brass" | "ink-verdigris";
+  tilt?: number;
 }) {
-  const gradient =
-    tone === "ink-verdigris"
-      ? "linear-gradient(135deg, var(--color-ink) 0%, var(--color-verdigris) 100%)"
-      : "linear-gradient(135deg, var(--color-ink) 0%, var(--color-brass) 100%)";
-
   return (
-    <div className={`relative overflow-hidden ${className}`}>
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        priority={priority}
-        sizes="(min-width: 1024px) 50vw, 100vw"
-        className="object-cover grayscale contrast-[1.08]"
-      />
-      <div
-        className="absolute inset-0 mix-blend-color"
-        style={{ background: gradient }}
-        aria-hidden="true"
-      />
-      <div className="absolute inset-0 bg-ink/15" aria-hidden="true" />
+    <div
+      className={`relative ${className}`}
+      style={tilt ? { transform: `rotate(${tilt}deg)` } : undefined}
+    >
+      <div className="relative w-full h-full overflow-hidden rounded-[inherit] ring-1 ring-ink/10 shadow-card-hover">
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          priority={priority}
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          className="object-cover"
+        />
+        {/* faint warm grade — keeps real colour, just knocks the
+            harsh edge off a raw stock photo */}
+        <div
+          className="absolute inset-0 bg-brass mix-blend-soft-light opacity-[0.08]"
+          aria-hidden="true"
+        />
+      </div>
+      {/* brass corner marks, echoing the plate-drawing motif elsewhere */}
+      <span className="absolute -top-2 -left-2 w-4 h-4 border-t-2 border-l-2 border-brass" aria-hidden="true" />
+      <span className="absolute -bottom-2 -right-2 w-4 h-4 border-b-2 border-r-2 border-brass" aria-hidden="true" />
     </div>
   );
 }

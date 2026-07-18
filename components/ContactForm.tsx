@@ -65,10 +65,10 @@ export function ContactForm() {
 
   return (
     <div className="w-full">
-      <div className="bg-ink border border-ink-line rounded-card overflow-hidden">
-        <div className="px-8 py-6 border-b border-ink-line">
-          <h3 className="font-display text-2xl text-text-paper mb-1">Send a message</h3>
-          <p className="text-text-paper-muted text-sm">
+      <div className="bg-surface border border-paper-line rounded-card overflow-hidden shadow-card">
+        <div className="px-8 py-6 border-b border-paper-line">
+          <h3 className="font-display text-2xl text-text-primary mb-1">Send a message</h3>
+          <p className="text-text-secondary text-sm">
             Tell us about the project. We reply within one business day.
           </p>
         </div>
@@ -83,7 +83,7 @@ export function ContactForm() {
               onChange={handleChange}
               required
               placeholder="Jane Wanjiru"
-              className="w-full pl-11 pr-4 py-3 bg-ink-soft border border-ink-line rounded-button focus:outline-none focus-visible:ring-2 focus-visible:ring-brass transition-all duration-200 text-text-paper placeholder:text-text-paper-muted/50"
+              className="w-full pl-11 pr-4 py-3 bg-background border border-paper-line rounded-button focus:outline-none focus-visible:ring-2 focus-visible:ring-brass transition-all duration-200 text-text-primary placeholder:text-text-tertiary"
             />
           </Field>
 
@@ -96,7 +96,7 @@ export function ContactForm() {
               onChange={handleChange}
               required
               placeholder="you@company.com"
-              className="w-full pl-11 pr-4 py-3 bg-ink-soft border border-ink-line rounded-button focus:outline-none focus-visible:ring-2 focus-visible:ring-brass transition-all duration-200 text-text-paper placeholder:text-text-paper-muted/50"
+              className="w-full pl-11 pr-4 py-3 bg-background border border-paper-line rounded-button focus:outline-none focus-visible:ring-2 focus-visible:ring-brass transition-all duration-200 text-text-primary placeholder:text-text-tertiary"
             />
           </Field>
 
@@ -109,7 +109,7 @@ export function ContactForm() {
               required
               placeholder="What are you building?"
               rows={5}
-              className="w-full pl-11 pr-4 py-3 bg-ink-soft border border-ink-line rounded-button focus:outline-none focus-visible:ring-2 focus-visible:ring-brass transition-all duration-200 text-text-paper placeholder:text-text-paper-muted/50 resize-none"
+              className="w-full pl-11 pr-4 py-3 bg-background border border-paper-line rounded-button focus:outline-none focus-visible:ring-2 focus-visible:ring-brass transition-all duration-200 text-text-primary placeholder:text-text-tertiary resize-none"
             />
           </Field>
 
@@ -137,7 +137,7 @@ export function ContactForm() {
             )}
           </button>
 
-          <p className="text-center text-text-paper-muted/70 text-xs pt-1">
+          <p className="text-center text-text-tertiary text-xs pt-1">
             We respect your privacy. Your information is never shared.
           </p>
         </form>
@@ -161,11 +161,11 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={fieldId} className="plate-label text-text-paper-muted mb-2 block">
+      <label htmlFor={fieldId} className="plate-label text-text-tertiary mb-2 block">
         {label}
       </label>
       <div className="relative">
-        <div className={`absolute left-4 ${alignTop ? "top-3.5" : "top-1/2 -translate-y-1/2"} text-text-paper-muted`}>
+        <div className={`absolute left-4 ${alignTop ? "top-3.5" : "top-1/2 -translate-y-1/2"} text-text-tertiary`}>
           <Icon className="w-4 h-4" />
         </div>
         {children}

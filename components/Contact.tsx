@@ -18,13 +18,13 @@ export default function ContactPage() {
     <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-grow">
         {/* ========== HERO ========== */}
-        <section className="bg-ink pt-32 lg:pt-40 pb-24">
+        <section className="pt-32 lg:pt-40 pb-24">
           <div className="section-container">
-            <PlateLabel index="01" tone="paper">Contact</PlateLabel>
-            <h1 className="font-display text-5xl md:text-6xl text-text-paper mt-6 max-w-2xl leading-[1.05]">
+            <PlateLabel index="01">Contact</PlateLabel>
+            <h1 className="font-display text-5xl md:text-6xl text-text-primary mt-6 max-w-2xl leading-[1.05]">
               Tell us what you&apos;re building
             </h1>
-            <p className="text-lg text-text-paper-muted max-w-xl mt-6 leading-relaxed">
+            <p className="text-lg text-text-secondary max-w-xl mt-6 leading-relaxed">
               Whether it&apos;s a rough idea or a detailed spec, we&apos;ll get back to you within
               one business day with next steps.
             </p>
@@ -47,16 +47,19 @@ export default function ContactPage() {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="md:col-span-5 space-y-8"
               >
-                {contactInfo.map((info) => {
+                {contactInfo.map((info, idx) => {
                   const Icon = info.icon;
+                  const chip = idx % 2 === 0 ? "bg-brass/12 text-brass-hover" : "bg-verdigris/12 text-verdigris";
                   return (
-                    <div key={info.title} className="border-t border-ink-line pt-5">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Icon className="w-4 h-4 text-brass-bright" />
-                        <span className="plate-label text-text-paper-muted">{info.title}</span>
+                    <div key={info.title} className="border-t border-paper-line pt-5">
+                      <div className="flex items-center gap-2.5 mb-3">
+                        <span className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 ${chip}`}>
+                          <Icon className="w-3.5 h-3.5" />
+                        </span>
+                        <span className="plate-label text-text-tertiary">{info.title}</span>
                       </div>
                       {info.details.map((d) => (
-                        <p key={d} className="text-text-paper leading-relaxed">{d}</p>
+                        <p key={d} className="text-text-primary leading-relaxed">{d}</p>
                       ))}
                     </div>
                   );
