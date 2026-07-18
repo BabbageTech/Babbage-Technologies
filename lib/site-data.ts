@@ -24,7 +24,7 @@ export const services: Service[] = [
   {
     id: "custom-software",
     title: "Custom Software Development",
-    summary: "Rapid development of scalable, maintainable web applications.",
+    summary: "Rapid development of scalable, maintainable software applications.",
     detail:
       "Bespoke ERP, HMS and line-of-business systems built around how your team actually works, from the first blueprint through to production.",
     stack: ["React.js", "Node.js", "Django", "FastAPI", "Ruby on Rails"],
