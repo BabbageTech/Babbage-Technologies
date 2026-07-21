@@ -37,18 +37,18 @@ export default function ServicesSection() {
     <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-grow">
         {/* ========== HERO ========== */}
-        <section className="bg-ink pt-32 lg:pt-40 pb-20">
+        <section className="bg-background pt-32 lg:pt-40 pb-20">
           <div className="section-container">
-            <PlateLabel index="01" tone="paper">Services</PlateLabel>
-            <h1 className="font-display text-5xl md:text-6xl text-text-paper mt-6 max-w-2xl leading-[1.05]">
+            <PlateLabel index="01">Services</PlateLabel>
+            <h1 className="font-display text-5xl md:text-6xl text-text-primary mt-6 max-w-2xl leading-[1.05]">
               Six disciplines, kept under one roof
             </h1>
-            <p className="text-lg text-text-paper-muted max-w-xl mt-6 leading-relaxed">
+            <p className="text-lg text-text-secondary max-w-xl mt-6 leading-relaxed">
               We don&apos;t hand your project between agencies. The same team that scopes it
               designs, builds and supports it — so nothing gets lost in translation.
             </p>
           </div>
-          <SprocketRule tone="ink" className="mt-16" />
+          <SprocketRule tone="paper" className="mt-16" />
         </section>
 
         {/* ========== SERVICES DETAIL ========== */}

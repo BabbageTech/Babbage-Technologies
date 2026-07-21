@@ -4,7 +4,7 @@
 export const company = {
   name: "Babbage Technologies",
   short: "Babbage",
-  tagline: "Software, engineered like an instrument.",
+  tagline: "Software, built the right way.",
   email: "hello@babbagetechnologies.com",
   supportEmail: "support@babbagetechnologies.com",
   phones: ["+254 114 161 768", "+254 768 378 046"],

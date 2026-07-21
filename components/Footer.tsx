@@ -60,8 +60,8 @@ export default function Footer() {
                 <span className="font-display text-lg font-semibold text-text-paper">Babbage</span>
               </Link>
               <p className="text-text-paper-muted text-sm leading-relaxed max-w-xs">
-                Custom software, cloud infrastructure and digital products, engineered with the
-                precision of an instrument, not assembled from a template.
+                Custom software, cloud infrastructure and digital products, built properly the
+                first time — not assembled from a template.
               </p>
               <div className="flex space-x-3 pt-2">
                 {socialLinks.map((social, idx) => {

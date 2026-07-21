@@ -46,21 +46,21 @@ export default function AboutSection() {
     <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-grow">
         {/* ========== HERO ========== */}
-        <section className="bg-ink pt-32 lg:pt-40 pb-20">
+        <section className="bg-background pt-32 lg:pt-40 pb-20">
           <div className="section-container grid lg:grid-cols-2 gap-12 items-end">
             <div>
-              <PlateLabel index="01" tone="paper">About</PlateLabel>
-              <h1 className="font-display text-5xl md:text-6xl text-text-paper mt-6 leading-[1.05]">
+              <PlateLabel index="01">About</PlateLabel>
+              <h1 className="font-display text-5xl md:text-6xl text-text-primary mt-6 leading-[1.05]">
                 Named for the man who drew the first computer
               </h1>
             </div>
-            <p className="text-lg text-text-paper-muted leading-relaxed">
+            <p className="text-lg text-text-secondary leading-relaxed">
               Charles Babbage never saw his Analytical Engine built in his lifetime — but every
               gear was specified, every register accounted for. We took the name because that&apos;s
               the standard we hold our own work to: designed completely, before it&apos;s built at all.
             </p>
           </div>
-          <SprocketRule tone="ink" className="mt-16" />
+          <SprocketRule tone="paper" className="mt-16" />
         </section>
 
         {/* ========== STORY ========== */}

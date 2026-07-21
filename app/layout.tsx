@@ -25,7 +25,7 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata = {
-  title: "Babbage Technologies — Software, engineered like an instrument",
+  title: "Babbage Technologies — Software, built the right way",
   description:
     "Babbage Technologies designs and builds custom software, cloud infrastructure and digital products for growing businesses in Nairobi and beyond.",
   manifest: "/site.webmanifest",

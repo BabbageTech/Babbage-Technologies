@@ -1,7 +1,6 @@
 "use client";
 
 import DuotonePhoto from "@/components/DuotonePhoto";
-import EngineDiagram from "@/components/EngineDiagram";
 import PlateLabel from "@/components/PlateLabel";
 import SprocketRule from "@/components/SprocketRule";
 import { Button } from "@/components/ui/button";
@@ -48,34 +47,34 @@ export default function HomePage() {
     <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-grow">
         {/* ========== HERO ========== */}
-        <section className="relative bg-ink overflow-hidden pt-32 lg:pt-40 pb-16">
+        <section className="relative bg-background overflow-hidden pt-32 lg:pt-40 pb-16">
           <div className="section-container relative z-10">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
                 <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-                  <PlateLabel index="01" tone="paper">Babbage Technologies — Nairobi</PlateLabel>
+                  <PlateLabel index="01">Babbage Technologies — Nairobi</PlateLabel>
                 </motion.div>
 
                 <motion.h1
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.1 }}
-                  className="font-display text-5xl sm:text-6xl lg:text-[4.25rem] leading-[1.04] text-text-paper mt-6"
+                  className="font-display text-5xl sm:text-6xl lg:text-[4.25rem] leading-[1.04] text-text-primary mt-6"
                 >
-                  Software, engineered
+                  Software, built
                   <br />
-                  like an <span className="text-brass-bright italic">instrument.</span>
+                  the <span className="text-brass-hover italic">right way.</span>
                 </motion.h1>
 
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="text-lg text-text-paper-muted max-w-lg mt-6 leading-relaxed"
+                  className="text-lg text-text-secondary max-w-lg mt-6 leading-relaxed"
                 >
-                  We design and build custom software, cloud infrastructure and digital products —
-                  with the same regard for precision, fit and durability as a well-made
-                  instrument. Every part accounted for; nothing left to guesswork.
+                  We design and build custom software, cloud infrastructure and digital products
+                  for growing businesses — with real regard for precision, fit and durability.
+                  Every part accounted for; nothing left to guesswork.
                 </motion.p>
 
                 <motion.div
@@ -93,7 +92,7 @@ export default function HomePage() {
                   <Link href="/work">
                     <Button
                       variant="outline"
-                      className="border-ink-line bg-transparent text-text-paper hover:bg-ink-soft hover:text-text-paper px-7 py-5 rounded-button font-mono text-sm tracking-wide uppercase"
+                      className="border-paper-line bg-transparent text-text-primary hover:bg-paper-dim hover:text-text-primary px-7 py-5 rounded-button font-mono text-sm tracking-wide uppercase"
                     >
                       See the work
                     </Button>
@@ -105,21 +104,26 @@ export default function HomePage() {
                 initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
-                className="hidden lg:block"
               >
-                <EngineDiagram className="w-full h-auto" />
+                <DuotonePhoto
+                  src="/about-hero.jpg"
+                  alt="The Babbage Technologies team at work in Nairobi"
+                  priority
+                  tilt={1}
+                  className="w-full aspect-[4/3] rounded-card-lg"
+                />
               </motion.div>
             </div>
           </div>
 
-          <SprocketRule tone="ink" className="mt-20" />
+          <SprocketRule tone="paper" className="mt-20" />
 
           <div className="section-container py-10">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
               {stats.map((stat, idx) => (
                 <div key={idx}>
-                  <div className="font-mono text-2xl md:text-3xl text-brass-bright">{stat.value}</div>
-                  <div className="text-sm text-text-paper-muted mt-1">{stat.label}</div>
+                  <div className="font-mono text-2xl md:text-3xl text-brass-hover">{stat.value}</div>
+                  <div className="text-sm text-text-secondary mt-1">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -214,7 +218,7 @@ export default function HomePage() {
               <div className="max-w-2xl">
                 <PlateLabel index="04">Selected work</PlateLabel>
                 <h2 className="font-display text-4xl md:text-5xl text-text-primary mt-4">
-                  Recent instruments
+                  Recent projects
                 </h2>
               </div>
               <Link href="/work" className="inline-flex items-center gap-1.5 text-verdigris font-mono text-sm uppercase tracking-wide hover:text-brass-hover transition-colors">

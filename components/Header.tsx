@@ -34,10 +34,10 @@ const Header: React.FC = () => {
   return (
     <>
       <header
-        className={`fixed w-full top-0 z-50 border-b transition-colors duration-300 ${
+        className={`fixed w-full top-0 z-50 border-b transition-all duration-300 ${
           scrolled
-            ? "bg-ink/95 backdrop-blur border-ink-line"
-            : "bg-ink border-transparent"
+            ? "bg-background/95 backdrop-blur border-paper-line shadow-card"
+            : "bg-background/80 backdrop-blur-sm border-transparent"
         }`}
       >
         <div className="section-container">
@@ -45,13 +45,13 @@ const Header: React.FC = () => {
             {/* Logo */}
             <Link href="/" className="flex-shrink-0 group flex items-center gap-2.5">
               <span
-                className="w-8 h-8 rounded-full border border-brass/60 flex items-center justify-center text-brass-bright font-mono text-[13px] group-hover:border-brass transition-colors"
+                className="w-8 h-8 rounded-full bg-ink flex items-center justify-center text-brass-bright font-mono text-[13px] group-hover:bg-ink-soft transition-colors"
                 aria-hidden="true"
               >
                 B
               </span>
-              <span className="font-display text-lg lg:text-xl font-semibold tracking-tight text-text-paper">
-                Babbage <span className="text-text-paper-muted font-normal">Technologies</span>
+              <span className="font-display text-lg lg:text-xl font-semibold tracking-tight text-text-primary">
+                Babbage <span className="text-text-tertiary font-normal">Technologies</span>
               </span>
             </Link>
 
@@ -64,7 +64,7 @@ const Header: React.FC = () => {
                     key={link.href}
                     href={link.href}
                     className={`relative px-4 py-2 font-mono text-[13px] tracking-wide uppercase transition-colors duration-200 ${
-                      isActive ? "text-brass-bright" : "text-text-paper-muted hover:text-text-paper"
+                      isActive ? "text-brass-hover" : "text-text-secondary hover:text-text-primary"
                     }`}
                   >
                     {link.label}
@@ -92,7 +92,7 @@ const Header: React.FC = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 rounded-button border border-ink-line text-text-paper focus:outline-none focus-visible:ring-2 focus-visible:ring-brass transition-all"
+              className="md:hidden p-2 rounded-button border border-paper-line text-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-brass transition-all"
               aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={isMenuOpen}
             >
@@ -110,7 +110,7 @@ const Header: React.FC = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-ink md:hidden"
+            className="fixed inset-0 z-40 bg-background md:hidden"
             style={{ top: "64px" }}
           >
             <motion.nav
@@ -133,12 +133,12 @@ const Header: React.FC = () => {
                       >
                         <Link
                           href={link.href}
-                          className={`flex items-center justify-between py-3.5 px-4 font-display text-2xl border-b border-ink-line transition-all ${
-                            isActive ? "text-brass-bright" : "text-text-paper hover:text-brass-bright"
+                          className={`flex items-center justify-between py-3.5 px-4 font-display text-2xl border-b border-paper-line transition-all ${
+                            isActive ? "text-brass-hover" : "text-text-primary hover:text-brass-hover"
                           }`}
                         >
                           {link.label}
-                          <span className="font-mono text-xs text-text-paper-muted">
+                          <span className="font-mono text-xs text-text-tertiary">
                             0{idx + 1}
                           </span>
                         </Link>

@@ -31,33 +31,33 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-grow">
-        <section className="bg-ink pt-32 lg:pt-40 pb-20">
+        <section className="bg-background pt-32 lg:pt-40 pb-20">
           <div className="section-container">
-            <Link href="/work" className="inline-flex items-center gap-2 text-text-paper-muted hover:text-brass-bright text-sm font-mono uppercase tracking-wide mb-10 transition-colors">
+            <Link href="/work" className="inline-flex items-center gap-2 text-text-tertiary hover:text-brass-hover text-sm font-mono uppercase tracking-wide mb-10 transition-colors">
               <ArrowLeft className="w-4 h-4" /> All work
             </Link>
-            <PlateLabel index={String(idx + 1).padStart(2, "0")} tone="paper">
+            <PlateLabel index={String(idx + 1).padStart(2, "0")}>
               {project.industry} · {project.year}
             </PlateLabel>
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-text-paper mt-6 max-w-3xl leading-[1.05]">
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-text-primary mt-6 max-w-3xl leading-[1.05]">
               {project.title}
             </h1>
-            <p className="text-lg text-text-paper-muted max-w-2xl mt-6 leading-relaxed">{project.summary}</p>
+            <p className="text-lg text-text-secondary max-w-2xl mt-6 leading-relaxed">{project.summary}</p>
 
-            <div className="flex flex-wrap gap-8 mt-10 pt-8 border-t border-ink-line">
+            <div className="flex flex-wrap gap-8 mt-10 pt-8 border-t border-paper-line">
               <div>
-                <div className="plate-label text-text-paper-muted mb-1.5">Client</div>
-                <div className="text-text-paper font-display text-lg">{project.client}</div>
+                <div className="plate-label text-text-tertiary mb-1.5">Client</div>
+                <div className="text-text-primary font-display text-lg">{project.client}</div>
               </div>
               <div>
-                <div className="plate-label text-text-paper-muted mb-1.5">Industry</div>
-                <div className="text-text-paper font-display text-lg">{project.industry}</div>
+                <div className="plate-label text-text-tertiary mb-1.5">Industry</div>
+                <div className="text-text-primary font-display text-lg">{project.industry}</div>
               </div>
               <div>
-                <div className="plate-label text-text-paper-muted mb-1.5">Stack</div>
+                <div className="plate-label text-text-tertiary mb-1.5">Stack</div>
                 <div className="flex flex-wrap gap-2 mt-1">
                   {project.stack.map((t) => (
-                    <span key={t} className="font-mono text-[11px] text-text-paper-muted border border-ink-line rounded-badge px-2 py-1">
+                    <span key={t} className="font-mono text-[11px] text-text-tertiary border border-paper-line rounded-badge px-2 py-1">
                       {t}
                     </span>
                   ))}
@@ -65,10 +65,10 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               </div>
             </div>
           </div>
-          <SprocketRule tone="ink" className="mt-16" />
+          <SprocketRule tone="paper" className="mt-16" />
         </section>
 
-        <section className="section-padding bg-background">
+        <section className="section-padding bg-paper-dim">
           <div className="section-container">
             <div className="grid md:grid-cols-3 gap-12 max-w-5xl">
               <div>

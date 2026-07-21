@@ -22,19 +22,19 @@ export default function WorkPage() {
     <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-grow">
         {/* ========== HERO ========== */}
-        <section className="bg-ink pt-32 lg:pt-40 pb-20">
+        <section className="bg-background pt-32 lg:pt-40 pb-20">
           <div className="section-container">
-            <PlateLabel index="01" tone="paper">Work</PlateLabel>
-            <h1 className="font-display text-5xl md:text-6xl text-text-paper mt-6 max-w-2xl leading-[1.05]">
-              Instruments we&apos;ve built for other people&apos;s businesses
+            <PlateLabel index="01">Work</PlateLabel>
+            <h1 className="font-display text-5xl md:text-6xl text-text-primary mt-6 max-w-2xl leading-[1.05]">
+              Software we&apos;ve built for other people&apos;s businesses
             </h1>
-            <p className="text-lg text-text-paper-muted max-w-xl mt-6 leading-relaxed">
+            <p className="text-lg text-text-secondary max-w-xl mt-6 leading-relaxed">
               A selection of engagements across product, platform and infrastructure work.
               Client names appear where we have permission to share them; the rest are
               described by industry and outcome.
             </p>
           </div>
-          <SprocketRule tone="ink" className="mt-16" />
+          <SprocketRule tone="paper" className="mt-16" />
         </section>
 
         {/* ========== PROJECT GRID ========== */}
